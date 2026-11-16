@@ -1,0 +1,52 @@
+{
+  "careers": [
+    {
+      "id": "ai_engineer",
+      "title": "AI / ML Engineer",
+      "description": "Build, deploy, and scale machine learning models, LLM systems, RAG pipelines, and AI-powered backend services.",
+      "icon": "🤖",
+      "required_skills": [
+        { "skill_id": "python", "name": "Python", "target_score": 85, "weight": 1.0 },
+        { "skill_id": "machine_learning", "name": "Machine Learning", "target_score": 80, "weight": 1.0 },
+        { "skill_id": "llm_generative_ai", "name": "LLMs & Generative AI", "target_score": 80, "weight": 0.95 },
+        { "skill_id": "deep_learning", "name": "Deep Learning (PyTorch/TF)", "target_score": 75, "weight": 0.9 },
+        { "skill_id": "fastapi", "name": "FastAPI", "target_score": 70, "weight": 0.8 },
+        { "skill_id": "git", "name": "Git & Version Control", "target_score": 75, "weight": 0.75 },
+        { "skill_id": "docker", "name": "Docker & Containers", "target_score": 65, "weight": 0.7 },
+        { "skill_id": "sql_databases", "name": "SQL & Relational DBs", "target_score": 60, "weight": 0.6 }
+      ]
+    },
+    {
+      "id": "fullstack_developer",
+      "title": "Full-Stack Web Developer",
+      "description": "Design and build end-to-end web applications with modern frontend frameworks, scalable APIs, and production databases.",
+      "icon": "⚡",
+      "required_skills": [
+        { "skill_id": "react", "name": "React", "target_score": 85, "weight": 1.0 },
+        { "skill_id": "javascript", "name": "JavaScript", "target_score": 85, "weight": 1.0 },
+        { "skill_id": "typescript", "name": "TypeScript", "target_score": 80, "weight": 0.95 },
+        { "skill_id": "fastapi", "name": "FastAPI", "target_score": 75, "weight": 0.85 },
+        { "skill_id": "sql_databases", "name": "SQL & Relational DBs", "target_score": 75, "weight": 0.85 },
+        { "skill_id": "html_css", "name": "HTML & CSS", "target_score": 80, "weight": 0.8 },
+        { "skill_id": "git", "name": "Git & Version Control", "target_score": 80, "weight": 0.8 },
+        { "skill_id": "mongodb", "name": "MongoDB & NoSQL", "target_score": 70, "weight": 0.75 },
+        { "skill_id": "docker", "name": "Docker & Containers", "target_score": 65, "weight": 0.7 }
+      ]
+    },
+    {
+      "id": "backend_engineer",
+      "title": "Backend Systems Engineer",
+      "description": "Architect high-throughput REST APIs, database schemas, background workers, and containerized cloud services.",
+      "icon": "⚙️",
+      "required_skills": [
+        { "skill_id": "python", "name": "Python", "target_score": 85, "weight": 1.0 },
+        { "skill_id": "fastapi", "name": "FastAPI", "target_score": 85, "weight": 1.0 },
+        { "skill_id": "sql_databases", "name": "SQL & Relational DBs", "target_score": 85, "weight": 1.0 },
+        { "skill_id": "rest_apis", "name": "RESTful API Design", "target_score": 85, "weight": 0.95 },
+        { "skill_id": "docker", "name": "Docker & Containers", "target_score": 75, "weight": 0.85 },
+        { "skill_id": "git", "name": "Git & Version Control", "target_score": 80, "weight": 0.8 },
+        { "skill_id": "mongodb", "name": "MongoDB & NoSQL", "target_score": 70, "weight": 0.75 }
+      ]
+    }
+  ]
+}

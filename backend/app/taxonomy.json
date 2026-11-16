@@ -1,0 +1,144 @@
+{
+  "skills": [
+    {
+      "id": "python",
+      "name": "Python",
+      "category": "Languages",
+      "languages": ["Python"],
+      "keywords": ["python", "py", "django", "flask", "fastapi"]
+    },
+    {
+      "id": "javascript",
+      "name": "JavaScript",
+      "category": "Languages",
+      "languages": ["JavaScript"],
+      "keywords": ["javascript", "js", "node", "express"]
+    },
+    {
+      "id": "typescript",
+      "name": "TypeScript",
+      "category": "Languages",
+      "languages": ["TypeScript"],
+      "keywords": ["typescript", "ts"]
+    },
+    {
+      "id": "react",
+      "name": "React",
+      "category": "Frontend",
+      "languages": ["JavaScript", "TypeScript"],
+      "keywords": ["react", "nextjs", "next.js", "jsx", "tsx", "redux"]
+    },
+    {
+      "id": "html_css",
+      "name": "HTML & CSS",
+      "category": "Frontend",
+      "languages": ["HTML", "CSS", "SCSS"],
+      "keywords": ["html", "css", "tailwind", "bootstrap", "sass"]
+    },
+    {
+      "id": "fastapi",
+      "name": "FastAPI",
+      "category": "Backend",
+      "languages": ["Python"],
+      "keywords": ["fastapi", "uvicorn", "starlette", "pydantic"]
+    },
+    {
+      "id": "django",
+      "name": "Django",
+      "category": "Backend",
+      "languages": ["Python"],
+      "keywords": ["django", "drf", "django-rest-framework"]
+    },
+    {
+      "id": "nodejs",
+      "name": "Node.js",
+      "category": "Backend",
+      "languages": ["JavaScript", "TypeScript"],
+      "keywords": ["nodejs", "node", "express", "nest", "nestjs"]
+    },
+    {
+      "id": "sql_databases",
+      "name": "SQL & Relational DBs",
+      "category": "Databases",
+      "languages": ["PLpgSQL", "SQL", "TSQL"],
+      "keywords": ["postgres", "postgresql", "mysql", "sqlite", "sql", "prisma", "sqlalchemy"]
+    },
+    {
+      "id": "mongodb",
+      "name": "MongoDB & NoSQL",
+      "category": "Databases",
+      "languages": [],
+      "keywords": ["mongodb", "mongo", "mongoose", "nosql", "redis"]
+    },
+    {
+      "id": "git",
+      "name": "Git & Version Control",
+      "category": "DevOps & Tools",
+      "languages": [],
+      "keywords": ["git", "github", "actions", "workflows"]
+    },
+    {
+      "id": "docker",
+      "name": "Docker & Containers",
+      "category": "DevOps & Tools",
+      "languages": ["Dockerfile"],
+      "keywords": ["docker", "container", "docker-compose", "k8s", "kubernetes"]
+    },
+    {
+      "id": "machine_learning",
+      "name": "Machine Learning",
+      "category": "AI / ML",
+      "languages": ["Python", "Jupyter Notebook"],
+      "keywords": ["ml", "machine-learning", "scikit-learn", "sklearn", "pandas", "numpy"]
+    },
+    {
+      "id": "deep_learning",
+      "name": "Deep Learning (PyTorch/TF)",
+      "category": "AI / ML",
+      "languages": ["Python"],
+      "keywords": ["pytorch", "torch", "tensorflow", "keras", "deep-learning"]
+    },
+    {
+      "id": "llm_generative_ai",
+      "name": "LLMs & Generative AI",
+      "category": "AI / ML",
+      "languages": ["Python"],
+      "keywords": ["llm", "langchain", "llamaindex", "openai", "gemini", "rag", "huggingface"]
+    },
+    {
+      "id": "java",
+      "name": "Java",
+      "category": "Languages",
+      "languages": ["Java"],
+      "keywords": ["java", "spring", "springboot", "maven", "gradle"]
+    },
+    {
+      "id": "cpp",
+      "name": "C / C++",
+      "category": "Languages",
+      "languages": ["C", "C++"],
+      "keywords": ["c", "cpp", "cplusplus", "cmake"]
+    },
+    {
+      "id": "go",
+      "name": "Go (Golang)",
+      "category": "Languages",
+      "languages": ["Go"],
+      "keywords": ["go", "golang", "gin", "goroutine"]
+    },
+    {
+      "id": "rust",
+      "name": "Rust",
+      "category": "Languages",
+      "languages": ["Rust"],
+      "keywords": ["rust", "cargo", "tokio", "actix"]
+    },
+    {
+      "id": "rest_apis",
+      "name": "RESTful API Design",
+      "category": "Backend",
+      "languages": [],
+      "keywords": ["api", "rest", "restful", "http", "endpoints", "swagger"]
+    }
+  ]
+}

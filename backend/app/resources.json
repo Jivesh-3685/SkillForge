@@ -1,0 +1,304 @@
+{
+  "resources": [
+    {
+      "id": "res-py-1",
+      "skill_id": "python",
+      "title": "Official Python 3 Tutorial",
+      "url": "https://docs.python.org/3/tutorial/",
+      "type": "doc",
+      "source": "Python Software Foundation",
+      "estimated_minutes": 120,
+      "votes": 10
+    },
+    {
+      "id": "res-py-2",
+      "skill_id": "python",
+      "title": "Async IO in Python: A Complete Walkthrough",
+      "url": "https://realpython.com/async-io-python/",
+      "type": "doc",
+      "source": "Real Python",
+      "estimated_minutes": 60,
+      "votes": 8
+    },
+    {
+      "id": "res-py-3",
+      "skill_id": "python",
+      "title": "Python for Beginners — Full Course",
+      "url": "https://www.youtube.com/watch?v=eWRfhZUzrAc",
+      "type": "video",
+      "source": "freeCodeCamp",
+      "estimated_minutes": 240,
+      "votes": 12
+    },
+    {
+      "id": "res-ml-1",
+      "skill_id": "machine_learning",
+      "title": "Google Machine Learning Crash Course",
+      "url": "https://developers.google.com/machine-learning/crash-course",
+      "type": "course",
+      "source": "Google for Developers",
+      "estimated_minutes": 300,
+      "votes": 15
+    },
+    {
+      "id": "res-ml-2",
+      "skill_id": "machine_learning",
+      "title": "Scikit-Learn Machine Learning in Python",
+      "url": "https://scikit-learn.org/stable/user_guide.html",
+      "type": "doc",
+      "source": "Scikit-Learn Community",
+      "estimated_minutes": 90,
+      "votes": 9
+    },
+    {
+      "id": "res-ml-3",
+      "skill_id": "machine_learning",
+      "title": "StatQuest: Machine Learning Fundamentals",
+      "url": "https://www.youtube.com/playlist?list=PLblh5JKOoLUICTaGLRoHQDuF_7q2GfuJF",
+      "type": "video",
+      "source": "StatQuest with Josh Starmer",
+      "estimated_minutes": 180,
+      "votes": 14
+    },
+    {
+      "id": "res-llm-1",
+      "skill_id": "llm_generative_ai",
+      "title": "ChatGPT & Gemini Prompt Engineering for Developers",
+      "url": "https://www.deeplearning.ai/short-courses/chatgpt-prompt-engineering-for-developers/",
+      "type": "course",
+      "source": "DeepLearning.AI",
+      "estimated_minutes": 90,
+      "votes": 18
+    },
+    {
+      "id": "res-llm-2",
+      "skill_id": "llm_generative_ai",
+      "title": "Google Gemini API Quickstart Guide",
+      "url": "https://ai.google.dev/gemini-api/docs/quickstart",
+      "type": "doc",
+      "source": "Google AI for Developers",
+      "estimated_minutes": 45,
+      "votes": 11
+    },
+    {
+      "id": "res-llm-3",
+      "skill_id": "llm_generative_ai",
+      "title": "Retrieval Augmented Generation (RAG) Architecture",
+      "url": "https://www.promptingguide.ai/techniques/rag",
+      "type": "doc",
+      "source": "Prompt Engineering Guide",
+      "estimated_minutes": 45,
+      "votes": 9
+    },
+    {
+      "id": "res-dl-1",
+      "skill_id": "deep_learning",
+      "title": "PyTorch 60-Minute Blitz",
+      "url": "https://pytorch.org/tutorials/beginner/deep_learning_60min_blitz.html",
+      "type": "doc",
+      "source": "PyTorch Official",
+      "estimated_minutes": 60,
+      "votes": 12
+    },
+    {
+      "id": "res-dl-2",
+      "skill_id": "deep_learning",
+      "title": "Neural Networks: Zero to Hero by Andrej Karpathy",
+      "url": "https://www.youtube.com/playlist?list=PLAqhIrjkxbuWI23v9cThsA9GvCAUhRvKZ",
+      "type": "video",
+      "source": "Andrej Karpathy",
+      "estimated_minutes": 360,
+      "votes": 20
+    },
+    {
+      "id": "res-fa-1",
+      "skill_id": "fastapi",
+      "title": "FastAPI Official Interactive Tutorial",
+      "url": "https://fastapi.tiangolo.com/tutorial/",
+      "type": "doc",
+      "source": "FastAPI Official",
+      "estimated_minutes": 90,
+      "votes": 15
+    },
+    {
+      "id": "res-fa-2",
+      "skill_id": "fastapi",
+      "title": "FastAPI Full Course for Beginners",
+      "url": "https://www.youtube.com/watch?v=0sOvCWFmrtA",
+      "type": "video",
+      "source": "freeCodeCamp",
+      "estimated_minutes": 240,
+      "votes": 11
+    },
+    {
+      "id": "res-re-1",
+      "skill_id": "react",
+      "title": "React.dev: Quick Start & Learn React",
+      "url": "https://react.dev/learn",
+      "type": "doc",
+      "source": "React Core Team",
+      "estimated_minutes": 120,
+      "votes": 16
+    },
+    {
+      "id": "res-re-2",
+      "skill_id": "react",
+      "title": "Full Stack Open: Deep Dive into React",
+      "url": "https://fullstackopen.com/en/part1",
+      "type": "course",
+      "source": "University of Helsinki",
+      "estimated_minutes": 180,
+      "votes": 14
+    },
+    {
+      "id": "res-js-1",
+      "skill_id": "javascript",
+      "title": "MDN JavaScript Guide",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide",
+      "type": "doc",
+      "source": "Mozilla Developer Network",
+      "estimated_minutes": 150,
+      "votes": 13
+    },
+    {
+      "id": "res-js-2",
+      "skill_id": "javascript",
+      "title": "The Modern JavaScript Tutorial",
+      "url": "https://javascript.info/",
+      "type": "doc",
+      "source": "JavaScript.info",
+      "estimated_minutes": 120,
+      "votes": 11
+    },
+    {
+      "id": "res-ts-1",
+      "skill_id": "typescript",
+      "title": "The TypeScript Handbook",
+      "url": "https://www.typescriptlang.org/docs/handbook/intro.html",
+      "type": "doc",
+      "source": "Microsoft TypeScript Team",
+      "estimated_minutes": 120,
+      "votes": 12
+    },
+    {
+      "id": "res-ts-2",
+      "skill_id": "typescript",
+      "title": "Total TypeScript Beginner Exercises",
+      "url": "https://www.totaltypescript.com/tutorials/beginners-typescript",
+      "type": "course",
+      "source": "Matt Pocock / Total TypeScript",
+      "estimated_minutes": 90,
+      "votes": 10
+    },
+    {
+      "id": "res-doc-1",
+      "skill_id": "docker",
+      "title": "Docker Getting Started Guide",
+      "url": "https://docs.docker.com/get-started/",
+      "type": "doc",
+      "source": "Docker Docs",
+      "estimated_minutes": 60,
+      "votes": 10
+    },
+    {
+      "id": "res-doc-2",
+      "skill_id": "docker",
+      "title": "Docker for Beginners Tutorial",
+      "url": "https://www.youtube.com/watch?v=fqMOX6JJhGo",
+      "type": "video",
+      "source": "freeCodeCamp",
+      "estimated_minutes": 120,
+      "votes": 9
+    },
+    {
+      "id": "res-git-1",
+      "skill_id": "git",
+      "title": "Pro Git Book (Free Online Edition)",
+      "url": "https://git-scm.com/book/en/v2",
+      "type": "doc",
+      "source": "Scott Chacon & Ben Straub",
+      "estimated_minutes": 150,
+      "votes": 12
+    },
+    {
+      "id": "res-git-2",
+      "skill_id": "git",
+      "title": "GitHub Skills Interactive Tutorials",
+      "url": "https://skills.github.com/",
+      "type": "course",
+      "source": "GitHub",
+      "estimated_minutes": 60,
+      "votes": 11
+    },
+    {
+      "id": "res-sql-1",
+      "skill_id": "sql_databases",
+      "title": "SQLBolt: Interactive SQL Lessons",
+      "url": "https://sqlbolt.com/",
+      "type": "course",
+      "source": "SQLBolt",
+      "estimated_minutes": 90,
+      "votes": 14
+    },
+    {
+      "id": "res-sql-2",
+      "skill_id": "sql_databases",
+      "title": "PostgreSQL Tutorial for Beginners",
+      "url": "https://www.postgresqltutorial.com/",
+      "type": "doc",
+      "source": "PostgreSQL Tutorial",
+      "estimated_minutes": 120,
+      "votes": 10
+    },
+    {
+      "id": "res-mon-1",
+      "skill_id": "mongodb",
+      "title": "MongoDB University: Introduction to MongoDB",
+      "url": "https://learn.mongodb.com/",
+      "type": "course",
+      "source": "MongoDB University",
+      "estimated_minutes": 180,
+      "votes": 12
+    },
+    {
+      "id": "res-mon-2",
+      "skill_id": "mongodb",
+      "title": "MongoDB Aggregation Pipeline Explained",
+      "url": "https://www.mongodb.com/docs/manual/core/aggregation-pipeline/",
+      "type": "doc",
+      "source": "MongoDB Docs",
+      "estimated_minutes": 60,
+      "votes": 8
+    },
+    {
+      "id": "res-css-1",
+      "skill_id": "html_css",
+      "title": "Learn CSS by Google Web.dev",
+      "url": "https://web.dev/learn/css",
+      "type": "course",
+      "source": "Google Web.dev Team",
+      "estimated_minutes": 180,
+      "votes": 15
+    },
+    {
+      "id": "res-css-2",
+      "skill_id": "html_css",
+      "title": "Tailwind CSS Documentation & Utility Classes",
+      "url": "https://tailwindcss.com/docs",
+      "type": "doc",
+      "source": "Tailwind Labs",
+      "estimated_minutes": 60,
+      "votes": 11
+    },
+    {
+      "id": "res-api-1",
+      "skill_id": "rest_apis",
+      "title": "Microsoft REST API Guidelines & Best Practices",
+      "url": "https://github.com/microsoft/api-guidelines",
+      "type": "doc",
+      "source": "Microsoft",
+      "estimated_minutes": 60,
+      "votes": 9
+    }
+  ]
+}

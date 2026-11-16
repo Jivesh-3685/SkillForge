@@ -1,0 +1,154 @@
+{
+  "projects": [
+    {
+      "id": "proj-ai-1",
+      "title": "RAG Document Q&A Assistant",
+      "description": "Build an intelligent document search system that extracts PDF text, embeds chunks into a vector database, and answers user questions with grounded Gemini citations.",
+      "difficulty": "Intermediate",
+      "estimated_hours": 12,
+      "primary_skills": ["python", "fastapi"],
+      "stretch_skills": ["llm_generative_ai"],
+      "career_relevance": ["ai_engineer"],
+      "deliverables": [
+        "FastAPI endpoint to upload documents and generate vector embeddings",
+        "Semantic similarity search pipeline with cosine distance",
+        "Grounded generation prompt returning source page citations"
+      ]
+    },
+    {
+      "id": "proj-ai-2",
+      "title": "End-to-End Customer Churn Predictor",
+      "description": "Develop and deploy a classification model using Scikit-Learn to predict customer churn, evaluate ROC-AUC, and expose prediction endpoints via FastAPI.",
+      "difficulty": "Beginner",
+      "estimated_hours": 8,
+      "primary_skills": ["python"],
+      "stretch_skills": ["machine_learning", "fastapi"],
+      "career_relevance": ["ai_engineer"],
+      "deliverables": [
+        "Jupyter notebook detailing EDA, feature scaling, and model selection",
+        "Trained Random Forest model serialized with Joblib",
+        "FastAPI /predict endpoint returning churn probabilities"
+      ]
+    },
+    {
+      "id": "proj-ai-3",
+      "title": "Autonomous Coding Agent with Tool Calling",
+      "description": "Create an AI agent that accepts multi-step user prompts, executes terminal commands or Python code in a safe sandbox, and loops until the goal is solved.",
+      "difficulty": "Advanced",
+      "estimated_hours": 20,
+      "primary_skills": ["python", "llm_generative_ai"],
+      "stretch_skills": ["docker", "deep_learning"],
+      "career_relevance": ["ai_engineer"],
+      "deliverables": [
+        "ReAct (Reason + Act) loop handling structured function calling",
+        "Isolated Docker container execution sandbox",
+        "CLI or streaming web interface showing real-time agent thoughts"
+      ]
+    },
+    {
+      "id": "proj-ai-4",
+      "title": "Computer Vision Image Classifier with PyTorch",
+      "description": "Train a convolutional neural network (CNN) on CIFAR-10 or custom dataset using PyTorch, apply data augmentations, and optimize test accuracy.",
+      "difficulty": "Intermediate",
+      "estimated_hours": 14,
+      "primary_skills": ["python"],
+      "stretch_skills": ["deep_learning"],
+      "career_relevance": ["ai_engineer"],
+      "deliverables": [
+        "PyTorch training script with learning rate scheduling and early stopping",
+        "Validation confusion matrix and loss curve plots",
+        "Inference script classifying unseen images"
+      ]
+    },
+    {
+      "id": "proj-fs-1",
+      "title": "Full-Stack Task & Sprint Kanban Board",
+      "description": "Architect a Trello-style collaboration board with drag-and-drop columns, optimistic UI updates in React, and persistent MongoDB document storage.",
+      "difficulty": "Intermediate",
+      "estimated_hours": 14,
+      "primary_skills": ["react", "javascript"],
+      "stretch_skills": ["fastapi", "mongodb"],
+      "career_relevance": ["fullstack_developer"],
+      "deliverables": [
+        "React frontend with smooth drag-and-drop column reordering",
+        "RESTful FastAPI CRUD endpoints for boards, lists, and tasks",
+        "MongoDB schema with indexed board references"
+      ]
+    },
+    {
+      "id": "proj-fs-2",
+      "title": "Interactive Analytics Dashboard with Recharts",
+      "description": "Build an executive metrics dashboard visualizing time-series revenue, user engagement, and retention metrics with interactive date filters.",
+      "difficulty": "Beginner",
+      "estimated_hours": 8,
+      "primary_skills": ["html_css", "javascript"],
+      "stretch_skills": ["react", "typescript"],
+      "career_relevance": ["fullstack_developer"],
+      "deliverables": [
+        "Responsive grid layout built with Tailwind CSS",
+        "Recharts AreaChart, BarChart, and PieChart data visualizations",
+        "TypeScript interfaces for API data models"
+      ]
+    },
+    {
+      "id": "proj-fs-3",
+      "title": "Real-Time Collaborative Code Snippet Editor",
+      "description": "Create a live markdown/code sharing web application with syntax highlighting, instant preview, and secure GitHub OAuth login.",
+      "difficulty": "Advanced",
+      "estimated_hours": 18,
+      "primary_skills": ["react", "typescript", "fastapi"],
+      "stretch_skills": ["docker", "mongodb"],
+      "career_relevance": ["fullstack_developer", "backend_engineer"],
+      "deliverables": [
+        "Monaco or Prism code editor component with live markdown preview",
+        "Shareable snippet URLs with permission toggles (public / private)",
+        "Docker Compose configuration for one-command local launch"
+      ]
+    },
+    {
+      "id": "proj-be-1",
+      "title": "High-Throughput Rate-Limited API Gateway",
+      "description": "Build an asynchronous reverse proxy in FastAPI that authenticates incoming requests, applies Token Bucket rate limiting, and forwards to upstream microservices.",
+      "difficulty": "Intermediate",
+      "estimated_hours": 12,
+      "primary_skills": ["python", "fastapi"],
+      "stretch_skills": ["sql_databases", "docker"],
+      "career_relevance": ["backend_engineer"],
+      "deliverables": [
+        "Token bucket rate limiting middleware with sliding window algorithm",
+        "Structured JSON logging with request IDs for distributed tracing",
+        "Dockerized setup with comprehensive Pytest integration tests"
+      ]
+    },
+    {
+      "id": "proj-be-2",
+      "title": "E-Commerce Order & Inventory Engine",
+      "description": "Implement a transactional backend handling product catalogs, shopping carts, inventory reservations, and checkout workflows with strict ACID guarantees.",
+      "difficulty": "Intermediate",
+      "estimated_hours": 15,
+      "primary_skills": ["python", "fastapi"],
+      "stretch_skills": ["sql_databases", "rest_apis"],
+      "career_relevance": ["backend_engineer"],
+      "deliverables": [
+        "Relational schema with normalized tables, foreign keys, and indexes",
+        "Atomic database transactions preventing double-selling inventory",
+        "Complete OpenAPI documentation with request validation"
+      ]
+    },
+    {
+      "id": "proj-be-3",
+      "title": "Distributed Asynchronous Job Worker System",
+      "description": "Create a background task processing engine that receives heavy computing jobs via an API, distributes work across workers, and tracks status.",
+      "difficulty": "Advanced",
+      "estimated_hours": 16,
+      "primary_skills": ["python", "fastapi"],
+      "stretch_skills": ["docker", "mongodb"],
+      "career_relevance": ["backend_engineer", "ai_engineer"],
+      "deliverables": [
+        "Async job queue with failure retries and exponential backoff",
+        "Worker process running independently in separate Docker container",
+        "WebSocket or polling endpoint for real-time job progress"
+      ]
+    }
+  ]
+}
