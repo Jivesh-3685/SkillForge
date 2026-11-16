@@ -113,6 +113,7 @@ const DEFAULT_SETTINGS = {
   accentColor: 'emerald',
   fontSize: 'normal',
   sidebarCollapsed: false,
+  sidebarWidth: 260,
   compactMode: false,
   showPhaseLabels: true,
   animationsEnabled: true,

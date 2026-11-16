@@ -1,16 +1,78 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useAuth } from '../context/AuthContext'
 import { useTheme } from '../context/ThemeContext'
 import AuthModal from './AuthModal'
 
-export default function Sidebar({ activePage, onNavigate, onOpenCommandPalette }) {
+export default function Sidebar({
+  activePage,
+  onNavigate,
+  onOpenCommandPalette,
+  mobileOpen,
+  onMobileClose,
+}) {
   const { currentUser, userProfile, logout } = useAuth()
   const { settings, updateSetting, theme, t } = useTheme()
   const [authModalOpen, setAuthModalOpen] = useState(false)
+  const [isHoveringBorder, setIsHoveringBorder] = useState(false)
+  const [isResizing, setIsResizing] = useState(false)
+
   const collapsed = settings.sidebarCollapsed
+  const sidebarWidth = settings.sidebarWidth || 260
+  const dragStartX = useRef(0)
+  const dragStartWidth = useRef(sidebarWidth)
+  const hasDragged = useRef(false)
 
   const toggleCollapse = () => {
-    updateSetting('sidebarCollapsed', !collapsed)
+    updateSetting(
+      'sidebarCollapsed',
+      !collapsed,
+      !collapsed ? 'Sidebar collapsed (Ctrl+\\ to open)' : 'Sidebar expanded'
+    )
+  }
+
+  // Keyboard shortcut Ctrl+\ or Cmd+\ to toggle sidebar
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if ((e.ctrlKey || e.metaKey) && (e.key === '\\' || e.code === 'Backslash')) {
+        e.preventDefault()
+        toggleCollapse()
+      }
+    }
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [collapsed])
+
+  // Mouse Drag to Resize Sidebar
+  const handleMouseDown = (e) => {
+    e.preventDefault()
+    setIsResizing(true)
+    hasDragged.current = false
+    dragStartX.current = e.clientX
+    dragStartWidth.current = sidebarWidth
+
+    document.body.style.cursor = 'col-resize'
+    document.body.style.userSelect = 'none'
+
+    const onMouseMove = (moveEvent) => {
+      const delta = moveEvent.clientX - dragStartX.current
+      if (Math.abs(delta) > 3) {
+        hasDragged.current = true
+      }
+      const newWidth = Math.min(Math.max(dragStartWidth.current + delta, 190), 460)
+      updateSetting('sidebarWidth', newWidth)
+    }
+
+    const onMouseUp = () => {
+      setIsResizing(false)
+      setIsHoveringBorder(false)
+      document.body.style.cursor = ''
+      document.body.style.userSelect = ''
+      window.removeEventListener('mousemove', onMouseMove)
+      window.removeEventListener('mouseup', onMouseUp)
+    }
+
+    window.addEventListener('mousemove', onMouseMove)
+    window.addEventListener('mouseup', onMouseUp)
   }
 
   const sections = [
@@ -42,11 +104,25 @@ export default function Sidebar({ activePage, onNavigate, onOpenCommandPalette }
     },
   ]
 
+  const computedWidth = collapsed ? 64 : sidebarWidth
+
   return (
     <>
+      {/* Mobile Backdrop Overlay */}
+      {mobileOpen && (
+        <div
+          onClick={onMobileClose}
+          className="fixed inset-0 z-40 bg-black/60 backdrop-blur-xs md:hidden animate-fadeIn"
+        />
+      )}
+
       <aside
-        className={`fixed top-0 left-0 h-screen z-40 flex flex-col border-r transition-all duration-300 bg-[#14181f] border-[#30363d] ${
-          collapsed ? 'w-[64px]' : 'w-[260px]'
+        style={{
+          width: computedWidth,
+          transition: isResizing ? 'none' : 'width 0.22s cubic-bezier(0.16, 1, 0.3, 1), transform 0.22s ease',
+        }}
+        className={`fixed top-0 left-0 h-screen z-50 flex flex-col border-r bg-[#14181f] border-[#30363d] select-none ${
+          mobileOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'
         }`}
       >
         {/* Workspace Brand Header */}
@@ -80,20 +156,31 @@ export default function Sidebar({ activePage, onNavigate, onOpenCommandPalette }
             </div>
           )}
 
-          <button
-            onClick={toggleCollapse}
-            className="w-7 h-7 rounded-lg flex items-center justify-center hover:bg-white/5 transition-colors text-slate-400 cursor-pointer"
-            title={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}
-          >
-            <svg
-              className={`w-3.5 h-3.5 transition-transform ${collapsed ? 'rotate-180' : ''}`}
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
+          {/* Collapse Button / Mobile Close Button */}
+          <div className="flex items-center gap-1">
+            <button
+              onClick={toggleCollapse}
+              className="w-7 h-7 rounded-lg hidden md:flex items-center justify-center hover:bg-white/5 transition-colors text-slate-400 cursor-pointer"
+              title={collapsed ? 'Expand sidebar (Ctrl+\\)' : 'Collapse sidebar (Ctrl+\\)'}
             >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 19l-7-7 7-7m8 14l-7-7 7-7" />
-            </svg>
-          </button>
+              <svg
+                className={`w-3.5 h-3.5 transition-transform ${collapsed ? 'rotate-180' : ''}`}
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 19l-7-7 7-7m8 14l-7-7 7-7" />
+              </svg>
+            </button>
+
+            {/* Mobile close button */}
+            <button
+              onClick={onMobileClose}
+              className="w-7 h-7 rounded-lg flex md:hidden items-center justify-center hover:bg-white/10 text-slate-400"
+            >
+              ✕
+            </button>
+          </div>
         </div>
 
         {/* Search / Command Palette Trigger */}
@@ -123,7 +210,10 @@ export default function Sidebar({ activePage, onNavigate, onOpenCommandPalette }
         {!collapsed && (
           <div className="px-2 pt-1 pb-2 flex gap-1 border-b border-white/[0.04]">
             <button
-              onClick={() => onNavigate('home')}
+              onClick={() => {
+                onNavigate('home')
+                onMobileClose?.()
+              }}
               className={`flex-1 py-1.5 rounded-md text-xs flex items-center justify-center gap-1.5 transition-colors cursor-pointer ${
                 activePage === 'home'
                   ? 'bg-emerald-500/15 text-emerald-300 font-semibold'
@@ -133,7 +223,10 @@ export default function Sidebar({ activePage, onNavigate, onOpenCommandPalette }
               <span>🏠</span> {t('home', 'Home')}
             </button>
             <button
-              onClick={() => onNavigate('mentor')}
+              onClick={() => {
+                onNavigate('mentor')
+                onMobileClose?.()
+              }}
               className={`flex-1 py-1.5 rounded-md text-xs flex items-center justify-center gap-1.5 transition-colors cursor-pointer ${
                 activePage === 'mentor'
                   ? 'bg-emerald-500/15 text-emerald-300 font-semibold'
@@ -143,7 +236,10 @@ export default function Sidebar({ activePage, onNavigate, onOpenCommandPalette }
               <span>💬</span> {t('mentor', 'Mentor')}
             </button>
             <button
-              onClick={() => onNavigate('roadmap')}
+              onClick={() => {
+                onNavigate('roadmap')
+                onMobileClose?.()
+              }}
               className={`flex-1 py-1.5 rounded-md text-xs flex items-center justify-center gap-1.5 transition-colors cursor-pointer ${
                 activePage === 'roadmap'
                   ? 'bg-emerald-500/15 text-emerald-300 font-semibold'
@@ -207,7 +303,10 @@ export default function Sidebar({ activePage, onNavigate, onOpenCommandPalette }
                 return (
                   <button
                     key={item.id}
-                    onClick={() => onNavigate(item.id)}
+                    onClick={() => {
+                      onNavigate(item.id)
+                      onMobileClose?.()
+                    }}
                     title={collapsed ? item.name : undefined}
                     className={`w-full flex items-center gap-2.5 px-3 py-1.5 mx-0.5 rounded-lg text-left transition-all group cursor-pointer ${
                       collapsed ? 'justify-center mx-auto w-[calc(100%-8px)]' : ''
@@ -234,7 +333,10 @@ export default function Sidebar({ activePage, onNavigate, onOpenCommandPalette }
         {/* Footer Area with Settings and Sign out */}
         <div className="border-t border-[#30363d] p-2 space-y-1 flex-shrink-0">
           <button
-            onClick={() => onNavigate('settings')}
+            onClick={() => {
+              onNavigate('settings')
+              onMobileClose?.()
+            }}
             title={collapsed ? t('settings', 'Settings') : undefined}
             className={`w-full flex items-center gap-2.5 px-3 py-1.5 rounded-lg text-left transition-all cursor-pointer ${
               collapsed ? 'justify-center' : ''
@@ -261,6 +363,42 @@ export default function Sidebar({ activePage, onNavigate, onOpenCommandPalette }
             </button>
           )}
         </div>
+
+        {/* ─── Notion-Style Draggable Edge & Hover Tooltip ─── */}
+        <div
+          onMouseEnter={() => setIsHoveringBorder(true)}
+          onMouseLeave={() => !isResizing && setIsHoveringBorder(false)}
+          onMouseDown={handleMouseDown}
+          onClick={() => {
+            if (!hasDragged.current) {
+              toggleCollapse()
+            }
+          }}
+          className={`absolute top-0 right-0 w-3 h-full cursor-col-resize z-40 transition-colors hidden md:block ${
+            isHoveringBorder || isResizing ? 'bg-emerald-500/30' : 'hover:bg-emerald-500/20'
+          }`}
+          title="Drag to resize, click to collapse"
+        >
+          <div
+            className={`w-[2px] h-full ml-auto transition-colors ${
+              isHoveringBorder || isResizing ? 'bg-emerald-400' : 'bg-transparent'
+            }`}
+          />
+        </div>
+
+        {/* Notion Tooltip on Hover */}
+        {(isHoveringBorder || isResizing) && !collapsed && (
+          <div className="absolute top-1/2 -right-36 -translate-y-1/2 z-50 pointer-events-none bg-[#1c2128] text-white text-[11px] px-3 py-2 rounded-xl border border-[#30363d] shadow-2xl backdrop-blur-md animate-fadeIn flex flex-col gap-1">
+            <div className="flex items-center gap-1.5 whitespace-nowrap">
+              <span className="font-bold text-slate-100">Close</span>
+              <span className="text-slate-400 text-[10px]">Click or Ctrl+\</span>
+            </div>
+            <div className="flex items-center gap-1.5 whitespace-nowrap">
+              <span className="font-bold text-slate-100">Resize</span>
+              <span className="text-slate-400 text-[10px]">Drag</span>
+            </div>
+          </div>
+        )}
       </aside>
 
       <AuthModal isOpen={authModalOpen} onClose={() => setAuthModalOpen(false)} />
