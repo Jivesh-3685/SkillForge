@@ -40,7 +40,7 @@ function PageShell({ title, subtitle, children }) {
 function AppLayout() {
   const [activePage, setActivePage] = useState('home')
   const [isPaletteOpen, setIsPaletteOpen] = useState(false)
-  const { theme, settings } = useTheme()
+  const { theme, settings, t } = useTheme()
   const sidebarWidth = settings.sidebarCollapsed ? 64 : 260
 
   const renderPage = () => {
@@ -127,7 +127,10 @@ function AppLayout() {
   }
 
   return (
-    <div className={`min-h-screen ${theme.bg} ${theme.text} flex`}>
+    <div
+      className="min-h-screen flex"
+      style={{ backgroundColor: 'var(--bg-main)', color: 'var(--text-main)' }}
+    >
       {/* Sidebar */}
       <Sidebar
         activePage={activePage}
@@ -141,27 +144,33 @@ function AppLayout() {
         style={{ marginLeft: sidebarWidth }}
       >
         {/* Top Bar (breadcrumb / search placeholder) */}
-        <header className={`sticky top-0 z-30 h-12 flex items-center px-6 border-b ${theme.border} ${theme.sidebar} backdrop-blur-md`}>
+        <header
+          className="sticky top-0 z-30 h-12 flex items-center px-6 border-b backdrop-blur-md"
+          style={{
+            backgroundColor: 'var(--bg-sidebar)',
+            borderColor: 'var(--border-color)',
+          }}
+        >
           <div className="flex items-center gap-2 flex-1">
-            <span className={`text-xs font-mono ${theme.textMuted}`}>
+            <span className="text-xs font-mono opacity-60">
               SkillForge AI
             </span>
-            <span className={`${theme.textMuted}`}>/</span>
-            <span className={`text-xs font-semibold capitalize ${theme.text}`}>
-              {activePage === 'home' ? 'Dashboard' : activePage.replace(/_/g, ' ')}
+            <span className="opacity-40">/</span>
+            <span className="text-xs font-semibold capitalize">
+              {t(activePage, activePage === 'home' ? 'Dashboard' : activePage.replace(/_/g, ' '))}
             </span>
           </div>
 
           {/* Search pill */}
           <button
             onClick={() => setIsPaletteOpen(true)}
-            className={`flex items-center gap-2 px-3 py-1.5 rounded-lg border ${theme.border} hover:border-white/20 transition-colors cursor-pointer`}
+            className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-[#30363d] hover:border-white/30 transition-colors cursor-pointer"
           >
-            <svg className="w-3.5 h-3.5 opacity-40" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg className="w-3.5 h-3.5 opacity-50" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
             </svg>
-            <span className={`text-xs ${theme.textMuted}`}>Search or ask…</span>
-            <kbd className={`text-[10px] px-1.5 py-0.5 rounded border ${theme.border} ${theme.textMuted} font-mono`}>
+            <span className="text-xs opacity-70">{t('searchOrAsk', 'Search or ask…')}</span>
+            <kbd className="text-[10px] px-1.5 py-0.5 rounded border border-[#30363d] opacity-70 font-mono">
               Ctrl+K
             </kbd>
           </button>

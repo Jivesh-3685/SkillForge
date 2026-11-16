@@ -27,7 +27,7 @@ function StatusDot({ ok, label }) {
 
 export default function HomePage({ onNavigate }) {
   const { currentUser, userProfile } = useAuth()
-  const { theme } = useTheme()
+  const { theme, t } = useTheme()
   const [prompt, setPrompt] = useState('')
   const [health, setHealth] = useState(null)
   const [error, setError] = useState(null)
@@ -52,7 +52,6 @@ export default function HomePage({ onNavigate }) {
   const handlePromptSubmit = (e) => {
     e.preventDefault()
     if (!prompt.trim()) return
-    // Navigate to AI mentor with the prompt in sessionStorage
     try {
       sessionStorage.setItem('sf_initial_prompt', prompt.trim())
     } catch {}
@@ -60,20 +59,20 @@ export default function HomePage({ onNavigate }) {
   }
 
   const quickPills = [
-    { id: 'skills', icon: '⚡', label: 'Analyze Skills', desc: 'Scan code & score' },
-    { id: 'gaps', icon: '🎯', label: 'Career Gaps', desc: 'Target shortfall' },
-    { id: 'roadmap', icon: '🗺️', label: 'AI Roadmap', desc: 'Personal plan' },
-    { id: 'resume', icon: '📄', label: 'Resume Match', desc: 'Audit claims' },
-    { id: 'projects', icon: '💻', label: 'Projects', desc: 'Hands-on practice' },
-    { id: 'mentor', icon: '🤖', label: 'Ask Mentor', desc: 'Chat coach' },
+    { id: 'skills', icon: '⚡', label: t('chipSkills', 'Analyze Skills') },
+    { id: 'gaps', icon: '🎯', label: t('chipGaps', 'Career Gaps') },
+    { id: 'roadmap', icon: '🗺️', label: t('chipRoadmap', 'AI Roadmap') },
+    { id: 'resume', icon: '📄', label: t('chipResume', 'Resume Match') },
+    { id: 'projects', icon: '💻', label: t('chipProjects', 'Projects') },
+    { id: 'mentor', icon: '🤖', label: t('chipMentor', 'Ask Mentor') },
   ]
 
   const integrations = [
-    { name: 'GitHub', icon: '🐙', color: 'text-white' },
-    { name: 'FastAPI', icon: '⚡', color: 'text-teal-400' },
-    { name: 'React', icon: '⚛️', color: 'text-cyan-400' },
-    { name: 'MongoDB', icon: '🍃', color: 'text-emerald-400' },
-    { name: 'Gemini AI', icon: '✨', color: 'text-amber-400' },
+    { name: 'GitHub', icon: '🐙' },
+    { name: 'FastAPI', icon: '⚡' },
+    { name: 'React', icon: '⚛️' },
+    { name: 'MongoDB', icon: '🍃' },
+    { name: 'Gemini AI', icon: '✨' },
   ]
 
   return (
@@ -83,24 +82,24 @@ export default function HomePage({ onNavigate }) {
         {/* Animated Brand Mascot Avatar */}
         <div className="relative">
           <div className="w-20 h-20 rounded-3xl bg-gradient-to-tr from-emerald-600 via-teal-500 to-cyan-400 p-[2px] shadow-2xl shadow-emerald-500/20">
-            <div className={`w-full h-full ${theme.card} rounded-[22px] flex items-center justify-center text-3xl select-none`}>
+            <div className="w-full h-full bg-[#161b22] rounded-[22px] flex items-center justify-center text-3xl select-none">
               🤠
             </div>
           </div>
-          <div className="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-emerald-500 border-2 border-[#161b22] flex items-center justify-center text-white text-[10px]">
+          <div className="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-emerald-500 border-2 border-[#161b22] flex items-center justify-center text-white text-[10px] shadow-sm">
             ⚡
           </div>
         </div>
 
         {/* Heading */}
         <div className="space-y-2 max-w-xl">
-          <h1 className={`text-3xl sm:text-4xl font-extrabold tracking-tight ${theme.text}`}>
+          <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-100">
             {currentUser
-              ? `What can I forge for ya, ${userProfile?.display_name?.split(' ')[0] || currentUser.displayName?.split(' ')[0] || 'Learner'}?`
-              : 'What can I wrangle up for ya?'}
+              ? `${t('heroGreeting', 'What can I forge for you today?')}, ${userProfile?.display_name?.split(' ')[0] || currentUser.displayName?.split(' ')[0] || 'Learner'}!`
+              : t('heroGreeting', 'What can I forge for you today?')}
           </h1>
-          <p className={`text-sm ${theme.textMuted}`}>
-            Your GitHub-verified AI learning mentor. Turn real repository commits into career readiness, targeted roadmaps, and interview defense.
+          <p className="text-sm text-slate-400">
+            {t('heroSubtitle', 'Your GitHub-verified AI learning mentor. Turn real repository commits into career readiness and targeted roadmaps.')}
           </p>
         </div>
 
@@ -108,7 +107,7 @@ export default function HomePage({ onNavigate }) {
         <div className="w-full max-w-2xl">
           <form
             onSubmit={handlePromptSubmit}
-            className={`relative rounded-2xl border ${theme.border} ${theme.card} p-3 shadow-2xl transition-all focus-within:border-emerald-500/60 focus-within:ring-2 focus-within:ring-emerald-500/20`}
+            className="relative rounded-2xl border border-[#30363d] bg-[#161b22] p-3.5 shadow-2xl transition-all focus-within:border-emerald-500/70 focus-within:ring-2 focus-within:ring-emerald-500/20"
           >
             <textarea
               rows={2}
@@ -120,30 +119,30 @@ export default function HomePage({ onNavigate }) {
                   handlePromptSubmit(e)
                 }
               }}
-              placeholder="Ask SkillForge AI anything… (e.g., 'What is my weakest skill gap?' or 'How do I learn FastAPI?')"
-              className={`w-full bg-transparent resize-none text-sm ${theme.text} placeholder-slate-500 focus:outline-none scrollbar-none`}
+              placeholder={t('promptPlaceholder', "Ask SkillForge AI anything… (e.g. 'What is my weakest skill gap?')")}
+              className="w-full bg-transparent resize-none text-sm text-slate-100 placeholder-slate-500 focus:outline-none"
             />
 
             <div className="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-white/[0.04]">
               {/* Quick Action Pills inside box */}
-              <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-none py-0.5">
+              <div className="flex items-center gap-1.5 overflow-x-auto py-0.5">
                 <button
                   type="button"
                   onClick={() => {
                     setPrompt('Review my top skill gaps and suggest where to start.')
                   }}
-                  className={`text-[11px] px-2.5 py-1 rounded-lg border ${theme.border} ${theme.textMuted} hover:text-white hover:bg-white/5 transition-colors flex items-center gap-1`}
+                  className="text-[11px] px-2.5 py-1 rounded-lg border border-[#30363d] text-slate-400 hover:text-white hover:bg-white/5 transition-colors flex items-center gap-1 cursor-pointer"
                 >
-                  <span>+</span> Review for me
+                  {t('reviewForMe', '+ Review for me')}
                 </button>
                 <button
                   type="button"
                   onClick={() => {
                     setPrompt('What project should I build next to improve my portfolio?')
                   }}
-                  className={`text-[11px] px-2.5 py-1 rounded-lg border ${theme.border} ${theme.textMuted} hover:text-white hover:bg-white/5 transition-colors flex items-center gap-1`}
+                  className="text-[11px] px-2.5 py-1 rounded-lg border border-[#30363d] text-slate-400 hover:text-white hover:bg-white/5 transition-colors flex items-center gap-1 cursor-pointer"
                 >
-                  <span>💡</span> Project ideas
+                  {t('projectIdeas', '💡 Project ideas')}
                 </button>
               </div>
 
@@ -161,9 +160,11 @@ export default function HomePage({ onNavigate }) {
             </div>
           </form>
 
-          {/* Connected App Badges (as in Notion AI) */}
+          {/* Connected App Badges */}
           <div className="flex items-center justify-center gap-3 mt-3 text-xs text-slate-400">
-            <span className="text-[11px] opacity-70">Grounded in:</span>
+            <span className="text-[11px] opacity-70">
+              {t('groundedIn', 'Grounded in real code proof')}:
+            </span>
             <div className="flex items-center gap-2">
               {integrations.map((app) => (
                 <span
@@ -179,13 +180,13 @@ export default function HomePage({ onNavigate }) {
           </div>
         </div>
 
-        {/* Notion Quick Navigation Chips */}
+        {/* Quick Navigation Chips */}
         <div className="flex flex-wrap items-center justify-center gap-2 pt-2">
           {quickPills.map((pill) => (
             <button
               key={pill.id}
               onClick={() => onNavigate(pill.id)}
-              className={`flex items-center gap-2 px-3.5 py-2 rounded-xl border ${theme.border} ${theme.card} hover:border-emerald-500/40 hover:bg-emerald-500/10 transition-all text-xs font-medium ${theme.text} shadow-sm group`}
+              className="flex items-center gap-2 px-3.5 py-2 rounded-xl border border-[#30363d] bg-[#161b22] hover:border-emerald-500/40 hover:bg-emerald-500/10 transition-all text-xs font-medium text-slate-100 shadow-sm group cursor-pointer"
             >
               <span className="text-base group-hover:scale-110 transition-transform">{pill.icon}</span>
               <span>{pill.label}</span>
@@ -196,14 +197,14 @@ export default function HomePage({ onNavigate }) {
 
       {/* Grid of Interactive Insight Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4">
-        {/* User Status / Connect Card */}
-        <div className={`${theme.card} border ${theme.border} rounded-2xl p-5 space-y-4`}>
+        {/* User Status Card */}
+        <div className="bg-[#161b22] border border-[#30363d] rounded-2xl p-5 space-y-4 shadow-sm">
           <div className="flex items-center justify-between">
-            <h3 className={`text-xs font-bold uppercase tracking-wider ${theme.textMuted}`}>
-              Learner Profile
+            <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400">
+              {t('accountTitle', 'Profile Information')}
             </h3>
             <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-              {currentUser ? 'Active Session' : 'Guest'}
+              {currentUser ? 'Active' : 'Guest'}
             </span>
           </div>
 
@@ -221,36 +222,36 @@ export default function HomePage({ onNavigate }) {
                 </div>
               )}
               <div className="flex-1 min-w-0">
-                <p className={`text-sm font-bold truncate ${theme.text}`}>
+                <p className="text-sm font-bold truncate text-slate-100">
                   {userProfile?.display_name || currentUser.displayName || 'Learner'}
                 </p>
-                <p className={`text-xs truncate ${theme.textMuted}`}>
+                <p className="text-xs truncate text-slate-400">
                   {currentUser.email}
                 </p>
                 <p className="text-[10px] font-mono text-emerald-400 mt-0.5">
-                  ✓ Verified in MongoDB Atlas
+                  ✓ Synchronized with MongoDB Atlas
                 </p>
               </div>
             </div>
           ) : (
             <div className="space-y-3">
-              <p className={`text-xs ${theme.textMuted}`}>
+              <p className="text-xs text-slate-400">
                 Sign in to sync your GitHub profile, calculate real skill metrics, and save learning progress.
               </p>
               <button
                 onClick={() => setModalOpen(true)}
                 className="w-full py-2 rounded-xl text-xs font-bold bg-emerald-500 hover:bg-emerald-400 text-gray-950 transition-colors shadow-md shadow-emerald-500/10 cursor-pointer"
               >
-                Sign In with Google / Email
+                {t('signIn', 'Sign In / Register')}
               </button>
             </div>
           )}
         </div>
 
         {/* System Health Status */}
-        <div className={`${theme.card} border ${theme.border} rounded-2xl p-5 space-y-3`}>
+        <div className="bg-[#161b22] border border-[#30363d] rounded-2xl p-5 space-y-3 shadow-sm">
           <div className="flex items-center justify-between">
-            <h3 className={`text-xs font-bold uppercase tracking-wider ${theme.textMuted}`}>
+            <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400">
               Engine Health
             </h3>
             <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-white/5 text-slate-400 border border-white/10">
@@ -258,7 +259,7 @@ export default function HomePage({ onNavigate }) {
             </span>
           </div>
 
-          <div className={`space-y-2.5 ${theme.textMuted} pt-1`}>
+          <div className="space-y-2.5 text-slate-400 pt-1">
             <StatusDot ok={health?.backend ?? null} label="FastAPI Scoring Engine" />
             <StatusDot ok={health?.database ?? null} label="MongoDB Atlas Multi-Region" />
           </div>
