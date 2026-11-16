@@ -11,7 +11,16 @@ const QUICK_PROMPTS = [
 export default function MentorChatCard() {
   const { idToken, currentUser } = useAuth()
   const [messages, setMessages] = useState([])
-  const [input, setInput] = useState('')
+  const [input, setInput] = useState(() => {
+    try {
+      const saved = sessionStorage.getItem('sf_initial_prompt')
+      if (saved) {
+        sessionStorage.removeItem('sf_initial_prompt')
+        return saved
+      }
+    } catch {}
+    return ''
+  })
   const [loading, setLoading] = useState(false)
   const [initialLoading, setInitialLoading] = useState(true)
   const [error, setError] = useState('')
