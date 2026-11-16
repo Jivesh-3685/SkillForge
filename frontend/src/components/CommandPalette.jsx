@@ -89,7 +89,7 @@ export default function CommandPalette({ isOpen, onClose, onSelect }) {
         </div>
 
         {/* Results List */}
-        <div className="max-h-80 overflow-y-auto p-2 space-y-1 scrollbar-thin">
+        <div className="max-h-80 overflow-y-auto p-2 space-y-1 no-scrollbar">
           {filtered.length === 0 ? (
             <div className="p-6 text-center text-xs text-slate-400">
               No matching pages or tools found for "{query}".

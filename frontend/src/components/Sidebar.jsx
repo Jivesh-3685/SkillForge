@@ -121,7 +121,7 @@ export default function Sidebar({
           width: computedWidth,
           transition: isResizing ? 'none' : 'width 0.22s cubic-bezier(0.16, 1, 0.3, 1), transform 0.22s ease',
         }}
-        className={`fixed top-0 left-0 h-screen z-50 flex flex-col border-r bg-[#14181f] border-[#30363d] select-none ${
+        className={`fixed top-0 left-0 h-screen z-50 flex flex-col border-r bg-[#14181f] border-[#30363d] select-none overflow-x-hidden ${
           mobileOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'
         }`}
       >
@@ -290,11 +290,11 @@ export default function Sidebar({
         </div>
 
         {/* Section Navigation Items */}
-        <nav className="flex-1 overflow-y-auto py-2 scrollbar-thin">
+        <nav className="flex-1 overflow-y-auto overflow-x-hidden py-2 px-2 no-scrollbar space-y-2">
           {sections.map((section) => (
-            <div key={section.label} className="mb-2">
+            <div key={section.label} className="space-y-0.5">
               {!collapsed && (
-                <p className="px-3.5 pt-2 pb-1 text-[10px] font-bold uppercase tracking-wider text-slate-400 opacity-70">
+                <p className="px-3 pt-2 pb-1 text-[10px] font-bold uppercase tracking-wider text-slate-400 opacity-70">
                   {section.label}
                 </p>
               )}
@@ -308,8 +308,8 @@ export default function Sidebar({
                       onMobileClose?.()
                     }}
                     title={collapsed ? item.name : undefined}
-                    className={`w-full flex items-center gap-2.5 px-3 py-1.5 mx-0.5 rounded-lg text-left transition-all group cursor-pointer ${
-                      collapsed ? 'justify-center mx-auto w-[calc(100%-8px)]' : ''
+                    className={`w-full flex items-center gap-2.5 px-3 py-2 rounded-xl text-left transition-all group cursor-pointer ${
+                      collapsed ? 'justify-center px-0' : ''
                     } ${
                       isActive
                         ? 'bg-emerald-500/12 text-emerald-400 font-semibold'
