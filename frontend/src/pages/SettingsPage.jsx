@@ -17,9 +17,65 @@ export default function SettingsPage() {
 
   const [activeSection, setActiveSection] = useState('appearance')
   const [showResetConfirm, setShowResetConfirm] = useState(false)
+  const [geminiKeyInput, setGeminiKeyInput] = useState('')
+  const [geminiStatus, setGeminiStatus] = useState(null)
+  const [geminiSaving, setGeminiSaving] = useState(false)
+  const [geminiMsg, setGeminiMsg] = useState('')
+  const { idToken } = useAuth()
+
+  const fetchGeminiStatus = async () => {
+    if (!idToken) return
+    try {
+      const res = await fetch('/api/mentor/status', {
+        headers: { Authorization: `Bearer ${idToken}` },
+      })
+      if (res.ok) {
+        const data = await res.json()
+        setGeminiStatus(data)
+      }
+    } catch {}
+  }
+
+  const handleSaveGeminiKey = async (e) => {
+    e.preventDefault()
+    if (!geminiKeyInput.trim() || !idToken) return
+    try {
+      setGeminiSaving(true)
+      const res = await fetch('/api/mentor/api-key', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${idToken}`,
+        },
+        body: JSON.stringify({ api_key: geminiKeyInput.trim() }),
+      })
+      const data = await res.json()
+      if (!res.ok) throw new Error(data.detail || 'Failed to save key')
+      setGeminiMsg('✓ Google Gemini API key saved and activated!')
+      fetchGeminiStatus()
+      setGeminiKeyInput('')
+    } catch (err) {
+      setGeminiMsg('Error: ' + err.message)
+    } finally {
+      setGeminiSaving(false)
+    }
+  }
+
+  const handleRemoveGeminiKey = async () => {
+    if (!idToken || !confirm('Remove saved Gemini API key?')) return
+    try {
+      await fetch('/api/mentor/api-key', {
+        method: 'DELETE',
+        headers: { Authorization: `Bearer ${idToken}` },
+      })
+      fetchGeminiStatus()
+      setGeminiMsg('API key removed.')
+    } catch {}
+  }
 
   const sections = [
     { id: 'appearance', icon: '🎨', label: t('tabAppearance', 'Appearance') },
+    { id: 'gemini', icon: '✨', label: 'Google Gemini AI' },
     { id: 'language', icon: '🌐', label: t('tabLanguage', 'Language & Region') },
     { id: 'preferences', icon: '🔧', label: t('tabPreferences', 'Preferences') },
     { id: 'account', icon: '👤', label: t('tabAccount', 'Account') },
@@ -229,6 +285,86 @@ export default function SettingsPage() {
                   })}
                 </div>
               </div>
+            </div>
+          )}
+
+          {/* ─── Google Gemini AI Section ─── */}
+          {activeSection === 'gemini' && (
+            <div className="bg-[#161b22] border border-[#30363d] rounded-2xl p-6 shadow-sm animate-fadeIn space-y-6">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h3 className="text-base font-bold text-white flex items-center gap-2">
+                    <span>✨</span> Google Gemini AI Integration
+                  </h3>
+                  <p className="text-xs text-slate-400 mt-1">
+                    Powers the AI Mentor for unlimited wide-ranging questions and dynamic roadmaps.
+                  </p>
+                </div>
+                <span className={`text-xs font-mono px-2.5 py-1 rounded-full border ${
+                  geminiStatus?.has_gemini_key
+                    ? 'bg-emerald-950 text-emerald-400 border-emerald-800/60'
+                    : 'bg-amber-950 text-amber-400 border-amber-800/60'
+                }`}>
+                  {geminiStatus?.has_gemini_key ? '✓ Active (gemini-1.5-flash)' : '⚠️ Key Not Configured'}
+                </span>
+              </div>
+
+              {geminiMsg && (
+                <div className={`p-3 rounded-xl text-xs border ${
+                  geminiMsg.startsWith('Error')
+                    ? 'bg-red-950/50 border-red-800 text-red-300'
+                    : 'bg-emerald-950/50 border-emerald-800 text-emerald-300'
+                }`}>
+                  {geminiMsg}
+                </div>
+              )}
+
+              {/* Free Key Tutorial Box */}
+              <div className="p-4 bg-[#0d1117] rounded-xl border border-[#30363d] text-xs space-y-2">
+                <p className="font-semibold text-slate-200">How to get your free Google Gemini API Key:</p>
+                <ol className="list-decimal list-inside space-y-1 text-slate-300">
+                  <li>Visit <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noreferrer" className="text-emerald-400 underline font-medium">Google AI Studio</a></li>
+                  <li>Click <strong>Create API Key</strong></li>
+                  <li>Paste the key below and click <strong>Activate Google AI</strong></li>
+                </ol>
+              </div>
+
+              {/* Key Form */}
+              <form onSubmit={handleSaveGeminiKey} className="space-y-3">
+                <label className="text-xs font-semibold text-slate-300 block">
+                  Gemini API Key:
+                </label>
+                <div className="flex gap-2">
+                  <input
+                    type="password"
+                    value={geminiKeyInput}
+                    onChange={(e) => setGeminiKeyInput(e.target.value)}
+                    placeholder={geminiStatus?.has_gemini_key ? '••••••••••••••••••••••••' : 'AIzaSy...'}
+                    className="flex-1 px-3.5 py-2.5 bg-[#0d1117] border border-[#30363d] rounded-xl text-xs text-white placeholder-slate-500 font-mono focus:outline-none focus:border-emerald-500"
+                  />
+                  <button
+                    type="submit"
+                    disabled={geminiSaving || !geminiKeyInput.trim()}
+                    className="px-4 py-2.5 bg-emerald-500 hover:bg-emerald-400 disabled:opacity-40 text-gray-950 font-bold rounded-xl text-xs transition-colors cursor-pointer"
+                  >
+                    {geminiSaving ? 'Saving…' : 'Activate Google AI'}
+                  </button>
+                </div>
+              </form>
+
+              {geminiStatus?.has_gemini_key && (
+                <div className="pt-2 flex justify-between items-center border-t border-[#30363d]">
+                  <span className="text-xs text-slate-400">
+                    Key is safely stored in your authenticated user profile.
+                  </span>
+                  <button
+                    onClick={handleRemoveGeminiKey}
+                    className="text-xs text-red-400 hover:text-red-300 px-3 py-1.5 rounded-lg border border-red-900/60 hover:bg-red-950/30 transition-colors cursor-pointer"
+                  >
+                    Remove Key
+                  </button>
+                </div>
+              )}
             </div>
           )}
 
