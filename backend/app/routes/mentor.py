@@ -103,58 +103,77 @@ async def send_mentor_message(
     db = get_db()
     uid = user["uid"]
 
-    # 1. Fetch learner context data
-    user_doc = await db["users"].find_one({"firebase_uid": uid})
-    scores_doc = await db["skill_scores"].find_one({"firebase_uid": uid})
-    roadmap_doc = await db["roadmaps"].find_one({"firebase_uid": uid})
+    try:
+        # 1. Fetch learner context data
+        user_doc = await db["users"].find_one({"firebase_uid": uid})
+        scores_doc = await db["skill_scores"].find_one({"firebase_uid": uid})
+        roadmap_doc = await db["roadmaps"].find_one({"firebase_uid": uid})
 
-    goal_id = user_doc.get("active_goal", "ai_engineer") if user_doc else "ai_engineer"
-    scores_list = scores_doc.get("scores", []) if scores_doc else []
-    gap_report = gap_analyzer.analyze_gaps(scores_list, goal_id)
-
-    # 2. Build prompt context
-    context_str = build_learner_context(user_doc, scores_list, gap_report, roadmap_doc)
-
-    # 3. Fetch past conversation history
-    convo_doc = await db["mentor_conversations"].find_one({"firebase_uid": uid})
-    messages = convo_doc.get("messages", []) if convo_doc else []
-
-    # 4. Determine effective API key
-    effective_api_key = req.api_key or (user_doc.get("gemini_api_key") if user_doc else None) or settings.gemini_api_key
-
-    # 5. Generate wide & grounded response
-    now = datetime.now(timezone.utc)
-    now_iso = now.isoformat()
-
-    reply_text = await get_mentor_response(
-        user_message=req.message,
-        context_str=context_str,
-        conversation_history=messages,
-        gap_report=gap_report,
-        api_key=effective_api_key,
-    )
-
-    # 6. Persist message exchange in MongoDB (keep last 30 messages)
-    new_user_msg = {"role": "user", "content": req.message, "timestamp": now_iso}
-    new_model_msg = {"role": "model", "content": reply_text, "timestamp": now_iso}
-    updated_messages = (messages + [new_user_msg, new_model_msg])[-30:]
-
-    await db["mentor_conversations"].update_one(
-        {"firebase_uid": uid},
-        {
-            "$set": {
-                "firebase_uid": uid,
-                "messages": updated_messages,
-                "updated_at": now_iso,
+        goal_id = user_doc.get("active_goal", "ai_engineer") if user_doc else "ai_engineer"
+        scores_list = scores_doc.get("scores", []) if scores_doc else []
+        try:
+            gap_report = gap_analyzer.analyze_gaps(scores_list, goal_id)
+        except Exception as gap_err:
+            print(f"Gap analyzer warning: {gap_err}")
+            gap_report = {
+                "career_id": "ai_engineer",
+                "career_title": "AI / ML Engineer",
+                "match_percentage": 0,
+                "gaps": [],
             }
-        },
-        upsert=True,
-    )
 
-    return {
-        "reply": reply_text,
-        "timestamp": now_iso,
-    }
+        # 2. Build prompt context
+        context_str = build_learner_context(user_doc, scores_list, gap_report, roadmap_doc)
+
+        # 3. Fetch past conversation history
+        convo_doc = await db["mentor_conversations"].find_one({"firebase_uid": uid})
+        messages = convo_doc.get("messages", []) if convo_doc else []
+
+        # 4. Determine effective API key
+        effective_api_key = req.api_key or (user_doc.get("gemini_api_key") if user_doc else None) or settings.gemini_api_key
+
+        # 5. Generate wide & grounded response
+        now = datetime.now(timezone.utc)
+        now_iso = now.isoformat()
+
+        reply_text = await get_mentor_response(
+            user_message=req.message,
+            context_str=context_str,
+            conversation_history=messages,
+            gap_report=gap_report,
+            api_key=effective_api_key,
+        )
+
+        # 6. Persist message exchange in MongoDB (keep last 30 messages)
+        new_user_msg = {"role": "user", "content": req.message, "timestamp": now_iso}
+        new_model_msg = {"role": "model", "content": reply_text, "timestamp": now_iso}
+        updated_messages = (messages + [new_user_msg, new_model_msg])[-30:]
+
+        try:
+            await db["mentor_conversations"].update_one(
+                {"firebase_uid": uid},
+                {
+                    "$set": {
+                        "firebase_uid": uid,
+                        "messages": updated_messages,
+                        "updated_at": now_iso,
+                    }
+                },
+                upsert=True,
+            )
+        except Exception as db_err:
+            print(f"Failed to persist mentor messages: {db_err}")
+
+        return {
+            "reply": reply_text,
+            "timestamp": now_iso,
+        }
+    except Exception as e:
+        print(f"Error in send_mentor_message: {e}")
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=f"Mentor service error: {str(e)}",
+        )
 
 
 @router.get("/history")

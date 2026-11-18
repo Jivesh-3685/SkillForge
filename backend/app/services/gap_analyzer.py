@@ -28,6 +28,9 @@ class GapAnalyzer:
     def analyze_gaps(self, user_scores: list[dict], career_id: str) -> dict:
         career = self.get_career(career_id)
         if not career:
+            # Fallback gracefully to default target career
+            career = self.get_career("ai_engineer") or (self.careers[0] if self.careers else None)
+        if not career:
             raise ValueError(f"Unknown career goal ID: '{career_id}'")
 
         # Map user scores by skill_id
