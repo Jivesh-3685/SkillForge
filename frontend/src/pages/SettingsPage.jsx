@@ -590,10 +590,10 @@ export default function SettingsPage() {
                       </div>
                       <div className="p-3 rounded-xl bg-[#0d1117] border border-[#30363d]">
                         <p className="text-[10px] uppercase font-mono text-slate-400">
-                          MongoDB Atlas
+                          Database Storage
                         </p>
                         <p className="text-xs font-semibold text-emerald-400 mt-0.5">
-                          ✓ Document Synchronized
+                          ✓ Supabase PostgreSQL
                         </p>
                       </div>
                     </div>
@@ -609,7 +609,7 @@ export default function SettingsPage() {
                 <div className="border border-red-900/60 rounded-2xl p-6 bg-red-950/20 space-y-3">
                   <h4 className="text-sm font-bold text-red-400">Account Session</h4>
                   <p className="text-xs text-red-300/70">
-                    Signing out ends this browser session. Your verified skills and roadmaps remain safely preserved in MongoDB.
+                    Signing out ends this browser session. Your verified skills and roadmaps remain safely preserved in Supabase.
                   </p>
                   <button
                     onClick={logout}

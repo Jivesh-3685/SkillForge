@@ -13,7 +13,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.config import settings
-from app.database import connect_db, close_db, check_db_health
+from app.database import connect_db, close_db, check_db_health, get_db_provider
 from app.routes.auth import router as auth_router
 from app.routes.github import router as github_router
 from app.routes.skills import router as skills_router
@@ -82,5 +82,6 @@ async def health_check():
         "status": "ok" if db_ok else "degraded",
         "backend": True,
         "database": db_ok,
+        "database_provider": get_db_provider(),
         "version": app.version,
     }

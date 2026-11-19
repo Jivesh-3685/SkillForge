@@ -16,7 +16,7 @@ export function AuthProvider({ children }) {
   const [idToken, setIdToken] = useState(null)
   const [loading, setLoading] = useState(true)
 
-  // Fetch or create profile in MongoDB
+  // Fetch or create profile in Supabase (PostgreSQL)
   const syncUserProfile = async (token) => {
     try {
       const res = await fetch('/api/auth/me', {

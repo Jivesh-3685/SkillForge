@@ -72,7 +72,7 @@ export default function HomePage({ onNavigate }) {
     { name: 'GitHub', icon: '🐙' },
     { name: 'FastAPI', icon: '⚡' },
     { name: 'React', icon: '⚛️' },
-    { name: 'MongoDB', icon: '🍃' },
+    { name: 'Supabase', icon: '⚡' },
     { name: 'Gemini AI', icon: '✨' },
   ]
 
@@ -220,7 +220,7 @@ export default function HomePage({ onNavigate }) {
                   {currentUser.email}
                 </p>
                 <p className="text-[10px] font-mono text-emerald-400 mt-0.5">
-                  ✓ Synchronized with MongoDB Atlas
+                  ✓ Synchronized with Supabase (PostgreSQL)
                 </p>
               </div>
             </div>
@@ -252,7 +252,14 @@ export default function HomePage({ onNavigate }) {
 
           <div className="space-y-2.5 text-slate-400 pt-1">
             <StatusDot ok={health?.backend ?? null} label="FastAPI Scoring Engine" />
-            <StatusDot ok={health?.database ?? null} label="MongoDB Atlas Multi-Region" />
+            <StatusDot
+              ok={health?.database ?? null}
+              label={
+                health?.database_provider === 'supabase'
+                  ? 'Supabase PostgreSQL (Connected)'
+                  : 'Supabase / High-Speed Store'
+              }
+            />
           </div>
 
           {error && (

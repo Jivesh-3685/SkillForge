@@ -12,7 +12,25 @@ from pydantic import Field
 class Settings(BaseSettings):
     """Application settings loaded from .env file."""
 
-    # ── MongoDB ──────────────────────────────────────────
+    # ── Supabase (Primary Database per PRD) ──────────────
+    supabase_url: str = Field(
+        default="",
+        description="Supabase project URL (e.g. https://xyz.supabase.co)"
+    )
+    supabase_key: str = Field(
+        default="",
+        description="Supabase anon public key or service_role key"
+    )
+    supabase_service_role_key: str = Field(
+        default="",
+        description="Optional Supabase service_role key to bypass RLS"
+    )
+    database_type: str = Field(
+        default="supabase",
+        description="Database provider: 'supabase' (default) or 'local' or 'mongodb'"
+    )
+
+    # ── MongoDB (Fallback/Legacy) ────────────────────────
     mongodb_uri: str = Field(
         default="mongodb://localhost:27017",
         description="MongoDB connection URI"
