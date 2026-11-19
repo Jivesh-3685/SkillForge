@@ -27,10 +27,66 @@ export default function MentorChatCard() {
   const [loading, setLoading] = useState(false)
   const [initialLoading, setInitialLoading] = useState(true)
   const [error, setError] = useState('')
+  const [geminiStatus, setGeminiStatus] = useState(null)
+  const [showApiKeyInput, setShowApiKeyInput] = useState(false)
+  const [apiKeyInput, setApiKeyInput] = useState('')
+  const [savingKey, setSavingKey] = useState(false)
+  const [keyMsg, setKeyMsg] = useState('')
   const messagesEndRef = useRef(null)
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
+  }
+
+  const fetchGeminiStatus = useCallback(async () => {
+    if (!currentUser) return
+    try {
+      const res = await apiFetch('/api/mentor/status')
+      if (res.ok) {
+        const data = await res.json()
+        setGeminiStatus(data)
+      }
+    } catch {}
+  }, [currentUser, apiFetch])
+
+  const handleSaveGeminiKey = async (e) => {
+    e?.preventDefault?.()
+    const cleanKey = apiKeyInput.trim()
+    if (!cleanKey) return
+    try {
+      setSavingKey(true)
+      setKeyMsg('')
+      const res = await apiFetch('/api/mentor/api-key', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ api_key: cleanKey }),
+      })
+      const data = await res.json()
+      if (!res.ok) throw new Error(data.detail || 'Failed to save key')
+      setKeyMsg('✓ Gemini API key saved & activated!')
+      setApiKeyInput('')
+      await fetchGeminiStatus()
+      setTimeout(() => setShowApiKeyInput(false), 1500)
+    } catch (err) {
+      setKeyMsg('Error: ' + err.message)
+    } finally {
+      setSavingKey(false)
+    }
+  }
+
+  const handleRemoveGeminiKey = async () => {
+    if (!confirm('Remove your saved Gemini API key?')) return
+    try {
+      setSavingKey(true)
+      await apiFetch('/api/mentor/api-key', { method: 'DELETE' })
+      setKeyMsg('Gemini key removed.')
+      await fetchGeminiStatus()
+      setTimeout(() => setShowApiKeyInput(false), 1200)
+    } catch (err) {
+      setKeyMsg('Error: ' + err.message)
+    } finally {
+      setSavingKey(false)
+    }
   }
 
   const fetchHistory = useCallback(async () => {
@@ -52,8 +108,9 @@ export default function MentorChatCard() {
   useEffect(() => {
     if (currentUser) {
       fetchHistory()
+      fetchGeminiStatus()
     }
-  }, [currentUser, fetchHistory])
+  }, [currentUser, fetchHistory, fetchGeminiStatus])
 
   useEffect(() => {
     scrollToBottom()
@@ -188,16 +245,112 @@ export default function MentorChatCard() {
           </p>
         </div>
 
-        {messages.length > 0 && (
+        <div className="flex items-center gap-2 self-start sm:self-center">
           <button
-            onClick={handleClearHistory}
-            className="text-xs text-slate-400 hover:text-white px-3 py-1.5 rounded-xl bg-white/5 border border-[#30363d] hover:bg-white/10 transition-colors cursor-pointer self-start sm:self-center"
-            title="Clear conversation history"
+            onClick={() => setShowApiKeyInput(!showApiKeyInput)}
+            className={`text-xs px-3 py-1.5 rounded-xl border transition-all flex items-center gap-1.5 cursor-pointer font-medium ${
+              geminiStatus?.has_gemini_key
+                ? 'bg-emerald-500/15 border-emerald-500/30 text-emerald-300 hover:bg-emerald-500/25'
+                : 'bg-amber-500/15 border-amber-500/40 text-amber-300 hover:bg-amber-500/25 shadow-xs'
+            }`}
+            title={geminiStatus?.has_gemini_key ? 'Gemini AI active — click to manage key' : 'Connect your Gemini API key'}
           >
-            Clear conversation
+            {geminiStatus?.has_gemini_key ? (
+              <>
+                <span className="w-2 h-2 rounded-full bg-emerald-400" />
+                <span>Gemini Active</span>
+                <span className="text-[10px] opacity-60">⚙️</span>
+              </>
+            ) : (
+              <>
+                <span>✨</span>
+                <span>Add Gemini Key</span>
+              </>
+            )}
           </button>
-        )}
+
+          {messages.length > 0 && (
+            <button
+              onClick={handleClearHistory}
+              className="text-xs text-slate-400 hover:text-white px-3 py-1.5 rounded-xl bg-white/5 border border-[#30363d] hover:bg-white/10 transition-colors cursor-pointer"
+              title="Clear conversation history"
+            >
+              Clear conversation
+            </button>
+          )}
+        </div>
       </div>
+
+      {/* Expandable Manual Gemini Key Setup Drawer */}
+      {showApiKeyInput && (
+        <div className="p-4 rounded-2xl bg-[#0d1117] border border-[#30363d] space-y-3 animate-fadeIn">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <span className="text-base">✨</span>
+              <h4 className="text-xs font-bold text-slate-200">
+                Google Gemini API Key Setup
+              </h4>
+            </div>
+            <button
+              onClick={() => setShowApiKeyInput(false)}
+              className="text-slate-400 hover:text-white text-xs px-1.5 py-0.5 rounded cursor-pointer"
+            >
+              ✕
+            </button>
+          </div>
+
+          <p className="text-xs text-slate-400 leading-relaxed">
+            Connect your Gemini API key to ask open-ended, wide-ranging coding questions, multi-file architecture designs, and technical interview defense.
+          </p>
+
+          <form onSubmit={handleSaveGeminiKey} className="space-y-3">
+            <div className="flex flex-col sm:flex-row gap-2">
+              <input
+                type="password"
+                value={apiKeyInput}
+                onChange={(e) => setApiKeyInput(e.target.value)}
+                placeholder="Paste Gemini key (e.g. AIzaSy...)"
+                className="flex-1 px-3.5 py-2 rounded-xl bg-[#161b22] border border-[#30363d] text-xs text-white placeholder-slate-500 focus:outline-hidden focus:border-emerald-500"
+              />
+              <button
+                type="submit"
+                disabled={savingKey || !apiKeyInput.trim()}
+                className="px-4 py-2 rounded-xl text-xs font-bold bg-emerald-500 hover:bg-emerald-400 text-gray-950 disabled:opacity-50 transition-colors cursor-pointer"
+              >
+                {savingKey ? 'Saving…' : 'Save & Activate'}
+              </button>
+              {geminiStatus?.has_gemini_key && (
+                <button
+                  type="button"
+                  onClick={handleRemoveGeminiKey}
+                  disabled={savingKey}
+                  className="px-3 py-2 rounded-xl text-xs font-medium bg-red-500/10 border border-red-800/40 text-red-300 hover:bg-red-500/20 transition-colors cursor-pointer"
+                >
+                  Remove Key
+                </button>
+              )}
+            </div>
+
+            {keyMsg && (
+              <p className={`text-xs ${keyMsg.startsWith('✓') ? 'text-emerald-400' : 'text-red-400'}`}>
+                {keyMsg}
+              </p>
+            )}
+
+            <div className="flex items-center justify-between text-[11px] text-slate-400 pt-1">
+              <span>Keys are securely saved in your database and encrypted at rest.</span>
+              <a
+                href="https://aistudio.google.com/app/apikey"
+                target="_blank"
+                rel="noreferrer"
+                className="text-emerald-400 hover:underline flex items-center gap-1"
+              >
+                Get free Gemini key ↗
+              </a>
+            </div>
+          </form>
+        </div>
+      )}
 
       {error && (
         <div className="p-3 bg-red-950/40 border border-red-800/60 rounded-xl text-xs text-red-300 flex items-center justify-between gap-2">

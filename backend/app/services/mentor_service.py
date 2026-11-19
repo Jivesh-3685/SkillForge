@@ -112,8 +112,7 @@ def generate_fallback_mentor_reply(user_message: str, context_str: str, gap_repo
             "@app.post('/items')\n"
             "async def create_item(item: Item):\n"
             "    return {'message': f'Created {item.name}', 'price': item.price}\n"
-            "```\n\n"
-            "💡 *Tip: Add your Google Gemini API key to ask open-ended questions about FastAPI architecture!*"
+            "```"
         )
 
     # 2. Docker / Containers
@@ -134,8 +133,7 @@ def generate_fallback_mentor_reply(user_message: str, context_str: str, gap_repo
             "RUN pip install --no-cache-dir -r requirements.txt\n"
             "COPY . .\n"
             "CMD [\"uvicorn\", \"app.main:app\", \"--host\", \"0.0.0.0\", \"--port\", \"8000\"]\n"
-            "```\n\n"
-            "💡 *Tip: Add your Google Gemini API key to ask in-depth questions about multi-stage builds or Kubernetes orchestration!*"
+            "```"
         )
 
     # 3. Python concepts (async, generators, decorators)
@@ -157,8 +155,7 @@ def generate_fallback_mentor_reply(user_message: str, context_str: str, gap_repo
             "    # Run multiple requests concurrently\n"
             "    users = await asyncio.gather(fetch_user(1), fetch_user(2), fetch_user(3))\n"
             "    print(users)\n"
-            "```\n\n"
-            "💡 *Tip: Add your Google Gemini API key to get tailored coding solutions for any Python problem!*"
+            "```"
         )
 
     # 4. Machine Learning & Deep Learning
@@ -170,8 +167,7 @@ def generate_fallback_mentor_reply(user_message: str, context_str: str, gap_repo
             "2. **Deep Learning (PyTorch):** Neural networks, computer vision, and NLP with custom architectures, loss functions, and GPU tensors.\n"
             "3. **Generative AI & RAG (Retrieval-Augmented Generation):** Connecting LLMs (e.g. Gemini) to external vector databases (Pinecone, Chroma, Qdrant) using semantic embeddings.\n\n"
             "**Typical RAG Pipeline:**\n"
-            "`Documents -> Chunking -> Vector Embeddings -> Vector Store -> Query Semantic Search -> Grounded LLM Response`\n\n"
-            "💡 *Tip: Add your Google Gemini API key for dynamic architecture designs, loss function explanations, and custom PyTorch code!*"
+            "`Documents -> Chunking -> Vector Embeddings -> Vector Store -> Query Semantic Search -> Grounded LLM Response`"
         )
 
     # 5. Database & SQL
@@ -181,8 +177,7 @@ def generate_fallback_mentor_reply(user_message: str, context_str: str, gap_repo
             "Choosing and scaling databases comes down to query patterns and data structure:\n\n"
             "- **Relational (PostgreSQL, MySQL):** Strict schemas, ACID guarantees, complex joins. Perfect for transactions, user auth, and financial data.\n"
             "- **Document / NoSQL (MongoDB):** Flexible JSON-like schemas, horizontal sharding, rapid prototyping. Great for catalogs, event logging, and unstructured metadata.\n"
-            "- **B-Tree Indexing:** Accelerates `WHERE`, `ORDER BY`, and `JOIN` operations from $O(N)$ full table scans down to $O(\\log N)$.\n\n"
-            "💡 *Tip: Connect Google Gemini API to ask specific SQL query optimization and schema design questions!*"
+            "- **B-Tree Indexing:** Accelerates `WHERE`, `ORDER BY`, and `JOIN` operations from $O(N)$ full table scans down to $O(\\log N)$."
         )
 
     # 6. Interview Preparation
@@ -220,8 +215,7 @@ def generate_fallback_mentor_reply(user_message: str, context_str: str, gap_repo
         f"- ⚡ **In-Depth Code Explanations:** FastAPI, React, Docker, Python, PyTorch, SQL, and Git.\n"
         f"- 🎯 **Skill Gap Analysis:** Targeted advice on bridging your largest shortfalls.\n"
         f"- 💻 **System Design & Architectures:** Designing scalable backends and APIs.\n"
-        f"- 📄 **Interview Defense:** How to defend your GitHub projects to recruiters.\n\n"
-        f"*(💡 Pro-Tip: Add your free Google Gemini API key to ask open-ended, wide-ranging coding and architecture questions!)*"
+        f"- 📄 **Interview Defense:** How to defend your GitHub projects to recruiters."
     )
 
 
