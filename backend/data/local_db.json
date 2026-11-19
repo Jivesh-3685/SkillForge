@@ -1,0 +1,270 @@
+{
+  "scans": [
+    {
+      "scan_id": "ae49b537-9c5e-4a5e-a402-2be4c57c87dc",
+      "firebase_uid": "LbtpKj7JdlfnRGYdYjlzzAY0uvr1",
+      "formula_version": "v1.0",
+      "created_at": "2026-11-19 16:34:23.426739+00:00",
+      "is_cold_start": true,
+      "repo_count": 1,
+      "total_commits": 4,
+      "_id": "a15f0a4e-4dbd-4a3a-9629-fcb25ace3bff"
+    },
+    {
+      "scan_id": "2a7be4cc-9dd7-4f9b-ac54-a65c3d7eb7d0",
+      "firebase_uid": "LbtpKj7JdlfnRGYdYjlzzAY0uvr1",
+      "formula_version": "v1.0",
+      "created_at": "2026-11-19 16:34:23.503405+00:00",
+      "is_cold_start": true,
+      "repo_count": 1,
+      "total_commits": 4,
+      "_id": "855467ba-5411-49ca-a260-2df3cd3647f2"
+    },
+    {
+      "scan_id": "f8921eb6-e7a5-4bb4-b061-7f0412548945",
+      "firebase_uid": "LbtpKj7JdlfnRGYdYjlzzAY0uvr1",
+      "formula_version": "v1.0",
+      "created_at": "2026-11-19 16:34:49.734245+00:00",
+      "is_cold_start": true,
+      "repo_count": 1,
+      "total_commits": 4,
+      "_id": "3c33bb46-7d39-4d52-868c-85150f3ef9d5"
+    },
+    {
+      "scan_id": "ed7422d3-d1f3-439c-9a65-40b7a0449b0a",
+      "firebase_uid": "LbtpKj7JdlfnRGYdYjlzzAY0uvr1",
+      "formula_version": "v1.0",
+      "created_at": "2026-11-19 16:34:49.822939+00:00",
+      "is_cold_start": true,
+      "repo_count": 1,
+      "total_commits": 4,
+      "_id": "a65a2df0-f00e-495c-bdc3-fe30277f2e0d"
+    }
+  ],
+  "roadmaps": [],
+  "users": [
+    {
+      "firebase_uid": "LbtpKj7JdlfnRGYdYjlzzAY0uvr1",
+      "github_username": "Jiveshverma",
+      "github_token_encrypted": "gAAAAABq_yUK3yHGzpHiLAUm1ooB3y28OyT71rvyxCK4WqWMwGGq7ebzZHe_O_mKV6YsDdn3uuH2dicxiCvvcI5FOgrUAmNPvn5eJfEPIelh44sBR2K_rohePHUkzT-eRzjWrryV8G0q",
+      "github_connected_at": "2026-11-19 16:34:18.633648+00:00",
+      "updated_at": "2026-11-19 16:34:18.633648+00:00",
+      "_id": "b7cbb707-d7ed-497e-a158-506180d48110"
+    }
+  ],
+  "skill_scores": [
+    {
+      "firebase_uid": "LbtpKj7JdlfnRGYdYjlzzAY0uvr1",
+      "scan_id": "ed7422d3-d1f3-439c-9a65-40b7a0449b0a",
+      "source": "github",
+      "formula_version": "v1.0",
+      "calculated_at": "2026-11-19T16:34:49.822939+00:00",
+      "is_cold_start": true,
+      "scores": [
+        {
+          "skill_id": "machine_learning",
+          "name": "Machine Learning",
+          "category": "AI / ML",
+          "score": 63,
+          "confidence": "low",
+          "metrics": {
+            "volume": 1.0,
+            "breadth": 0.2,
+            "activity": 0.3,
+            "recency": 1.0,
+            "repos_count": 1,
+            "commits_count": 4,
+            "bytes_count": 4538979,
+            "last_active_months_ago": 0.0
+          }
+        },
+        {
+          "skill_id": "python",
+          "name": "Python",
+          "category": "Languages",
+          "score": 56,
+          "confidence": "low",
+          "metrics": {
+            "volume": 0.8,
+            "breadth": 0.2,
+            "activity": 0.3,
+            "recency": 1.0,
+            "repos_count": 1,
+            "commits_count": 4,
+            "bytes_count": 62102,
+            "last_active_months_ago": 0.0
+          }
+        },
+        {
+          "skill_id": "fastapi",
+          "name": "FastAPI",
+          "category": "Backend",
+          "score": 56,
+          "confidence": "low",
+          "metrics": {
+            "volume": 0.8,
+            "breadth": 0.2,
+            "activity": 0.3,
+            "recency": 1.0,
+            "repos_count": 1,
+            "commits_count": 4,
+            "bytes_count": 62102,
+            "last_active_months_ago": 0.0
+          }
+        },
+        {
+          "skill_id": "django",
+          "name": "Django",
+          "category": "Backend",
+          "score": 56,
+          "confidence": "low",
+          "metrics": {
+            "volume": 0.8,
+            "breadth": 0.2,
+            "activity": 0.3,
+            "recency": 1.0,
+            "repos_count": 1,
+            "commits_count": 4,
+            "bytes_count": 62102,
+            "last_active_months_ago": 0.0
+          }
+        },
+        {
+          "skill_id": "deep_learning",
+          "name": "Deep Learning (PyTorch/TF)",
+          "category": "AI / ML",
+          "score": 56,
+          "confidence": "low",
+          "metrics": {
+            "volume": 0.8,
+            "breadth": 0.2,
+            "activity": 0.3,
+            "recency": 1.0,
+            "repos_count": 1,
+            "commits_count": 4,
+            "bytes_count": 62102,
+            "last_active_months_ago": 0.0
+          }
+        },
+        {
+          "skill_id": "llm_generative_ai",
+          "name": "LLMs & Generative AI",
+          "category": "AI / ML",
+          "score": 56,
+          "confidence": "low",
+          "metrics": {
+            "volume": 0.8,
+            "breadth": 0.2,
+            "activity": 0.3,
+            "recency": 1.0,
+            "repos_count": 1,
+            "commits_count": 4,
+            "bytes_count": 62102,
+            "last_active_months_ago": 0.0
+          }
+        },
+        {
+          "skill_id": "typescript",
+          "name": "TypeScript",
+          "category": "Languages",
+          "score": 31,
+          "confidence": "low",
+          "metrics": {
+            "volume": 0.1,
+            "breadth": 0.2,
+            "activity": 0.3,
+            "recency": 1.0,
+            "repos_count": 1,
+            "commits_count": 4,
+            "bytes_count": 0,
+            "last_active_months_ago": 0.0
+          }
+        },
+        {
+          "skill_id": "cpp",
+          "name": "C / C++",
+          "category": "Languages",
+          "score": 31,
+          "confidence": "low",
+          "metrics": {
+            "volume": 0.1,
+            "breadth": 0.2,
+            "activity": 0.3,
+            "recency": 1.0,
+            "repos_count": 1,
+            "commits_count": 4,
+            "bytes_count": 0,
+            "last_active_months_ago": 0.0
+          }
+        },
+        {
+          "skill_id": "go",
+          "name": "Go (Golang)",
+          "category": "Languages",
+          "score": 31,
+          "confidence": "low",
+          "metrics": {
+            "volume": 0.1,
+            "breadth": 0.2,
+            "activity": 0.3,
+            "recency": 1.0,
+            "repos_count": 1,
+            "commits_count": 4,
+            "bytes_count": 0,
+            "last_active_months_ago": 0.0
+          }
+        }
+      ],
+      "_id": "df7f7e9c-d11c-4cff-9049-d5c371c47625"
+    }
+  ],
+  "user_projects": [],
+  "resumes": [],
+  "github_analysis": [
+    {
+      "firebase_uid": "LbtpKj7JdlfnRGYdYjlzzAY0uvr1",
+      "username": "Jiveshverma",
+      "data": {
+        "username": "Jiveshverma",
+        "scanned_at": "2026-11-19T16:34:21.370911+00:00",
+        "repo_count": 1,
+        "total_commits": 4,
+        "languages": [
+          {
+            "language": "Jupyter Notebook",
+            "bytes": 4476877,
+            "percentage": 98.6
+          },
+          {
+            "language": "Python",
+            "bytes": 62102,
+            "percentage": 1.4
+          }
+        ],
+        "repositories": [
+          {
+            "id": 1464358215,
+            "name": "Python-Projects-",
+            "full_name": "Jiveshverma/Python-Projects-",
+            "html_url": "https://github.com/Jiveshverma/Python-Projects-",
+            "description": "A repository of Python projects ranging from beginner to intermediate level, created to strengthen programming skills and explore real-world use cases.",
+            "primary_language": "Jupyter Notebook",
+            "languages": {
+              "Jupyter Notebook": 4476877,
+              "Python": 62102
+            },
+            "commits": 4,
+            "stars": 0,
+            "forks": 0,
+            "created_at": "2026-11-19T15:57:36Z",
+            "updated_at": "2026-11-19T16:07:33Z"
+          }
+        ]
+      },
+      "scanned_at": "2026-11-19 16:34:18.633648+00:00",
+      "_id": "b6a3aab2-4d24-486a-9dcd-17b238c1fe51"
+    }
+  ],
+  "oauth_states": [],
+  "mentor_conversations": []
+}

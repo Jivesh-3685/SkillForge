@@ -118,6 +118,63 @@ async def get_progress_dashboard(user: dict = Depends(get_current_user)):
             "target": gap["target_score"],
         })
 
+    # 6. Scatter Graph Data: (Current Verified Score vs Target Requirement Score)
+    scatter_data = []
+    for gap in gap_report.get("gaps", []):
+        cur = user_lookup.get(gap["skill_id"], 0)
+        tgt = gap.get("target_score", 80)
+        shortfall = max(0, tgt - cur)
+        scatter_data.append({
+            "name": gap["name"],
+            "current": cur,
+            "target": tgt,
+            "shortfall": shortfall,
+            "weight": gap.get("weight", 1.0),
+            "severity": gap.get("severity", "below"),
+            "status": "Mastered" if cur >= tgt else ("Critical Gap" if shortfall >= 30 else "Moderate Gap"),
+        })
+
+    # 7. Timeline / Line Graph Data: Historical progress or milestone trajectory
+    scans_cursor = db["scans"].find({"firebase_uid": uid}).sort("created_at", 1)
+    scan_docs = await scans_cursor.to_list(10)
+
+    timeline_points = []
+    tracked_skill_names = [g["name"] for g in gap_report.get("gaps", [])[:4]]
+    if not tracked_skill_names:
+        tracked_skill_names = ["Python", "FastAPI", "Docker", "SQL Databases"]
+
+    if len(scan_docs) >= 2:
+        for idx, s in enumerate(scan_docs):
+            created = s.get("created_at")
+            lbl = f"Scan #{idx + 1}"
+            pt = {"label": lbl}
+            s_map = {item["name"]: item["score"] for item in s.get("scores", [])}
+            for name in tracked_skill_names:
+                pt[name] = s_map.get(name, 0)
+            timeline_points.append(pt)
+    else:
+        # Generate progressive learning timeline based on current scores and active roadmap
+        current_map = {s.get("name"): s.get("score", 0) for s in scores_list}
+        stages = ["Baseline", "Phase 1", "Phase 2", "Current State", "Target Goal"]
+        for idx, stage in enumerate(stages):
+            ratio = idx / (len(stages) - 1)
+            pt = {"label": stage}
+            for name in tracked_skill_names:
+                cur_val = current_map.get(name, 15 + idx * 5)
+                target_val = 85
+                if idx == 0:
+                    val = max(5, int(cur_val * 0.4))
+                elif idx == 1:
+                    val = max(10, int(cur_val * 0.7))
+                elif idx == 2:
+                    val = max(15, int(cur_val * 0.9))
+                elif idx == 3:
+                    val = cur_val
+                else:
+                    val = target_val
+                pt[name] = min(100, val)
+            timeline_points.append(pt)
+
     return {
         "career_id": goal_id,
         "career_title": gap_report.get("career_title"),
@@ -135,5 +192,8 @@ async def get_progress_dashboard(user: dict = Depends(get_current_user)):
         "chart_data": {
             "skills": skill_chart_data,
             "languages": languages_pie,
+            "scatter": scatter_data,
+            "timeline": timeline_points,
+            "tracked_skills": tracked_skill_names,
         },
     }

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { useAuth } from '../context/AuthContext'
 import { useTheme } from '../context/ThemeContext'
 import AuthModal from '../components/AuthModal'
+import UserAvatar from '../components/UserAvatar'
 
 const API_URL = import.meta.env.VITE_API_URL || ''
 
@@ -210,17 +211,7 @@ export default function HomePage({ onNavigate }) {
 
           {currentUser ? (
             <div className="flex items-center gap-3.5">
-              {currentUser.photoURL ? (
-                <img
-                  src={currentUser.photoURL}
-                  alt=""
-                  className="w-12 h-12 rounded-xl border border-emerald-500/40 object-cover"
-                />
-              ) : (
-                <div className="w-12 h-12 rounded-xl bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 flex items-center justify-center font-bold text-lg">
-                  {(currentUser.displayName || currentUser.email || 'U')[0]}
-                </div>
-              )}
+              <UserAvatar user={currentUser} size="xl" />
               <div className="flex-1 min-w-0">
                 <p className="text-sm font-bold truncate text-slate-100">
                   {userProfile?.display_name || currentUser.displayName || 'Learner'}

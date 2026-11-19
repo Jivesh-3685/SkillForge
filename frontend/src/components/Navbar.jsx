@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useAuth } from '../context/AuthContext'
 import AuthModal from './AuthModal'
+import UserAvatar from './UserAvatar'
 
 export default function Navbar() {
   const [modalOpen, setModalOpen] = useState(false)
@@ -27,17 +28,7 @@ export default function Navbar() {
             {currentUser ? (
               <div className="flex items-center gap-4">
                 <div className="flex items-center gap-2.5">
-                  {currentUser.photoURL ? (
-                    <img
-                      src={currentUser.photoURL}
-                      alt={currentUser.displayName || 'User'}
-                      className="w-8 h-8 rounded-full border border-gray-700 object-cover"
-                    />
-                  ) : (
-                    <div className="w-8 h-8 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 flex items-center justify-center font-bold text-xs uppercase">
-                      {(currentUser.displayName || currentUser.email || 'U')[0]}
-                    </div>
-                  )}
+                  <UserAvatar user={currentUser} size="md" />
                   <div className="hidden sm:block text-left">
                     <p className="text-sm font-medium text-gray-200 leading-tight">
                       {userProfile?.display_name || currentUser.displayName || 'Learner'}

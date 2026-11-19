@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import { useAuth } from '../context/AuthContext'
 import { useTheme } from '../context/ThemeContext'
 import AuthModal from './AuthModal'
+import UserAvatar from './UserAvatar'
 
 export default function Sidebar({
   activePage,
@@ -255,17 +256,7 @@ export default function Sidebar({
         <div className="px-3 py-2.5 border-b border-[#30363d] flex-shrink-0">
           {currentUser ? (
             <div className={`flex items-center gap-2.5 ${collapsed ? 'justify-center' : ''}`}>
-              {currentUser.photoURL ? (
-                <img
-                  src={currentUser.photoURL}
-                  alt=""
-                  className="w-7 h-7 rounded-full border border-emerald-500/40 object-cover flex-shrink-0"
-                />
-              ) : (
-                <div className="w-7 h-7 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 flex items-center justify-center font-bold text-xs uppercase flex-shrink-0">
-                  {(currentUser.displayName || currentUser.email || 'U')[0]}
-                </div>
-              )}
+              <UserAvatar user={currentUser} size="sm" />
               {!collapsed && (
                 <div className="flex-1 min-w-0">
                   <p className="text-xs font-semibold truncate text-slate-100">

@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useAuth } from '../context/AuthContext'
 import { useTheme } from '../context/ThemeContext'
+import UserAvatar from '../components/UserAvatar'
 
 export default function SettingsPage() {
   const { currentUser, userProfile, logout } = useAuth()
@@ -566,17 +567,7 @@ export default function SettingsPage() {
                 {currentUser ? (
                   <div className="space-y-4">
                     <div className="flex items-center gap-4">
-                      {currentUser.photoURL ? (
-                        <img
-                          src={currentUser.photoURL}
-                          alt=""
-                          className="w-14 h-14 rounded-xl border border-emerald-500/40 object-cover"
-                        />
-                      ) : (
-                        <div className="w-14 h-14 rounded-xl bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 flex items-center justify-center font-bold text-2xl uppercase">
-                          {(currentUser.displayName || currentUser.email || 'U')[0]}
-                        </div>
-                      )}
+                      <UserAvatar user={currentUser} size="xl" />
                       <div>
                         <p className="text-base font-bold text-slate-100">
                           {userProfile?.display_name || currentUser.displayName || 'Learner'}
