@@ -39,6 +39,26 @@
       "repo_count": 1,
       "total_commits": 4,
       "_id": "a65a2df0-f00e-495c-bdc3-fe30277f2e0d"
+    },
+    {
+      "scan_id": "080b3f8c-4cda-44a4-9789-e38fff216f5a",
+      "firebase_uid": "LbtpKj7JdlfnRGYdYjlzzAY0uvr1",
+      "formula_version": "v1.0",
+      "created_at": "2026-11-19 16:44:52.962620+00:00",
+      "is_cold_start": true,
+      "repo_count": 1,
+      "total_commits": 4,
+      "_id": "6aff278430883d9c9add09f6"
+    },
+    {
+      "scan_id": "862f4589-7480-42c7-b0eb-c3005ab47610",
+      "firebase_uid": "LbtpKj7JdlfnRGYdYjlzzAY0uvr1",
+      "formula_version": "v1.0",
+      "created_at": "2026-11-19 16:44:53.224543+00:00",
+      "is_cold_start": true,
+      "repo_count": 1,
+      "total_commits": 4,
+      "_id": "6aff278530883d9c9add09f7"
     }
   ],
   "roadmaps": [],
@@ -46,19 +66,29 @@
     {
       "firebase_uid": "LbtpKj7JdlfnRGYdYjlzzAY0uvr1",
       "github_username": "Jiveshverma",
-      "github_token_encrypted": "gAAAAABq_yUK3yHGzpHiLAUm1ooB3y28OyT71rvyxCK4WqWMwGGq7ebzZHe_O_mKV6YsDdn3uuH2dicxiCvvcI5FOgrUAmNPvn5eJfEPIelh44sBR2K_rohePHUkzT-eRzjWrryV8G0q",
-      "github_connected_at": "2026-11-19 16:34:18.633648+00:00",
-      "updated_at": "2026-11-19 16:34:18.633648+00:00",
+      "github_token_encrypted": "gAAAAABq_yd80-jEBeZXl9CjSpo08BliatsEn_I1lGxOoNAMnAcYpknD1ic0SAObTZn74qhRZmU2btet5Si5_8SyI2oudzcvRxtM0p1-lgArt8KXGvapnOmYe4HpYNooR0yHzP5dWs_F",
+      "github_connected_at": "2026-11-19 16:44:44.660911+00:00",
+      "updated_at": "2026-11-19 16:44:44.660911+00:00",
       "_id": "b7cbb707-d7ed-497e-a158-506180d48110"
+    },
+    {
+      "firebase_uid": "LbtpKj7JdlfnRGYdYjlzzAY0uvr1",
+      "email": "jiveshv13@gmail.com",
+      "display_name": "JIVESH VERMA",
+      "photo_url": "https://lh3.googleusercontent.com/a/ACg8ocLwKbAVkrXezsBpRDafkTnWM-PTk0r-_o2sHWnSylVo2YDuGsIn=s96-c",
+      "github_username": null,
+      "created_at": "2026-11-19 16:44:20.626147+00:00",
+      "updated_at": "2026-11-19 16:44:20.626147+00:00",
+      "_id": "6aff276430883d9c9add09f4"
     }
   ],
   "skill_scores": [
     {
       "firebase_uid": "LbtpKj7JdlfnRGYdYjlzzAY0uvr1",
-      "scan_id": "ed7422d3-d1f3-439c-9a65-40b7a0449b0a",
+      "scan_id": "862f4589-7480-42c7-b0eb-c3005ab47610",
       "source": "github",
       "formula_version": "v1.0",
-      "calculated_at": "2026-11-19T16:34:49.822939+00:00",
+      "calculated_at": "2026-11-19T16:44:53.224543+00:00",
       "is_cold_start": true,
       "scores": [
         {
@@ -226,7 +256,7 @@
       "username": "Jiveshverma",
       "data": {
         "username": "Jiveshverma",
-        "scanned_at": "2026-11-19T16:34:21.370911+00:00",
+        "scanned_at": "2026-11-19T16:44:47.274057+00:00",
         "repo_count": 1,
         "total_commits": 4,
         "languages": [
@@ -261,10 +291,17 @@
           }
         ]
       },
-      "scanned_at": "2026-11-19 16:34:18.633648+00:00",
+      "scanned_at": "2026-11-19 16:44:44.660911+00:00",
       "_id": "b6a3aab2-4d24-486a-9dcd-17b238c1fe51"
     }
   ],
-  "oauth_states": [],
+  "oauth_states": [
+    {
+      "state": "-_A__7oEOuFm2omxWiqgg8sSjlRTHemijpX3dvm0jG0",
+      "firebase_uid": "LbtpKj7JdlfnRGYdYjlzzAY0uvr1",
+      "created_at": "2026-11-19 16:44:40.940933+00:00",
+      "_id": "6aff277830883d9c9add09f5"
+    }
+  ],
   "mentor_conversations": []
 }

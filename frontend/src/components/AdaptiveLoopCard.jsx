@@ -13,7 +13,7 @@ import { useAuth } from '../context/AuthContext'
 const LINE_COLORS = ['#10b981', '#3b82f6', '#f59e0b', '#8b5cf6', '#ec4899', '#06b6d4']
 
 export default function AdaptiveLoopCard() {
-  const { idToken, currentUser } = useAuth()
+  const { currentUser, apiFetch } = useAuth()
   const [history, setHistory] = useState(null)
   const [scanning, setScanning] = useState(false)
   const [loading, setLoading] = useState(true)
@@ -21,12 +21,10 @@ export default function AdaptiveLoopCard() {
   const [notice, setNotice] = useState('')
 
   const fetchHistory = useCallback(async () => {
-    if (!idToken) return
+    if (!currentUser) return
     try {
       setLoading(true)
-      const res = await fetch('/api/skills/history', {
-        headers: { Authorization: `Bearer ${idToken}` },
-      })
+      const res = await apiFetch('/api/skills/history')
       if (res.ok) {
         const data = await res.json()
         setHistory(data)
@@ -36,23 +34,22 @@ export default function AdaptiveLoopCard() {
     } finally {
       setLoading(false)
     }
-  }, [idToken])
+  }, [currentUser, apiFetch])
 
   useEffect(() => {
-    if (idToken) {
+    if (currentUser) {
       fetchHistory()
     }
-  }, [idToken, fetchHistory])
+  }, [currentUser, fetchHistory])
 
   const handleRescan = async () => {
-    if (!idToken) return
+    if (!currentUser) return
     try {
       setError('')
       setNotice('')
       setScanning(true)
-      const res = await fetch('/api/github/rescan?force=true', {
+      const res = await apiFetch('/api/github/rescan?force=true', {
         method: 'POST',
-        headers: { Authorization: `Bearer ${idToken}` },
       })
       if (!res.ok) {
         const errData = await res.json()
@@ -160,14 +157,14 @@ export default function AdaptiveLoopCard() {
       <div className="p-5 rounded-xl bg-gray-950/90 border border-gray-800 space-y-4">
         <div className="flex items-center justify-between">
           <div>
-            <h3 className="text-xs font-bold uppercase tracking-wider text-gray-400">
-              Skill Growth Over Scans
+            <h3 className="text-xs font-bold uppercase tracking-wider text-gray-300 flex items-center gap-2">
+              <span>📈</span> Skill Growth Over Scans [Line Graph]
             </h3>
-            <p className="text-[11px] text-gray-500 mt-0.5">
+            <p className="text-[11px] text-gray-400 mt-0.5">
               Historical progression recorded across append-only scan versions.
             </p>
           </div>
-          <span className="text-xs font-mono text-gray-500">
+          <span className="text-xs font-mono text-gray-400">
             {timeline.length} scan{timeline.length === 1 ? '' : 's'} on record
           </span>
         </div>
@@ -179,13 +176,13 @@ export default function AdaptiveLoopCard() {
         ) : timeline.length > 1 ? (
           <div className="h-64 w-full">
             <ResponsiveContainer width="100%" height="100%">
-              <LineChart data={timeline} margin={{ top: 10, right: 10, left: -20, bottom: 10 }}>
-                <XAxis dataKey="date" stroke="#6b7280" fontSize={11} />
-                <YAxis stroke="#6b7280" fontSize={11} domain={[0, 100]} />
+              <LineChart data={timeline} margin={{ top: 15, right: 20, left: 10, bottom: 15 }}>
+                <XAxis dataKey="date" stroke="#8b949e" fontSize={11} tickLine={false} />
+                <YAxis stroke="#8b949e" fontSize={11} domain={[0, 100]} width={35} tickLine={false} />
                 <Tooltip
                   contentStyle={{
                     backgroundColor: '#030712',
-                    borderColor: '#374151',
+                    borderColor: '#30363d',
                     borderRadius: '0.75rem',
                     fontSize: '12px',
                   }}

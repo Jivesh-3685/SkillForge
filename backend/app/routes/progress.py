@@ -109,19 +109,27 @@ async def get_progress_dashboard(user: dict = Depends(get_current_user)):
     # 5. Skills vs Target Bar Data (for top 6 skills in active career)
     skill_chart_data = []
     target_lookup = {g["skill_id"]: g["target_score"] for g in gap_report.get("gaps", [])}
-    user_lookup = {s["skill_id"]: s.get("score", 0) for s in scores_list}
+    user_lookup = {s.get("skill_id"): s.get("score", 0) for s in scores_list if s.get("skill_id")}
+    name_lookup = {s.get("name", "").lower(): s.get("score", 0) for s in scores_list if s.get("name")}
+
+    def get_user_score(s_id: str, s_name: str) -> int:
+        if s_id in user_lookup:
+            return user_lookup[s_id]
+        if s_name and s_name.lower() in name_lookup:
+            return name_lookup[s_name.lower()]
+        return 0
 
     for gap in gap_report.get("gaps", [])[:6]:
         skill_chart_data.append({
             "skill": gap["name"],
-            "current": user_lookup.get(gap["skill_id"], 0),
+            "current": get_user_score(gap["skill_id"], gap["name"]),
             "target": gap["target_score"],
         })
 
     # 6. Scatter Graph Data: (Current Verified Score vs Target Requirement Score)
     scatter_data = []
     for gap in gap_report.get("gaps", []):
-        cur = user_lookup.get(gap["skill_id"], 0)
+        cur = get_user_score(gap["skill_id"], gap["name"])
         tgt = gap.get("target_score", 80)
         shortfall = max(0, tgt - cur)
         scatter_data.append({
