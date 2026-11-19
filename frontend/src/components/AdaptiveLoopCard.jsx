@@ -158,7 +158,7 @@ export default function AdaptiveLoopCard() {
         <div className="flex items-center justify-between">
           <div>
             <h3 className="text-xs font-bold uppercase tracking-wider text-gray-300 flex items-center gap-2">
-              <span>📈</span> Skill Growth Over Scans [Line Graph]
+              <span>📈</span> Skill Growth Over Scans
             </h3>
             <p className="text-[11px] text-gray-400 mt-0.5">
               Historical progression recorded across append-only scan versions.

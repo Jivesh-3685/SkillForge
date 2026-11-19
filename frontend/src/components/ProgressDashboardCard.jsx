@@ -198,7 +198,7 @@ export default function ProgressDashboardCard() {
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-[#30363d]/50 pb-3">
                 <div>
                   <h3 className="text-xs font-bold uppercase tracking-wider text-slate-200 flex items-center gap-2">
-                    <span>📉</span> Skill Score Progression [Line Graph]
+                    <span>📉</span> Skill Score Progression
                   </h3>
                   <p className="text-[11px] text-slate-400 mt-0.5">
                     Historical velocity and trajectory across roadmap milestones.
@@ -266,7 +266,7 @@ export default function ProgressDashboardCard() {
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-[#30363d]/50 pb-3">
                 <div>
                   <h3 className="text-xs font-bold uppercase tracking-wider text-slate-200 flex items-center gap-2">
-                    <span>🎯</span> Skill Competency Matrix [Scatter Graph]
+                    <span>🎯</span> Skill Competency Matrix
                   </h3>
                   <p className="text-[11px] text-slate-400 mt-0.5">
                     Verified Score (X) vs Target Benchmark (Y). Points on or below dashed line meet goals.
@@ -356,7 +356,7 @@ export default function ProgressDashboardCard() {
               <div className="flex items-center justify-between border-b border-[#30363d]/50 pb-3">
                 <div>
                   <h3 className="text-xs font-bold uppercase tracking-wider text-slate-200 flex items-center gap-2">
-                    <span>📊</span> Target Benchmark Comparison [Bar Graph]
+                    <span>📊</span> Target Benchmark Comparison
                   </h3>
                   <p className="text-[11px] text-slate-400 mt-0.5">
                     Direct side-by-side gap analysis against active career requirements.
@@ -414,7 +414,7 @@ export default function ProgressDashboardCard() {
               <div className="flex items-center justify-between border-b border-[#30363d]/50 pb-3">
                 <div>
                   <h3 className="text-xs font-bold uppercase tracking-wider text-slate-200 flex items-center gap-2">
-                    <span>🍩</span> Codebase Language Distribution [Pie Chart]
+                    <span>🍩</span> Codebase Language Distribution
                   </h3>
                   <p className="text-[11px] text-slate-400 mt-0.5">
                     Breakdown of programming languages detected from public repositories.
