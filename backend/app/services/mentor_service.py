@@ -235,12 +235,18 @@ async def get_mentor_response(
     if not effective_key:
         return generate_fallback_mentor_reply(user_message, context_str, gap_report)
 
-    # Available models in priority order
-    candidate_models = ["gemini-1.5-flash", "gemini-2.0-flash", "gemini-1.5-pro"]
+    # Available models in priority order (gemini-3.1-flash-lite has confirmed active quota)
+    candidate_models = [
+        "gemini-3.1-flash-lite",
+        "gemini-3.5-flash-lite",
+        "gemini-3.8-flash",
+        "gemini-flash-latest",
+        "gemini-pro-latest",
+    ]
 
     try:
         import google.generativeai as genai
-        genai.configure(api_key=effective_key)
+        genai.configure(api_key=effective_key, transport="rest")
 
         last_error = None
         for model_name in candidate_models:

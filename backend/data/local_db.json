@@ -59,37 +59,34 @@
       "repo_count": 1,
       "total_commits": 4,
       "_id": "6aff278530883d9c9add09f7"
-    }
-  ],
-  "roadmaps": [],
-  "users": [
-    {
-      "firebase_uid": "LbtpKj7JdlfnRGYdYjlzzAY0uvr1",
-      "github_username": "Jiveshverma",
-      "github_token_encrypted": "gAAAAABq_yd80-jEBeZXl9CjSpo08BliatsEn_I1lGxOoNAMnAcYpknD1ic0SAObTZn74qhRZmU2btet5Si5_8SyI2oudzcvRxtM0p1-lgArt8KXGvapnOmYe4HpYNooR0yHzP5dWs_F",
-      "github_connected_at": "2026-11-19 16:44:44.660911+00:00",
-      "updated_at": "2026-11-19 16:44:44.660911+00:00",
-      "_id": "b7cbb707-d7ed-497e-a158-506180d48110"
     },
     {
+      "scan_id": "e50d8ac9-b88b-4efe-83f1-e33ff06bf898",
       "firebase_uid": "LbtpKj7JdlfnRGYdYjlzzAY0uvr1",
-      "email": "jiveshv13@gmail.com",
-      "display_name": "JIVESH VERMA",
-      "photo_url": "https://lh3.googleusercontent.com/a/ACg8ocLwKbAVkrXezsBpRDafkTnWM-PTk0r-_o2sHWnSylVo2YDuGsIn=s96-c",
-      "github_username": null,
-      "created_at": "2026-11-19 16:44:20.626147+00:00",
-      "updated_at": "2026-11-19 16:44:20.626147+00:00",
-      "_id": "6aff276430883d9c9add09f4"
-    }
-  ],
-  "skill_scores": [
-    {
-      "firebase_uid": "LbtpKj7JdlfnRGYdYjlzzAY0uvr1",
-      "scan_id": "862f4589-7480-42c7-b0eb-c3005ab47610",
-      "source": "github",
       "formula_version": "v1.0",
-      "calculated_at": "2026-11-19T16:44:53.224543+00:00",
+      "created_at": "2026-11-19 17:58:49.167060+00:00",
       "is_cold_start": true,
+      "repo_count": 1,
+      "total_commits": 4,
+      "_id": "dd5d14df-cd0c-490e-8bf8-67d2a0d0c126"
+    },
+    {
+      "scan_id": "9f1ea541-eb85-48fb-ab43-401d8257a9fc",
+      "firebase_uid": "LbtpKj7JdlfnRGYdYjlzzAY0uvr1",
+      "formula_version": "v1.0",
+      "created_at": "2026-11-19 17:58:51.080099+00:00",
+      "is_cold_start": true,
+      "repo_count": 1,
+      "total_commits": 4,
+      "_id": "f65ddba8-c51a-44da-a0b1-7a574b9a3b76"
+    },
+    {
+      "scan_id": "5809a55a-b35a-4ffd-a83e-b2146f5243bd",
+      "firebase_uid": "LbtpKj7JdlfnRGYdYjlzzAY0uvr1",
+      "formula_version": "v1.0",
+      "created_at": "2026-11-19 17:59:21.186426+00:00",
+      "repo_count": 1,
+      "total_commits": 4,
       "scores": [
         {
           "skill_id": "machine_learning",
@@ -104,7 +101,7 @@
             "recency": 1.0,
             "repos_count": 1,
             "commits_count": 4,
-            "bytes_count": 4538979,
+            "bytes_count": 4538037,
             "last_active_months_ago": 0.0
           }
         },
@@ -121,7 +118,7 @@
             "recency": 1.0,
             "repos_count": 1,
             "commits_count": 4,
-            "bytes_count": 62102,
+            "bytes_count": 61160,
             "last_active_months_ago": 0.0
           }
         },
@@ -138,7 +135,7 @@
             "recency": 1.0,
             "repos_count": 1,
             "commits_count": 4,
-            "bytes_count": 62102,
+            "bytes_count": 61160,
             "last_active_months_ago": 0.0
           }
         },
@@ -155,7 +152,7 @@
             "recency": 1.0,
             "repos_count": 1,
             "commits_count": 4,
-            "bytes_count": 62102,
+            "bytes_count": 61160,
             "last_active_months_ago": 0.0
           }
         },
@@ -172,7 +169,7 @@
             "recency": 1.0,
             "repos_count": 1,
             "commits_count": 4,
-            "bytes_count": 62102,
+            "bytes_count": 61160,
             "last_active_months_ago": 0.0
           }
         },
@@ -189,7 +186,594 @@
             "recency": 1.0,
             "repos_count": 1,
             "commits_count": 4,
-            "bytes_count": 62102,
+            "bytes_count": 61160,
+            "last_active_months_ago": 0.0
+          }
+        },
+        {
+          "skill_id": "typescript",
+          "name": "TypeScript",
+          "category": "Languages",
+          "score": 31,
+          "confidence": "low",
+          "metrics": {
+            "volume": 0.1,
+            "breadth": 0.2,
+            "activity": 0.3,
+            "recency": 1.0,
+            "repos_count": 1,
+            "commits_count": 4,
+            "bytes_count": 0,
+            "last_active_months_ago": 0.0
+          }
+        },
+        {
+          "skill_id": "cpp",
+          "name": "C / C++",
+          "category": "Languages",
+          "score": 31,
+          "confidence": "low",
+          "metrics": {
+            "volume": 0.1,
+            "breadth": 0.2,
+            "activity": 0.3,
+            "recency": 1.0,
+            "repos_count": 1,
+            "commits_count": 4,
+            "bytes_count": 0,
+            "last_active_months_ago": 0.0
+          }
+        },
+        {
+          "skill_id": "go",
+          "name": "Go (Golang)",
+          "category": "Languages",
+          "score": 31,
+          "confidence": "low",
+          "metrics": {
+            "volume": 0.1,
+            "breadth": 0.2,
+            "activity": 0.3,
+            "recency": 1.0,
+            "repos_count": 1,
+            "commits_count": 4,
+            "bytes_count": 0,
+            "last_active_months_ago": 0.0
+          }
+        }
+      ],
+      "deltas": [
+        {
+          "skill_id": "machine_learning",
+          "name": "Machine Learning",
+          "category": "AI / ML",
+          "previous_score": 63,
+          "new_score": 63,
+          "delta": 0
+        },
+        {
+          "skill_id": "python",
+          "name": "Python",
+          "category": "Languages",
+          "previous_score": 56,
+          "new_score": 56,
+          "delta": 0
+        },
+        {
+          "skill_id": "fastapi",
+          "name": "FastAPI",
+          "category": "Backend",
+          "previous_score": 56,
+          "new_score": 56,
+          "delta": 0
+        },
+        {
+          "skill_id": "django",
+          "name": "Django",
+          "category": "Backend",
+          "previous_score": 56,
+          "new_score": 56,
+          "delta": 0
+        },
+        {
+          "skill_id": "deep_learning",
+          "name": "Deep Learning (PyTorch/TF)",
+          "category": "AI / ML",
+          "previous_score": 56,
+          "new_score": 56,
+          "delta": 0
+        },
+        {
+          "skill_id": "llm_generative_ai",
+          "name": "LLMs & Generative AI",
+          "category": "AI / ML",
+          "previous_score": 56,
+          "new_score": 56,
+          "delta": 0
+        },
+        {
+          "skill_id": "typescript",
+          "name": "TypeScript",
+          "category": "Languages",
+          "previous_score": 31,
+          "new_score": 31,
+          "delta": 0
+        },
+        {
+          "skill_id": "cpp",
+          "name": "C / C++",
+          "category": "Languages",
+          "previous_score": 31,
+          "new_score": 31,
+          "delta": 0
+        },
+        {
+          "skill_id": "go",
+          "name": "Go (Golang)",
+          "category": "Languages",
+          "previous_score": 31,
+          "new_score": 31,
+          "delta": 0
+        }
+      ],
+      "_id": "9abb3b21-2e18-4a6d-8d49-9c9d52a482b9"
+    },
+    {
+      "scan_id": "ada66f5f-01e7-4eb8-bd6d-bb95492ef1a6",
+      "firebase_uid": "LbtpKj7JdlfnRGYdYjlzzAY0uvr1",
+      "formula_version": "v1.0",
+      "created_at": "2026-11-19 18:15:44.103547+00:00",
+      "is_cold_start": true,
+      "repo_count": 1,
+      "total_commits": 4,
+      "_id": "1d9df6d2-c64c-4b90-8ceb-b17214d0ba1a"
+    },
+    {
+      "scan_id": "79ec634e-b6c5-4635-91fa-09e553d642e0",
+      "firebase_uid": "LbtpKj7JdlfnRGYdYjlzzAY0uvr1",
+      "formula_version": "v1.0",
+      "created_at": "2026-11-19 18:15:45.942542+00:00",
+      "is_cold_start": true,
+      "repo_count": 1,
+      "total_commits": 4,
+      "_id": "a8f8ccef-e012-4d5e-b61a-58ebe4cdbcbe"
+    },
+    {
+      "scan_id": "c3b48cbe-b1d8-4390-833c-a0b9514923c6",
+      "firebase_uid": "LbtpKj7JdlfnRGYdYjlzzAY0uvr1",
+      "formula_version": "v1.0",
+      "created_at": "2026-11-19 18:15:47.595449+00:00",
+      "is_cold_start": true,
+      "repo_count": 1,
+      "total_commits": 4,
+      "_id": "799dce44-fa1b-4fd8-894c-95d314922a27"
+    },
+    {
+      "scan_id": "abc5e521-8c40-4dea-94da-781ea943c0a8",
+      "firebase_uid": "LbtpKj7JdlfnRGYdYjlzzAY0uvr1",
+      "formula_version": "v1.0",
+      "created_at": "2026-11-19 18:15:49.248044+00:00",
+      "is_cold_start": true,
+      "repo_count": 1,
+      "total_commits": 4,
+      "_id": "959fec07-b62c-40bb-b7dc-755155993c7f"
+    },
+    {
+      "scan_id": "34457a21-c8a4-4f77-bdc0-ff6ec6f18b9e",
+      "firebase_uid": "LbtpKj7JdlfnRGYdYjlzzAY0uvr1",
+      "formula_version": "v1.0",
+      "created_at": "2026-11-19 18:15:55.335626+00:00",
+      "is_cold_start": true,
+      "repo_count": 1,
+      "total_commits": 4,
+      "_id": "77fd758e-85c2-4e77-90bb-00aa6fe4037c"
+    },
+    {
+      "scan_id": "8268f56a-0504-4757-8a1d-de1ded542d4c",
+      "firebase_uid": "LbtpKj7JdlfnRGYdYjlzzAY0uvr1",
+      "formula_version": "v1.0",
+      "created_at": "2026-11-19 18:15:57.116745+00:00",
+      "is_cold_start": true,
+      "repo_count": 1,
+      "total_commits": 4,
+      "_id": "f170736e-78b4-4164-a2ef-cf62ca473952"
+    }
+  ],
+  "roadmaps": [
+    {
+      "firebase_uid": "LbtpKj7JdlfnRGYdYjlzzAY0uvr1",
+      "career_id": "ai_engineer",
+      "career_title": "AI / ML Engineer",
+      "weekly_hours": 5,
+      "total_weeks": 6,
+      "generated_by": "rule_based_fallback",
+      "created_at": "2026-11-19T17:59:06.374193+00:00",
+      "weeks": [
+        {
+          "week_number": 1,
+          "theme": "Week 1: Git & Version Control Mastery",
+          "summary": "Focus on bridging your 75% shortfall in Git & Version Control to meet AI / ML Engineer standards.",
+          "target_skills": [
+            "git"
+          ],
+          "tasks": [
+            {
+              "task_id": "w1-t1-3bac31",
+              "title": "Git branching strategies: Feature branches, rebasing vs merging",
+              "skill_id": "git",
+              "estimated_hours": 2.0,
+              "completed": false,
+              "completed_at": null
+            },
+            {
+              "task_id": "w1-t2-2f2b33",
+              "title": "Resolving complex merge conflicts and inspecting git log/reflog",
+              "skill_id": "git",
+              "estimated_hours": 2.0,
+              "completed": false,
+              "completed_at": null
+            },
+            {
+              "task_id": "w1-t3-cee701",
+              "title": "Writing GitHub Actions workflows for continuous integration (CI)",
+              "skill_id": "git",
+              "estimated_hours": 2.5,
+              "completed": false,
+              "completed_at": null
+            }
+          ]
+        },
+        {
+          "week_number": 2,
+          "theme": "Week 2: Docker & Containers Mastery",
+          "summary": "Focus on bridging your 65% shortfall in Docker & Containers to meet AI / ML Engineer standards.",
+          "target_skills": [
+            "docker"
+          ],
+          "tasks": [
+            {
+              "task_id": "w2-t1-ab8210",
+              "title": "Docker essentials: Images, containers, daemon, and registries",
+              "skill_id": "docker",
+              "estimated_hours": 2.0,
+              "completed": false,
+              "completed_at": null
+            },
+            {
+              "task_id": "w2-t2-956138",
+              "title": "Writing production Dockerfiles: Multi-stage builds and layer caching",
+              "skill_id": "docker",
+              "estimated_hours": 3.0,
+              "completed": false,
+              "completed_at": null
+            },
+            {
+              "task_id": "w2-t3-cb6caa",
+              "title": "Multi-container development using docker-compose.yml",
+              "skill_id": "docker",
+              "estimated_hours": 2.5,
+              "completed": false,
+              "completed_at": null
+            },
+            {
+              "task_id": "w2-t4-98aaee",
+              "title": "Networking, volumes, environment variables, and security",
+              "skill_id": "docker",
+              "estimated_hours": 2.5,
+              "completed": false,
+              "completed_at": null
+            }
+          ]
+        },
+        {
+          "week_number": 3,
+          "theme": "Week 3: SQL & Relational DBs Mastery",
+          "summary": "Focus on bridging your 60% shortfall in SQL & Relational DBs to meet AI / ML Engineer standards.",
+          "target_skills": [
+            "sql_databases"
+          ],
+          "tasks": [
+            {
+              "task_id": "w3-t1-9d38c3",
+              "title": "Relational database design: Primary keys, Foreign keys, and Normalization",
+              "skill_id": "sql_databases",
+              "estimated_hours": 2.5,
+              "completed": false,
+              "completed_at": null
+            },
+            {
+              "task_id": "w3-t2-b39e59",
+              "title": "Complex SQL queries: INNER/LEFT JOINs, subqueries, and aggregations",
+              "skill_id": "sql_databases",
+              "estimated_hours": 3.0,
+              "completed": false,
+              "completed_at": null
+            },
+            {
+              "task_id": "w3-t3-4ddd07",
+              "title": "Database performance: B-Tree Indexes, EXPLAIN execution plans",
+              "skill_id": "sql_databases",
+              "estimated_hours": 3.0,
+              "completed": false,
+              "completed_at": null
+            },
+            {
+              "task_id": "w3-t4-15edfe",
+              "title": "ACID Transactions, isolation levels, and data integrity",
+              "skill_id": "sql_databases",
+              "estimated_hours": 2.5,
+              "completed": false,
+              "completed_at": null
+            }
+          ]
+        },
+        {
+          "week_number": 4,
+          "theme": "Week 4: Python Mastery",
+          "summary": "Focus on bridging your 29% shortfall in Python to meet AI / ML Engineer standards.",
+          "target_skills": [
+            "python"
+          ],
+          "tasks": [
+            {
+              "task_id": "w4-t1-50ea9b",
+              "title": "Master Python data structures, iterators, and generators",
+              "skill_id": "python",
+              "estimated_hours": 2.5,
+              "completed": false,
+              "completed_at": null
+            },
+            {
+              "task_id": "w4-t2-c57a68",
+              "title": "Understand Python OOP: dunder methods, inheritance, and dataclasses",
+              "skill_id": "python",
+              "estimated_hours": 2.0,
+              "completed": false,
+              "completed_at": null
+            },
+            {
+              "task_id": "w4-t3-74b1e5",
+              "title": "Asynchronous Python: asyncio event loop, coroutines, and tasks",
+              "skill_id": "python",
+              "estimated_hours": 3.0,
+              "completed": false,
+              "completed_at": null
+            },
+            {
+              "task_id": "w4-t4-a440f2",
+              "title": "Package management, virtual environments, and Pytest suites",
+              "skill_id": "python",
+              "estimated_hours": 2.5,
+              "completed": false,
+              "completed_at": null
+            }
+          ]
+        },
+        {
+          "week_number": 5,
+          "theme": "Week 5: LLMs & Generative AI Mastery",
+          "summary": "Focus on bridging your 24% shortfall in LLMs & Generative AI to meet AI / ML Engineer standards.",
+          "target_skills": [
+            "llm_generative_ai"
+          ],
+          "tasks": [
+            {
+              "task_id": "w5-t1-71f15a",
+              "title": "Prompt Engineering fundamentals: Few-shot, Chain-of-Thought, System instructions",
+              "skill_id": "llm_generative_ai",
+              "estimated_hours": 2.0,
+              "completed": false,
+              "completed_at": null
+            },
+            {
+              "task_id": "w5-t2-0c5d9a",
+              "title": "Building with Gemini / OpenAI APIs: Structured outputs and JSON modes",
+              "skill_id": "llm_generative_ai",
+              "estimated_hours": 2.5,
+              "completed": false,
+              "completed_at": null
+            },
+            {
+              "task_id": "w5-t3-b251fb",
+              "title": "RAG Pipelines: Text chunking, embeddings, and vector database indexing",
+              "skill_id": "llm_generative_ai",
+              "estimated_hours": 4.0,
+              "completed": false,
+              "completed_at": null
+            },
+            {
+              "task_id": "w5-t4-fa6344",
+              "title": "Function calling and AI Agent tool execution loops",
+              "skill_id": "llm_generative_ai",
+              "estimated_hours": 3.5,
+              "completed": false,
+              "completed_at": null
+            }
+          ]
+        },
+        {
+          "week_number": 6,
+          "theme": "Week 6: Deep Learning (PyTorch/TF) Mastery",
+          "summary": "Focus on bridging your 19% shortfall in Deep Learning (PyTorch/TF) to meet AI / ML Engineer standards.",
+          "target_skills": [
+            "deep_learning"
+          ],
+          "tasks": [
+            {
+              "task_id": "w6-t1-28e7ad",
+              "title": "Neural network fundamentals: Forward pass, backpropagation, and loss functions",
+              "skill_id": "deep_learning",
+              "estimated_hours": 3.0,
+              "completed": false,
+              "completed_at": null
+            },
+            {
+              "task_id": "w6-t2-a6790f",
+              "title": "PyTorch basics: Tensors, autograd, and building custom nn.Module models",
+              "skill_id": "deep_learning",
+              "estimated_hours": 3.5,
+              "completed": false,
+              "completed_at": null
+            },
+            {
+              "task_id": "w6-t3-8b0391",
+              "title": "Computer Vision & Convolutional Neural Networks (CNNs)",
+              "skill_id": "deep_learning",
+              "estimated_hours": 3.5,
+              "completed": false,
+              "completed_at": null
+            },
+            {
+              "task_id": "w6-t4-8b2cf2",
+              "title": "Sequence Modeling & Transformer architecture overview",
+              "skill_id": "deep_learning",
+              "estimated_hours": 4.0,
+              "completed": false,
+              "completed_at": null
+            }
+          ]
+        }
+      ],
+      "updated_at": "2026-11-19T17:59:06.374193+00:00",
+      "progress": {
+        "total_tasks": 23,
+        "completed_tasks": 0,
+        "total_hours": 63.5,
+        "completed_hours": 0.0,
+        "percentage": 0
+      },
+      "_id": "6b23f70f-59a5-4861-af5e-13749381f9dd"
+    }
+  ],
+  "users": [
+    {
+      "firebase_uid": "LbtpKj7JdlfnRGYdYjlzzAY0uvr1",
+      "github_username": "Jiveshverma",
+      "github_token_encrypted": "gAAAAABq_yd80-jEBeZXl9CjSpo08BliatsEn_I1lGxOoNAMnAcYpknD1ic0SAObTZn74qhRZmU2btet5Si5_8SyI2oudzcvRxtM0p1-lgArt8KXGvapnOmYe4HpYNooR0yHzP5dWs_F",
+      "github_connected_at": "2026-11-19 16:44:44.660911+00:00",
+      "updated_at": "2026-11-19T18:13:29.894120+00:00",
+      "_id": "b7cbb707-d7ed-497e-a158-506180d48110",
+      "gemini_api_key": "AQ.Ab8RN6J24GiDUxgwJL0vtIYOIljU8cUFiW1lMx0aUkTb0mAyLQ"
+    },
+    {
+      "firebase_uid": "LbtpKj7JdlfnRGYdYjlzzAY0uvr1",
+      "email": "jiveshv13@gmail.com",
+      "display_name": "JIVESH VERMA",
+      "photo_url": "https://lh3.googleusercontent.com/a/ACg8ocLwKbAVkrXezsBpRDafkTnWM-PTk0r-_o2sHWnSylVo2YDuGsIn=s96-c",
+      "github_username": null,
+      "created_at": "2026-11-19 16:44:20.626147+00:00",
+      "updated_at": "2026-11-19 16:44:20.626147+00:00",
+      "_id": "6aff276430883d9c9add09f4"
+    }
+  ],
+  "skill_scores": [
+    {
+      "firebase_uid": "LbtpKj7JdlfnRGYdYjlzzAY0uvr1",
+      "scan_id": "8268f56a-0504-4757-8a1d-de1ded542d4c",
+      "source": "github",
+      "formula_version": "v1.0",
+      "calculated_at": "2026-11-19T18:15:57.116745+00:00",
+      "is_cold_start": true,
+      "scores": [
+        {
+          "skill_id": "machine_learning",
+          "name": "Machine Learning",
+          "category": "AI / ML",
+          "score": 63,
+          "confidence": "low",
+          "metrics": {
+            "volume": 1.0,
+            "breadth": 0.2,
+            "activity": 0.3,
+            "recency": 1.0,
+            "repos_count": 1,
+            "commits_count": 4,
+            "bytes_count": 4538037,
+            "last_active_months_ago": 0.0
+          }
+        },
+        {
+          "skill_id": "python",
+          "name": "Python",
+          "category": "Languages",
+          "score": 56,
+          "confidence": "low",
+          "metrics": {
+            "volume": 0.8,
+            "breadth": 0.2,
+            "activity": 0.3,
+            "recency": 1.0,
+            "repos_count": 1,
+            "commits_count": 4,
+            "bytes_count": 61160,
+            "last_active_months_ago": 0.0
+          }
+        },
+        {
+          "skill_id": "fastapi",
+          "name": "FastAPI",
+          "category": "Backend",
+          "score": 56,
+          "confidence": "low",
+          "metrics": {
+            "volume": 0.8,
+            "breadth": 0.2,
+            "activity": 0.3,
+            "recency": 1.0,
+            "repos_count": 1,
+            "commits_count": 4,
+            "bytes_count": 61160,
+            "last_active_months_ago": 0.0
+          }
+        },
+        {
+          "skill_id": "django",
+          "name": "Django",
+          "category": "Backend",
+          "score": 56,
+          "confidence": "low",
+          "metrics": {
+            "volume": 0.8,
+            "breadth": 0.2,
+            "activity": 0.3,
+            "recency": 1.0,
+            "repos_count": 1,
+            "commits_count": 4,
+            "bytes_count": 61160,
+            "last_active_months_ago": 0.0
+          }
+        },
+        {
+          "skill_id": "deep_learning",
+          "name": "Deep Learning (PyTorch/TF)",
+          "category": "AI / ML",
+          "score": 56,
+          "confidence": "low",
+          "metrics": {
+            "volume": 0.8,
+            "breadth": 0.2,
+            "activity": 0.3,
+            "recency": 1.0,
+            "repos_count": 1,
+            "commits_count": 4,
+            "bytes_count": 61160,
+            "last_active_months_ago": 0.0
+          }
+        },
+        {
+          "skill_id": "llm_generative_ai",
+          "name": "LLMs & Generative AI",
+          "category": "AI / ML",
+          "score": 56,
+          "confidence": "low",
+          "metrics": {
+            "volume": 0.8,
+            "breadth": 0.2,
+            "activity": 0.3,
+            "recency": 1.0,
+            "repos_count": 1,
+            "commits_count": 4,
+            "bytes_count": 61160,
             "last_active_months_ago": 0.0
           }
         },
@@ -256,19 +840,19 @@
       "username": "Jiveshverma",
       "data": {
         "username": "Jiveshverma",
-        "scanned_at": "2026-11-19T16:44:47.274057+00:00",
+        "scanned_at": "2026-11-19T17:59:23.718873+00:00",
         "repo_count": 1,
         "total_commits": 4,
         "languages": [
           {
             "language": "Jupyter Notebook",
             "bytes": 4476877,
-            "percentage": 98.6
+            "percentage": 98.7
           },
           {
             "language": "Python",
-            "bytes": 62102,
-            "percentage": 1.4
+            "bytes": 61160,
+            "percentage": 1.3
           }
         ],
         "repositories": [
@@ -281,7 +865,7 @@
             "primary_language": "Jupyter Notebook",
             "languages": {
               "Jupyter Notebook": 4476877,
-              "Python": 62102
+              "Python": 61160
             },
             "commits": 4,
             "stars": 0,
@@ -291,7 +875,7 @@
           }
         ]
       },
-      "scanned_at": "2026-11-19 16:44:44.660911+00:00",
+      "scanned_at": "2026-11-19 17:59:21.186426+00:00",
       "_id": "b6a3aab2-4d24-486a-9dcd-17b238c1fe51"
     }
   ],
@@ -303,5 +887,43 @@
       "_id": "6aff277830883d9c9add09f5"
     }
   ],
-  "mentor_conversations": []
+  "mentor_conversations": [
+    {
+      "firebase_uid": "LbtpKj7JdlfnRGYdYjlzzAY0uvr1",
+      "messages": [
+        {
+          "role": "user",
+          "content": "How do Docker containers work?",
+          "timestamp": "2026-11-19T17:59:37.521078+00:00"
+        },
+        {
+          "role": "model",
+          "content": "### \ud83d\udc33 Docker & Containerization Essentials\n\nDocker packages an application and its dependencies into a standardized unit called a **container**.\n\n**Core Concepts:**\n- **Dockerfile:** Recipe for building an immutable image.\n- **Image:** Read-only template with runtime, libraries, and code.\n- **Container:** Running instance of an image in isolated user space.\n- **Volume:** Persistent data storage decoupled from container lifecycle.\n\n```dockerfile\n# Production Python Dockerfile\nFROM python:3.12-slim\nWORKDIR /app\nCOPY requirements.txt .\nRUN pip install --no-cache-dir -r requirements.txt\nCOPY . .\nCMD [\"uvicorn\", \"app.main:app\", \"--host\", \"0.0.0.0\", \"--port\", \"8000\"]\n```",
+          "timestamp": "2026-11-19T17:59:37.521078+00:00"
+        },
+        {
+          "role": "user",
+          "content": "Explain my #1 skill gap",
+          "timestamp": "2026-11-19T18:00:16.802981+00:00"
+        },
+        {
+          "role": "model",
+          "content": "### \ud83e\udd16 SkillForge AI Mentor\n\nI am tracking your learning path toward **AI / ML Engineer**.\n\nI can help you with:\n- \u26a1 **In-Depth Code Explanations:** FastAPI, React, Docker, Python, PyTorch, SQL, and Git.\n- \ud83c\udfaf **Skill Gap Analysis:** Targeted advice on bridging your largest shortfalls.\n- \ud83d\udcbb **System Design & Architectures:** Designing scalable backends and APIs.\n- \ud83d\udcc4 **Interview Defense:** How to defend your GitHub projects to recruiters.",
+          "timestamp": "2026-11-19T18:00:16.802981+00:00"
+        },
+        {
+          "role": "user",
+          "content": "Explain FastAPI dependency injection",
+          "timestamp": "2026-11-19T18:13:51.544256+00:00"
+        },
+        {
+          "role": "model",
+          "content": "### \u26a1 Mastering FastAPI\n\nFastAPI is a modern, high-performance web framework for building APIs with Python based on standard Python type hints.\n\n**Key Architectural Advantages:**\n- **High Performance:** On par with NodeJS and Go (powered by Starlette and Uvicorn).\n- **Automatic Data Validation:** Powered by Pydantic v2.\n- **Interactive Swagger Docs:** Automatically served at `/docs`.\n- **Dependency Injection:** Modular, testable services using `Depends()`.\n\n```python\nfrom fastapi import FastAPI, Depends, HTTPException\nfrom pydantic import BaseModel\n\napp = FastAPI()\n\nclass Item(BaseModel):\n    name: str\n    price: float\n\n@app.post('/items')\nasync def create_item(item: Item):\n    return {'message': f'Created {item.name}', 'price': item.price}\n```",
+          "timestamp": "2026-11-19T18:13:51.544256+00:00"
+        }
+      ],
+      "updated_at": "2026-11-19T18:13:51.544256+00:00",
+      "_id": "9c3b1c1a-1f3f-42f0-9405-d13655794dff"
+    }
+  ]
 }

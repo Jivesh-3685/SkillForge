@@ -50,7 +50,7 @@ async def get_mentor_status(user: dict = Depends(get_current_user)):
         "has_gemini_key": has_active_key,
         "source": source,
         "provider": "Google Gemini AI",
-        "recommended_model": "gemini-1.5-flash",
+        "recommended_model": "gemini-3.1-flash-lite",
     }
 
 
