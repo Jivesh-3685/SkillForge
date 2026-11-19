@@ -607,12 +607,12 @@ async def connect_db() -> None:
             client.table("users").select("id").limit(1).execute()
             return client
 
-        _supabase_client = await asyncio.wait_for(asyncio.to_thread(_init_supabase), timeout=2.5)
+        _supabase_client = await asyncio.wait_for(asyncio.to_thread(_init_supabase), timeout=6.0)
         _use_supabase = True
         print("[Database] ✓ Successfully connected to Supabase (PostgreSQL)!")
     except Exception as e:
         _use_supabase = False
-        print(f"[Database] ⚡ Supabase ping check timed out or failed ({type(e).__name__}).")
+        print(f"[Database] ⚡ Supabase ping check timed out or failed ({type(e).__name__}: {e}).")
         print("[Database] ✓ Active in instant Local Storage mode (< 1ms).")
 
 

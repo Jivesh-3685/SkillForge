@@ -70,33 +70,38 @@ def run_migration():
 
         for doc in docs:
             clean_doc = dict(doc)
-            # Remove mongo internal _id or map to id
-            if "_id" in clean_doc:
-                if "id" not in clean_doc:
-                    clean_doc["id"] = clean_doc["_id"]
-                clean_doc.pop("_id", None)
+            # Remove mongo internal _id or map to id only if valid uuid
+            raw_id = clean_doc.pop("_id", None)
+            if raw_id:
+                try:
+                    import uuid
+                    uuid.UUID(str(raw_id))
+                    clean_doc["id"] = str(raw_id)
+                except ValueError:
+                    clean_doc.pop("id", None)
 
             # Store in 'data' column as backup for flexible document schema
             payload = dict(clean_doc)
-            payload["data"] = dict(clean_doc)
+            if col_name != "oauth_states":
+                payload["data"] = dict(clean_doc)
 
             try:
                 # Upsert record
                 table.upsert(payload).execute()
                 migrated += 1
             except Exception as row_err:
-                # Retry with basic data column only if table schema has strict columns
                 try:
                     basic_payload = {
                         "firebase_uid": clean_doc.get("firebase_uid"),
-                        "data": clean_doc,
                     }
-                    if "id" in clean_doc:
-                        basic_payload["id"] = clean_doc["id"]
+                    if col_name != "oauth_states":
+                        basic_payload["data"] = clean_doc
+                    if "state" in clean_doc:
+                        basic_payload["state"] = clean_doc["state"]
                     table.upsert(basic_payload).execute()
                     migrated += 1
                 except Exception as retry_err:
-                    print(f"\n    ⚠️ Failed to migrate record {clean_doc.get('id', clean_doc.get('firebase_uid'))}: {retry_err}")
+                    print(f"\n    ⚠️ Failed to migrate record: {retry_err}")
 
         print(f"✓ {migrated}/{len(docs)} migrated.")
         stats[col_name] = migrated
