@@ -13,10 +13,12 @@ export default function Navbar() {
         <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
-              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-              </svg>
+            <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-purple-500 to-emerald-500 p-[1.5px] flex items-center justify-center shadow-sm">
+              <img
+                src="/logo.png"
+                alt="SkillForge Logo"
+                className="w-full h-full rounded-[10px] object-cover"
+              />
             </div>
             <span className="font-bold text-lg text-white tracking-tight">
               SkillForge <span className="text-emerald-400 font-mono text-sm font-normal">AI</span>

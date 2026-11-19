@@ -80,12 +80,14 @@ export default function HomePage({ onNavigate }) {
     <div className="space-y-10 max-w-4xl mx-auto py-4">
       {/* Notion AI Hero Section */}
       <div className="flex flex-col items-center text-center space-y-6 pt-6">
-        {/* Animated Brand Mascot Avatar */}
+        {/* Official Brand Logo Mascot */}
         <div className="relative">
-          <div className="w-20 h-20 rounded-3xl bg-gradient-to-tr from-emerald-600 via-teal-500 to-cyan-400 p-[2px] shadow-2xl shadow-emerald-500/20">
-            <div className="w-full h-full bg-[#161b22] rounded-[22px] flex items-center justify-center text-3xl select-none">
-              🤠
-            </div>
+          <div className="w-20 h-20 rounded-3xl bg-gradient-to-tr from-purple-500 via-emerald-500 to-teal-400 p-[2px] shadow-2xl shadow-emerald-500/20">
+            <img
+              src="/logo.png"
+              alt="SkillForge AI Logo"
+              className="w-full h-full rounded-[22px] object-cover"
+            />
           </div>
           <div className="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-emerald-500 border-2 border-[#161b22] flex items-center justify-center text-white text-[10px] shadow-sm">
             ⚡

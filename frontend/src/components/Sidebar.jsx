@@ -130,10 +130,12 @@ export default function Sidebar({
         <div className="flex items-center justify-between h-14 px-3.5 border-b border-[#30363d] flex-shrink-0">
           {!collapsed ? (
             <div className="flex items-center gap-2.5 min-w-0">
-              <div className="w-8 h-8 rounded-xl bg-emerald-500 p-[1px] flex items-center justify-center shadow-sm flex-shrink-0">
-                <div className="w-full h-full bg-[#161b22] rounded-[11px] flex items-center justify-center">
-                  <span className="text-emerald-400 font-extrabold text-xs">SF</span>
-                </div>
+              <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-purple-500 to-emerald-500 p-[1.5px] flex items-center justify-center shadow-sm flex-shrink-0">
+                <img
+                  src="/logo.png"
+                  alt="SkillForge AI Logo"
+                  className="w-full h-full rounded-[10px] object-cover"
+                />
               </div>
               <div className="min-w-0">
                 <div className="flex items-center gap-1.5">
@@ -150,10 +152,12 @@ export default function Sidebar({
               </div>
             </div>
           ) : (
-            <div className="w-8 h-8 rounded-xl bg-emerald-500 p-[1px] flex items-center justify-center mx-auto">
-              <div className="w-full h-full bg-[#161b22] rounded-[11px] flex items-center justify-center">
-                <span className="text-emerald-400 font-extrabold text-xs">SF</span>
-              </div>
+            <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-purple-500 to-emerald-500 p-[1.5px] flex items-center justify-center mx-auto shadow-sm">
+              <img
+                src="/logo.png"
+                alt="SkillForge AI Logo"
+                className="w-full h-full rounded-[10px] object-cover"
+              />
             </div>
           )}
 

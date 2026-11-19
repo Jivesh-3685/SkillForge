@@ -626,8 +626,12 @@ export default function SettingsPage() {
           {activeSection === 'about' && (
             <div className="bg-[#161b22] border border-[#30363d] rounded-2xl p-6 shadow-sm animate-fadeIn space-y-6">
               <div className="flex items-center gap-3.5">
-                <div className="w-12 h-12 rounded-2xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-xl font-bold">
-                  SF
+                <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-purple-500 to-emerald-500 p-[1.5px] shadow-sm flex-shrink-0">
+                  <img
+                    src="/logo.png"
+                    alt="SkillForge AI Logo"
+                    className="w-full h-full rounded-[14px] object-cover"
+                  />
                 </div>
                 <div>
                   <h3 className="text-base font-extrabold text-slate-100">
