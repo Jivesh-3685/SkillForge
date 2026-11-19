@@ -12,7 +12,7 @@ const WIDE_PROMPTS = [
 ]
 
 export default function MentorChatCard() {
-  const { idToken, currentUser } = useAuth()
+  const { currentUser, apiFetch, getIdToken } = useAuth()
   const [messages, setMessages] = useState([])
   const [input, setInput] = useState(() => {
     try {
@@ -34,12 +34,10 @@ export default function MentorChatCard() {
   }
 
   const fetchHistory = useCallback(async () => {
-    if (!idToken) return
+    if (!currentUser) return
     try {
       setInitialLoading(true)
-      const res = await fetch('/api/mentor/history', {
-        headers: { Authorization: `Bearer ${idToken}` },
-      })
+      const res = await apiFetch('/api/mentor/history')
       if (res.ok) {
         const data = await res.json()
         setMessages(data.messages || [])
@@ -49,13 +47,13 @@ export default function MentorChatCard() {
     } finally {
       setInitialLoading(false)
     }
-  }, [idToken])
+  }, [currentUser, apiFetch])
 
   useEffect(() => {
-    if (idToken) {
+    if (currentUser) {
       fetchHistory()
     }
-  }, [idToken, fetchHistory])
+  }, [currentUser, fetchHistory])
 
   useEffect(() => {
     scrollToBottom()
@@ -63,7 +61,7 @@ export default function MentorChatCard() {
 
   const handleSendMessage = async (textToSend) => {
     const text = (textToSend || input).trim()
-    if (!text || !idToken || loading) return
+    if (!text || !currentUser || loading) return
 
     setInput('')
     setError('')
@@ -76,11 +74,10 @@ export default function MentorChatCard() {
     setLoading(true)
 
     try {
-      const res = await fetch('/api/mentor/chat', {
+      const res = await apiFetch('/api/mentor/chat', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${idToken}`,
         },
         body: JSON.stringify({ message: text }),
       })
@@ -109,18 +106,27 @@ export default function MentorChatCard() {
       }
       setMessages((prev) => [...prev, newModelMsg])
     } catch (err) {
-      setError(err.message || 'Unable to connect to mentor server')
+      // If token expired, attempt one manual force-refresh
+      if (err.message && err.message.toLowerCase().includes('token expired')) {
+        try {
+          await getIdToken(true)
+          setError('Session token refreshed. Please re-send your question.')
+        } catch {
+          setError(err.message)
+        }
+      } else {
+        setError(err.message || 'Unable to connect to mentor server')
+      }
     } finally {
       setLoading(false)
     }
   }
 
   const handleClearHistory = async () => {
-    if (!idToken || !confirm('Clear all mentor conversation history?')) return
+    if (!currentUser || !confirm('Clear all mentor conversation history?')) return
     try {
-      await fetch('/api/mentor/history', {
+      await apiFetch('/api/mentor/history', {
         method: 'DELETE',
-        headers: { Authorization: `Bearer ${idToken}` },
       })
       setMessages([])
     } catch (err) {

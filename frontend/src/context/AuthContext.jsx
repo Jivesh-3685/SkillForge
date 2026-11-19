@@ -35,16 +35,17 @@ export function AuthProvider({ children }) {
 
   // Get current fresh ID token, optionally forcing a refresh from Firebase
   const getIdToken = useCallback(async (forceRefresh = false) => {
-    if (!auth.currentUser) return null
+    const user = auth.currentUser || currentUser
+    if (!user) return null
     try {
-      const token = await auth.currentUser.getIdToken(forceRefresh)
+      const token = await user.getIdToken(forceRefresh)
       setIdToken(token)
       return token
     } catch (err) {
       console.error('Failed to get fresh Firebase ID token:', err)
       return null
     }
-  }, [])
+  }, [currentUser])
 
   // Authenticated fetch wrapper that automatically handles token renewal and 401 retry
   const apiFetch = useCallback(
@@ -58,7 +59,7 @@ export function AuthProvider({ children }) {
       let res = await fetch(url, { ...options, headers })
 
       // If token expired (401), force-refresh and retry once
-      if (res.status === 401 && auth.currentUser) {
+      if (res.status === 401 && (auth.currentUser || currentUser)) {
         console.warn('Received 401. Force-refreshing Firebase token and retrying request...')
         token = await getIdToken(true)
         if (token) {
@@ -69,7 +70,7 @@ export function AuthProvider({ children }) {
 
       return res
     },
-    [getIdToken]
+    [getIdToken, currentUser]
   )
 
   useEffect(() => {
