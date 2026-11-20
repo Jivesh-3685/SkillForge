@@ -377,6 +377,176 @@
       "repo_count": 1,
       "total_commits": 4,
       "_id": "f170736e-78b4-4164-a2ef-cf62ca473952"
+    },
+    {
+      "scan_id": "86da7b61-9384-47fa-a5c6-17b5d6b878d1",
+      "firebase_uid": "LbtpKj7JdlfnRGYdYjlzzAY0uvr1",
+      "formula_version": "v1.0",
+      "created_at": "2026-11-19 18:51:07.985202+00:00",
+      "is_cold_start": true,
+      "repo_count": 1,
+      "total_commits": 4,
+      "_id": "0ddf1955-71c3-4128-bd13-b1210318ada3"
+    },
+    {
+      "scan_id": "d08e18cb-7c4f-4d96-9125-bfca35a7a9a0",
+      "firebase_uid": "LbtpKj7JdlfnRGYdYjlzzAY0uvr1",
+      "formula_version": "v1.0",
+      "created_at": "2026-11-19 18:51:09.453419+00:00",
+      "is_cold_start": true,
+      "repo_count": 1,
+      "total_commits": 4,
+      "_id": "73f3f72c-8374-4927-a241-21b94f72960a"
+    },
+    {
+      "scan_id": "7a6fb3e0-4cdb-4988-9d3c-998879d8f0ba",
+      "firebase_uid": "LbtpKj7JdlfnRGYdYjlzzAY0uvr1",
+      "formula_version": "v1.0",
+      "created_at": "2026-11-19 18:51:16.950572+00:00",
+      "is_cold_start": true,
+      "repo_count": 1,
+      "total_commits": 4,
+      "_id": "b8cfac72-1862-44f6-b85b-c3080f2bd37f"
+    },
+    {
+      "scan_id": "c293f371-1f8a-4d0c-9790-a17465add6a0",
+      "firebase_uid": "LbtpKj7JdlfnRGYdYjlzzAY0uvr1",
+      "formula_version": "v1.0",
+      "created_at": "2026-11-19 18:51:18.833080+00:00",
+      "is_cold_start": true,
+      "repo_count": 1,
+      "total_commits": 4,
+      "_id": "e0fdadbf-8da7-43c0-a967-31e2ff8d1c8e"
+    },
+    {
+      "scan_id": "655cad8b-576c-463d-ad2f-ddb4f65e0b5e",
+      "firebase_uid": "LbtpKj7JdlfnRGYdYjlzzAY0uvr1",
+      "formula_version": "v1.0",
+      "created_at": "2026-11-19 18:51:58.442471+00:00",
+      "is_cold_start": true,
+      "repo_count": 1,
+      "total_commits": 4,
+      "_id": "79838675-052e-4fcf-a68b-632ac24d86c8"
+    },
+    {
+      "scan_id": "3de3f434-309a-448d-8d26-bdc22ee1dd0a",
+      "firebase_uid": "LbtpKj7JdlfnRGYdYjlzzAY0uvr1",
+      "formula_version": "v1.0",
+      "created_at": "2026-11-19 18:52:18.468899+00:00",
+      "is_cold_start": true,
+      "repo_count": 1,
+      "total_commits": 4,
+      "_id": "45fcd9ba-e266-46d9-8d04-28c2e7184883"
+    },
+    {
+      "scan_id": "5b85921a-b66e-4a50-b16a-a002bfdb1165",
+      "firebase_uid": "LbtpKj7JdlfnRGYdYjlzzAY0uvr1",
+      "formula_version": "v1.0",
+      "created_at": "2026-11-19 18:52:20.327552+00:00",
+      "is_cold_start": true,
+      "repo_count": 1,
+      "total_commits": 4,
+      "_id": "e1c1930c-c97d-43dc-83c1-f57c2cf4ae05"
+    },
+    {
+      "scan_id": "9ae43adc-d6a6-4f81-b77b-6956d7cf8da7",
+      "firebase_uid": "LbtpKj7JdlfnRGYdYjlzzAY0uvr1",
+      "formula_version": "v1.0",
+      "created_at": "2026-11-19 18:52:40.426167+00:00",
+      "is_cold_start": true,
+      "repo_count": 1,
+      "total_commits": 4,
+      "_id": "eb6a05c2-58b1-4a69-a734-e8a5113aaabc"
+    },
+    {
+      "scan_id": "f64e3afe-6c52-4f51-806b-6e757d4dc008",
+      "firebase_uid": "LbtpKj7JdlfnRGYdYjlzzAY0uvr1",
+      "formula_version": "v1.0",
+      "created_at": "2026-11-19 18:52:41.752743+00:00",
+      "is_cold_start": true,
+      "repo_count": 1,
+      "total_commits": 4,
+      "_id": "92139499-d654-4cc6-9b55-eabacc170cb4"
+    },
+    {
+      "scan_id": "ba138d3f-3192-4721-9c16-8ae48256b9e1",
+      "firebase_uid": "LbtpKj7JdlfnRGYdYjlzzAY0uvr1",
+      "formula_version": "v1.0",
+      "created_at": "2026-11-19 19:33:29.403378+00:00",
+      "is_cold_start": true,
+      "repo_count": 1,
+      "total_commits": 4,
+      "_id": "d4c0a318-0d48-4101-a7d1-4218c009d4a0"
+    },
+    {
+      "scan_id": "3e9bc052-d3b7-4f91-b705-63e18785300e",
+      "firebase_uid": "LbtpKj7JdlfnRGYdYjlzzAY0uvr1",
+      "formula_version": "v1.0",
+      "created_at": "2026-11-19 19:33:31.835657+00:00",
+      "is_cold_start": true,
+      "repo_count": 1,
+      "total_commits": 4,
+      "_id": "f99e4aff-6268-4638-bf5d-d7fdb974173c"
+    },
+    {
+      "scan_id": "1843c1c2-f8b4-4220-b245-4370b41e5979",
+      "firebase_uid": "LbtpKj7JdlfnRGYdYjlzzAY0uvr1",
+      "formula_version": "v1.0",
+      "created_at": "2026-11-20 03:02:46.467822+00:00",
+      "is_cold_start": true,
+      "repo_count": 1,
+      "total_commits": 4,
+      "_id": "ccf4d23f-fecd-4594-bf3b-7fbad0e58bd2"
+    },
+    {
+      "scan_id": "ca3eb727-6dfe-4a56-ba0c-d446b418fdf8",
+      "firebase_uid": "LbtpKj7JdlfnRGYdYjlzzAY0uvr1",
+      "formula_version": "v1.0",
+      "created_at": "2026-11-20 03:02:47.815854+00:00",
+      "is_cold_start": true,
+      "repo_count": 1,
+      "total_commits": 4,
+      "_id": "28161b97-3a4a-4411-9ddd-a3a66f4efb8a"
+    },
+    {
+      "scan_id": "430d3e9d-8747-4bf1-b18d-402698b73c1c",
+      "firebase_uid": "LbtpKj7JdlfnRGYdYjlzzAY0uvr1",
+      "formula_version": "v1.0",
+      "created_at": "2026-11-20 03:03:00.293831+00:00",
+      "is_cold_start": true,
+      "repo_count": 1,
+      "total_commits": 4,
+      "_id": "7fef64ed-3a58-4029-b76b-9efdbda77260"
+    },
+    {
+      "scan_id": "30b41d3b-f5cc-4f0e-bf89-082fd99369a1",
+      "firebase_uid": "LbtpKj7JdlfnRGYdYjlzzAY0uvr1",
+      "formula_version": "v1.0",
+      "created_at": "2026-11-20 03:03:01.674926+00:00",
+      "is_cold_start": true,
+      "repo_count": 1,
+      "total_commits": 4,
+      "_id": "3165e127-1ffe-4e0c-a6cc-db817ec72717"
+    },
+    {
+      "scan_id": "f5d2df6f-200a-4f32-bba1-621a0be86083",
+      "firebase_uid": "LbtpKj7JdlfnRGYdYjlzzAY0uvr1",
+      "formula_version": "v1.0",
+      "created_at": "2026-11-20 03:07:45.679040+00:00",
+      "is_cold_start": true,
+      "repo_count": 1,
+      "total_commits": 4,
+      "_id": "155f617b-71c4-4447-bbab-66d01e659a96"
+    },
+    {
+      "scan_id": "68937fe6-b49b-4f70-8faa-c37326cdf50e",
+      "firebase_uid": "LbtpKj7JdlfnRGYdYjlzzAY0uvr1",
+      "formula_version": "v1.0",
+      "created_at": "2026-11-20 03:07:47.054623+00:00",
+      "is_cold_start": true,
+      "repo_count": 1,
+      "total_commits": 4,
+      "_id": "c93633de-3207-4c4b-90b8-230ef03843c1"
     }
   ],
   "roadmaps": [
@@ -384,10 +554,10 @@
       "firebase_uid": "LbtpKj7JdlfnRGYdYjlzzAY0uvr1",
       "career_id": "ai_engineer",
       "career_title": "AI / ML Engineer",
-      "weekly_hours": 5,
+      "weekly_hours": 10,
       "total_weeks": 6,
       "generated_by": "rule_based_fallback",
-      "created_at": "2026-11-19T17:59:06.374193+00:00",
+      "created_at": "2026-11-20T03:08:03.805027+00:00",
       "weeks": [
         {
           "week_number": 1,
@@ -398,7 +568,7 @@
           ],
           "tasks": [
             {
-              "task_id": "w1-t1-3bac31",
+              "task_id": "w1-t1-bca11d",
               "title": "Git branching strategies: Feature branches, rebasing vs merging",
               "skill_id": "git",
               "estimated_hours": 2.0,
@@ -406,7 +576,7 @@
               "completed_at": null
             },
             {
-              "task_id": "w1-t2-2f2b33",
+              "task_id": "w1-t2-2307cc",
               "title": "Resolving complex merge conflicts and inspecting git log/reflog",
               "skill_id": "git",
               "estimated_hours": 2.0,
@@ -414,7 +584,7 @@
               "completed_at": null
             },
             {
-              "task_id": "w1-t3-cee701",
+              "task_id": "w1-t3-598e52",
               "title": "Writing GitHub Actions workflows for continuous integration (CI)",
               "skill_id": "git",
               "estimated_hours": 2.5,
@@ -432,7 +602,7 @@
           ],
           "tasks": [
             {
-              "task_id": "w2-t1-ab8210",
+              "task_id": "w2-t1-de619f",
               "title": "Docker essentials: Images, containers, daemon, and registries",
               "skill_id": "docker",
               "estimated_hours": 2.0,
@@ -440,7 +610,7 @@
               "completed_at": null
             },
             {
-              "task_id": "w2-t2-956138",
+              "task_id": "w2-t2-e10def",
               "title": "Writing production Dockerfiles: Multi-stage builds and layer caching",
               "skill_id": "docker",
               "estimated_hours": 3.0,
@@ -448,7 +618,7 @@
               "completed_at": null
             },
             {
-              "task_id": "w2-t3-cb6caa",
+              "task_id": "w2-t3-9d67e3",
               "title": "Multi-container development using docker-compose.yml",
               "skill_id": "docker",
               "estimated_hours": 2.5,
@@ -456,7 +626,7 @@
               "completed_at": null
             },
             {
-              "task_id": "w2-t4-98aaee",
+              "task_id": "w2-t4-80443c",
               "title": "Networking, volumes, environment variables, and security",
               "skill_id": "docker",
               "estimated_hours": 2.5,
@@ -474,7 +644,7 @@
           ],
           "tasks": [
             {
-              "task_id": "w3-t1-9d38c3",
+              "task_id": "w3-t1-17b3af",
               "title": "Relational database design: Primary keys, Foreign keys, and Normalization",
               "skill_id": "sql_databases",
               "estimated_hours": 2.5,
@@ -482,7 +652,7 @@
               "completed_at": null
             },
             {
-              "task_id": "w3-t2-b39e59",
+              "task_id": "w3-t2-18ff66",
               "title": "Complex SQL queries: INNER/LEFT JOINs, subqueries, and aggregations",
               "skill_id": "sql_databases",
               "estimated_hours": 3.0,
@@ -490,7 +660,7 @@
               "completed_at": null
             },
             {
-              "task_id": "w3-t3-4ddd07",
+              "task_id": "w3-t3-d5c9ad",
               "title": "Database performance: B-Tree Indexes, EXPLAIN execution plans",
               "skill_id": "sql_databases",
               "estimated_hours": 3.0,
@@ -498,7 +668,7 @@
               "completed_at": null
             },
             {
-              "task_id": "w3-t4-15edfe",
+              "task_id": "w3-t4-b1ad51",
               "title": "ACID Transactions, isolation levels, and data integrity",
               "skill_id": "sql_databases",
               "estimated_hours": 2.5,
@@ -516,7 +686,7 @@
           ],
           "tasks": [
             {
-              "task_id": "w4-t1-50ea9b",
+              "task_id": "w4-t1-762977",
               "title": "Master Python data structures, iterators, and generators",
               "skill_id": "python",
               "estimated_hours": 2.5,
@@ -524,7 +694,7 @@
               "completed_at": null
             },
             {
-              "task_id": "w4-t2-c57a68",
+              "task_id": "w4-t2-a62861",
               "title": "Understand Python OOP: dunder methods, inheritance, and dataclasses",
               "skill_id": "python",
               "estimated_hours": 2.0,
@@ -532,7 +702,7 @@
               "completed_at": null
             },
             {
-              "task_id": "w4-t3-74b1e5",
+              "task_id": "w4-t3-b9ef9e",
               "title": "Asynchronous Python: asyncio event loop, coroutines, and tasks",
               "skill_id": "python",
               "estimated_hours": 3.0,
@@ -540,7 +710,7 @@
               "completed_at": null
             },
             {
-              "task_id": "w4-t4-a440f2",
+              "task_id": "w4-t4-587360",
               "title": "Package management, virtual environments, and Pytest suites",
               "skill_id": "python",
               "estimated_hours": 2.5,
@@ -558,7 +728,7 @@
           ],
           "tasks": [
             {
-              "task_id": "w5-t1-71f15a",
+              "task_id": "w5-t1-bd72da",
               "title": "Prompt Engineering fundamentals: Few-shot, Chain-of-Thought, System instructions",
               "skill_id": "llm_generative_ai",
               "estimated_hours": 2.0,
@@ -566,7 +736,7 @@
               "completed_at": null
             },
             {
-              "task_id": "w5-t2-0c5d9a",
+              "task_id": "w5-t2-617f2d",
               "title": "Building with Gemini / OpenAI APIs: Structured outputs and JSON modes",
               "skill_id": "llm_generative_ai",
               "estimated_hours": 2.5,
@@ -574,7 +744,7 @@
               "completed_at": null
             },
             {
-              "task_id": "w5-t3-b251fb",
+              "task_id": "w5-t3-a954fc",
               "title": "RAG Pipelines: Text chunking, embeddings, and vector database indexing",
               "skill_id": "llm_generative_ai",
               "estimated_hours": 4.0,
@@ -582,7 +752,7 @@
               "completed_at": null
             },
             {
-              "task_id": "w5-t4-fa6344",
+              "task_id": "w5-t4-4a5d7c",
               "title": "Function calling and AI Agent tool execution loops",
               "skill_id": "llm_generative_ai",
               "estimated_hours": 3.5,
@@ -600,7 +770,7 @@
           ],
           "tasks": [
             {
-              "task_id": "w6-t1-28e7ad",
+              "task_id": "w6-t1-8398dc",
               "title": "Neural network fundamentals: Forward pass, backpropagation, and loss functions",
               "skill_id": "deep_learning",
               "estimated_hours": 3.0,
@@ -608,7 +778,7 @@
               "completed_at": null
             },
             {
-              "task_id": "w6-t2-a6790f",
+              "task_id": "w6-t2-be387b",
               "title": "PyTorch basics: Tensors, autograd, and building custom nn.Module models",
               "skill_id": "deep_learning",
               "estimated_hours": 3.5,
@@ -616,7 +786,7 @@
               "completed_at": null
             },
             {
-              "task_id": "w6-t3-8b0391",
+              "task_id": "w6-t3-060cce",
               "title": "Computer Vision & Convolutional Neural Networks (CNNs)",
               "skill_id": "deep_learning",
               "estimated_hours": 3.5,
@@ -624,7 +794,7 @@
               "completed_at": null
             },
             {
-              "task_id": "w6-t4-8b2cf2",
+              "task_id": "w6-t4-c6f8b4",
               "title": "Sequence Modeling & Transformer architecture overview",
               "skill_id": "deep_learning",
               "estimated_hours": 4.0,
@@ -634,7 +804,7 @@
           ]
         }
       ],
-      "updated_at": "2026-11-19T17:59:06.374193+00:00",
+      "updated_at": "2026-11-20T03:08:03.805027+00:00",
       "progress": {
         "total_tasks": 23,
         "completed_tasks": 0,
@@ -669,10 +839,10 @@
   "skill_scores": [
     {
       "firebase_uid": "LbtpKj7JdlfnRGYdYjlzzAY0uvr1",
-      "scan_id": "8268f56a-0504-4757-8a1d-de1ded542d4c",
+      "scan_id": "68937fe6-b49b-4f70-8faa-c37326cdf50e",
       "source": "github",
       "formula_version": "v1.0",
-      "calculated_at": "2026-11-19T18:15:57.116745+00:00",
+      "calculated_at": "2026-11-20T03:07:47.054623+00:00",
       "is_cold_start": true,
       "scores": [
         {
@@ -893,37 +1063,17 @@
       "messages": [
         {
           "role": "user",
-          "content": "How do Docker containers work?",
-          "timestamp": "2026-11-19T17:59:37.521078+00:00"
-        },
-        {
-          "role": "model",
-          "content": "### \ud83d\udc33 Docker & Containerization Essentials\n\nDocker packages an application and its dependencies into a standardized unit called a **container**.\n\n**Core Concepts:**\n- **Dockerfile:** Recipe for building an immutable image.\n- **Image:** Read-only template with runtime, libraries, and code.\n- **Container:** Running instance of an image in isolated user space.\n- **Volume:** Persistent data storage decoupled from container lifecycle.\n\n```dockerfile\n# Production Python Dockerfile\nFROM python:3.12-slim\nWORKDIR /app\nCOPY requirements.txt .\nRUN pip install --no-cache-dir -r requirements.txt\nCOPY . .\nCMD [\"uvicorn\", \"app.main:app\", \"--host\", \"0.0.0.0\", \"--port\", \"8000\"]\n```",
-          "timestamp": "2026-11-19T17:59:37.521078+00:00"
-        },
-        {
-          "role": "user",
-          "content": "Explain my #1 skill gap",
-          "timestamp": "2026-11-19T18:00:16.802981+00:00"
-        },
-        {
-          "role": "model",
-          "content": "### \ud83e\udd16 SkillForge AI Mentor\n\nI am tracking your learning path toward **AI / ML Engineer**.\n\nI can help you with:\n- \u26a1 **In-Depth Code Explanations:** FastAPI, React, Docker, Python, PyTorch, SQL, and Git.\n- \ud83c\udfaf **Skill Gap Analysis:** Targeted advice on bridging your largest shortfalls.\n- \ud83d\udcbb **System Design & Architectures:** Designing scalable backends and APIs.\n- \ud83d\udcc4 **Interview Defense:** How to defend your GitHub projects to recruiters.",
-          "timestamp": "2026-11-19T18:00:16.802981+00:00"
-        },
-        {
-          "role": "user",
           "content": "Explain FastAPI dependency injection",
-          "timestamp": "2026-11-19T18:13:51.544256+00:00"
+          "timestamp": "2026-11-19T18:45:18.923563+00:00"
         },
         {
           "role": "model",
           "content": "### \u26a1 Mastering FastAPI\n\nFastAPI is a modern, high-performance web framework for building APIs with Python based on standard Python type hints.\n\n**Key Architectural Advantages:**\n- **High Performance:** On par with NodeJS and Go (powered by Starlette and Uvicorn).\n- **Automatic Data Validation:** Powered by Pydantic v2.\n- **Interactive Swagger Docs:** Automatically served at `/docs`.\n- **Dependency Injection:** Modular, testable services using `Depends()`.\n\n```python\nfrom fastapi import FastAPI, Depends, HTTPException\nfrom pydantic import BaseModel\n\napp = FastAPI()\n\nclass Item(BaseModel):\n    name: str\n    price: float\n\n@app.post('/items')\nasync def create_item(item: Item):\n    return {'message': f'Created {item.name}', 'price': item.price}\n```",
-          "timestamp": "2026-11-19T18:13:51.544256+00:00"
+          "timestamp": "2026-11-19T18:45:18.923563+00:00"
         }
       ],
-      "updated_at": "2026-11-19T18:13:51.544256+00:00",
-      "_id": "9c3b1c1a-1f3f-42f0-9405-d13655794dff"
+      "updated_at": "2026-11-19T18:45:18.923563+00:00",
+      "_id": "50dcff06-fb18-495e-a966-f2256f513c9f"
     }
   ]
 }

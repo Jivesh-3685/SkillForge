@@ -59,6 +59,11 @@ class GitHubService:
                 headers=self.headers,
                 params=params,
             )
+            if res.status_code == 401:
+                raise HTTPException(
+                    status_code=status.HTTP_401_UNAUTHORIZED,
+                    detail="GitHub token expired or revoked. Please disconnect and reconnect your GitHub account in GitHub Sync.",
+                )
             if res.status_code != 200:
                 raise HTTPException(
                     status_code=res.status_code,

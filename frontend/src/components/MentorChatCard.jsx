@@ -99,7 +99,7 @@ export default function MentorChatCard() {
         setMessages(data.messages || [])
       }
     } catch (err) {
-      console.warn('Failed to fetch mentor history:', err)
+      console.warn('Failed to load mentor history:', err)
     } finally {
       setInitialLoading(false)
     }
@@ -116,7 +116,7 @@ export default function MentorChatCard() {
     scrollToBottom()
   }, [messages, loading])
 
-  const handleSendMessage = async (textToSend) => {
+  const handleSendMessage = async (textToSend = '') => {
     const text = (textToSend || input).trim()
     if (!text || !currentUser || loading) return
 
@@ -163,7 +163,6 @@ export default function MentorChatCard() {
       }
       setMessages((prev) => [...prev, newModelMsg])
     } catch (err) {
-      // If token expired, attempt one manual force-refresh
       if (err.message && err.message.toLowerCase().includes('token expired')) {
         try {
           await getIdToken(true)
@@ -201,13 +200,13 @@ export default function MentorChatCard() {
         const code = language ? lines.slice(1).join('\n') : lines.join('\n')
 
         return (
-          <div key={i} className="my-2.5 rounded-xl overflow-hidden border border-[#30363d] bg-[#0d1117] text-slate-100 font-mono text-[11px]">
-            <div className="flex items-center justify-between px-3 py-1 bg-white/[0.04] border-b border-[#30363d]/60 text-[10px] text-slate-400">
+          <div key={i} className="my-2 rounded-md overflow-hidden border border-[#E9E9E7] bg-[#F7F7F5] text-[#37352F] font-mono text-[11px]">
+            <div className="flex items-center justify-between px-3 py-1 bg-white border-b border-[#E9E9E7] text-[10px] text-[#787774]">
               <span>{language || 'code'}</span>
               <button
                 type="button"
                 onClick={() => navigator.clipboard.writeText(code)}
-                className="hover:text-white transition-colors"
+                className="hover:text-[#37352F] transition-colors"
               >
                 Copy
               </button>
@@ -230,17 +229,17 @@ export default function MentorChatCard() {
   if (!currentUser) return null
 
   return (
-    <div className="bg-[#161b22] border border-[#30363d] rounded-2xl p-6 text-slate-100 shadow-xl space-y-5">
+    <div className="bg-white border border-[#E9E9E7] rounded-md p-6 text-[#37352F] space-y-5">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-[#30363d]">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3.5 border-b border-[#E9E9E7]">
         <div>
           <div className="flex items-center gap-2">
             <span className="text-xl">🤖</span>
-            <h2 className="text-lg font-bold text-white tracking-tight">
+            <h2 className="text-lg font-semibold text-[#37352F] tracking-tight">
               SkillForge AI Technical Mentor
             </h2>
           </div>
-          <p className="text-xs text-slate-400 mt-1">
+          <p className="text-xs text-[#787774] mt-0.5">
             Ask wide-ranging questions about software engineering, coding problems, architecture, frameworks, and your verified career gaps.
           </p>
         </div>
@@ -248,16 +247,16 @@ export default function MentorChatCard() {
         <div className="flex items-center gap-2 self-start sm:self-center">
           <button
             onClick={() => setShowApiKeyInput(!showApiKeyInput)}
-            className={`text-xs px-3 py-1.5 rounded-xl border transition-all flex items-center gap-1.5 cursor-pointer font-medium ${
+            className={`text-xs px-2.5 py-1 rounded-md border transition-all flex items-center gap-1.5 cursor-pointer font-medium ${
               geminiStatus?.has_gemini_key
-                ? 'bg-emerald-500/15 border-emerald-500/30 text-emerald-300 hover:bg-emerald-500/25'
-                : 'bg-amber-500/15 border-amber-500/40 text-amber-300 hover:bg-amber-500/25 shadow-xs'
+                ? 'bg-[#DBEDDB] border-[#DBEDDB] text-[#1c3829]'
+                : 'bg-[#FDECC8] border-[#FDECC8] text-[#402f1d]'
             }`}
             title={geminiStatus?.has_gemini_key ? 'Gemini AI active — click to manage key' : 'Connect your Gemini API key'}
           >
             {geminiStatus?.has_gemini_key ? (
               <>
-                <span className="w-2 h-2 rounded-full bg-emerald-400" />
+                <span className="w-1.5 h-1.5 rounded-full bg-[#1c3829]" />
                 <span>Gemini Active</span>
                 <span className="text-[10px] opacity-60">⚙️</span>
               </>
@@ -272,7 +271,7 @@ export default function MentorChatCard() {
           {messages.length > 0 && (
             <button
               onClick={handleClearHistory}
-              className="text-xs text-slate-400 hover:text-white px-3 py-1.5 rounded-xl bg-white/5 border border-[#30363d] hover:bg-white/10 transition-colors cursor-pointer"
+              className="text-xs text-[#787774] hover:text-[#37352F] px-2.5 py-1 rounded-md bg-[#F7F7F5] border border-[#E9E9E7] transition-colors cursor-pointer"
               title="Clear conversation history"
             >
               Clear conversation
@@ -283,23 +282,23 @@ export default function MentorChatCard() {
 
       {/* Expandable Manual Gemini Key Setup Drawer */}
       {showApiKeyInput && (
-        <div className="p-4 rounded-2xl bg-[#0d1117] border border-[#30363d] space-y-3 animate-fadeIn">
+        <div className="p-4 rounded-md bg-[#F7F7F5] border border-[#E9E9E7] space-y-3 animate-fadeIn">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <span className="text-base">✨</span>
-              <h4 className="text-xs font-bold text-slate-200">
+              <span className="text-sm">✨</span>
+              <h4 className="text-xs font-semibold text-[#37352F]">
                 Google Gemini API Key Setup
               </h4>
             </div>
             <button
               onClick={() => setShowApiKeyInput(false)}
-              className="text-slate-400 hover:text-white text-xs px-1.5 py-0.5 rounded cursor-pointer"
+              className="text-[#787774] hover:text-[#37352F] text-xs px-1 py-0.5 rounded cursor-pointer"
             >
               ✕
             </button>
           </div>
 
-          <p className="text-xs text-slate-400 leading-relaxed">
+          <p className="text-xs text-[#787774] leading-relaxed">
             Connect your Gemini API key to ask open-ended, wide-ranging coding questions, multi-file architecture designs, and technical interview defense.
           </p>
 
@@ -310,12 +309,12 @@ export default function MentorChatCard() {
                 value={apiKeyInput}
                 onChange={(e) => setApiKeyInput(e.target.value)}
                 placeholder="Paste Gemini key (e.g. AIzaSy...)"
-                className="flex-1 px-3.5 py-2 rounded-xl bg-[#161b22] border border-[#30363d] text-xs text-white placeholder-slate-500 focus:outline-hidden focus:border-emerald-500"
+                className="flex-1 px-3 py-1.5 rounded-md bg-white border border-[#E9E9E7] text-xs text-[#37352F] placeholder-[#787774] focus:border-[#2383E2]"
               />
               <button
                 type="submit"
                 disabled={savingKey || !apiKeyInput.trim()}
-                className="px-4 py-2 rounded-xl text-xs font-bold bg-emerald-500 hover:bg-emerald-400 text-gray-950 disabled:opacity-50 transition-colors cursor-pointer"
+                className="px-3.5 py-1.5 rounded-md text-xs font-medium bg-[#2383E2] hover:bg-[#1b6ec2] text-white disabled:opacity-50 transition-colors cursor-pointer"
               >
                 {savingKey ? 'Saving…' : 'Save & Activate'}
               </button>
@@ -324,7 +323,7 @@ export default function MentorChatCard() {
                   type="button"
                   onClick={handleRemoveGeminiKey}
                   disabled={savingKey}
-                  className="px-3 py-2 rounded-xl text-xs font-medium bg-red-500/10 border border-red-800/40 text-red-300 hover:bg-red-500/20 transition-colors cursor-pointer"
+                  className="px-3 py-1.5 rounded-md text-xs font-medium bg-[#FFE2DD] border border-[#E9E9E7] text-[#5d1715] hover:opacity-80 transition-colors cursor-pointer"
                 >
                   Remove Key
                 </button>
@@ -332,18 +331,18 @@ export default function MentorChatCard() {
             </div>
 
             {keyMsg && (
-              <p className={`text-xs ${keyMsg.startsWith('✓') ? 'text-emerald-400' : 'text-red-400'}`}>
+              <p className={`text-xs ${keyMsg.startsWith('✓') ? 'text-[#1c3829]' : 'text-[#5d1715]'}`}>
                 {keyMsg}
               </p>
             )}
 
-            <div className="flex items-center justify-between text-[11px] text-slate-400 pt-1">
+            <div className="flex items-center justify-between text-[11px] text-[#787774] pt-0.5">
               <span>Keys are securely saved in your database and encrypted at rest.</span>
               <a
                 href="https://aistudio.google.com/app/apikey"
                 target="_blank"
                 rel="noreferrer"
-                className="text-emerald-400 hover:underline flex items-center gap-1"
+                className="text-[#2383E2] hover:underline flex items-center gap-1"
               >
                 Get free Gemini key ↗
               </a>
@@ -353,11 +352,11 @@ export default function MentorChatCard() {
       )}
 
       {error && (
-        <div className="p-3 bg-red-950/40 border border-red-800/60 rounded-xl text-xs text-red-300 flex items-center justify-between gap-2">
+        <div className="p-3 bg-[#FFE2DD] border border-[#E9E9E7] rounded-md text-xs text-[#5d1715] flex items-center justify-between gap-2">
           <span>{error}</span>
           <button
             onClick={() => setError('')}
-            className="text-red-400 hover:text-red-200 cursor-pointer font-bold px-1"
+            className="text-[#5d1715] hover:opacity-75 cursor-pointer font-bold px-1"
           >
             ✕
           </button>
@@ -365,20 +364,20 @@ export default function MentorChatCard() {
       )}
 
       {/* Chat Thread */}
-      <div className="h-96 overflow-y-auto space-y-4 pr-2 rounded-2xl bg-[#0d1117] p-4 border border-[#30363d] no-scrollbar">
+      <div className="h-96 overflow-y-auto space-y-3.5 pr-1.5 rounded-md bg-[#F7F7F5] p-3.5 border border-[#E9E9E7] no-scrollbar">
         {initialLoading ? (
-          <div className="py-28 text-center text-xs text-slate-500 animate-pulse">
+          <div className="py-28 text-center text-xs text-[#787774] animate-pulse">
             Connecting to mentor…
           </div>
         ) : messages.length === 0 ? (
-          <div className="py-20 text-center space-y-3">
-            <div className="w-12 h-12 mx-auto rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-2xl text-emerald-400">
+          <div className="py-20 text-center space-y-2.5">
+            <div className="w-10 h-10 mx-auto rounded-md bg-white border border-[#E9E9E7] flex items-center justify-center text-xl text-[#37352F]">
               💬
             </div>
-            <h4 className="text-sm font-semibold text-slate-100">
+            <h4 className="text-xs font-semibold text-[#37352F]">
               What technical topic or skill would you like to explore?
             </h4>
-            <p className="text-xs text-slate-400 max-w-md mx-auto">
+            <p className="text-xs text-[#787774] max-w-md mx-auto">
               I can answer in-depth questions about frameworks (FastAPI, React, Docker), explain programming concepts, solve code challenges, and give you personalized advice based on your verified GitHub activity.
             </p>
           </div>
@@ -388,18 +387,18 @@ export default function MentorChatCard() {
             return (
               <div
                 key={idx}
-                className={`flex gap-3 ${isUser ? 'justify-end' : 'justify-start'}`}
+                className={`flex gap-2.5 ${isUser ? 'justify-end' : 'justify-start'}`}
               >
                 {!isUser && (
-                  <div className="w-7 h-7 rounded-lg bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-xs text-emerald-400 shrink-0 font-bold shadow-xs">
+                  <div className="w-6 h-6 rounded bg-white border border-[#E9E9E7] flex items-center justify-center text-[10px] text-[#37352F] shrink-0 font-semibold">
                     AI
                   </div>
                 )}
                 <div
-                  className={`max-w-[88%] sm:max-w-[80%] p-4 rounded-2xl text-xs leading-relaxed ${
+                  className={`max-w-[88%] sm:max-w-[80%] p-3.5 rounded-md text-xs leading-relaxed ${
                     isUser
-                      ? 'bg-emerald-500 text-gray-950 font-medium rounded-tr-xs shadow-md'
-                      : 'bg-[#161b22] border border-[#30363d] text-slate-200 rounded-tl-xs shadow-sm'
+                      ? 'bg-[#2383E2] text-white font-normal'
+                      : 'bg-white border border-[#E9E9E7] text-[#37352F]'
                   }`}
                 >
                   {renderMessageContent(m.content)}
@@ -410,15 +409,15 @@ export default function MentorChatCard() {
         )}
 
         {loading && (
-          <div className="flex gap-3 justify-start">
-            <div className="w-7 h-7 rounded-lg bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-xs text-emerald-400 shrink-0 font-bold">
+          <div className="flex gap-2.5 justify-start">
+            <div className="w-6 h-6 rounded bg-white border border-[#E9E9E7] flex items-center justify-center text-[10px] text-[#37352F] shrink-0 font-semibold">
               AI
             </div>
-            <div className="p-3.5 rounded-2xl rounded-tl-xs bg-[#161b22] border border-[#30363d] text-xs text-slate-400 flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-bounce"></span>
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-bounce [animation-delay:0.2s]"></span>
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-bounce [animation-delay:0.4s]"></span>
-              <span className="text-[11px] text-slate-400 ml-1">AI Mentor is thinking…</span>
+            <div className="p-3 rounded-md bg-white border border-[#E9E9E7] text-xs text-[#787774] flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#2383E2] animate-bounce"></span>
+              <span className="w-1.5 h-1.5 rounded-full bg-[#2383E2] animate-bounce [animation-delay:0.2s]"></span>
+              <span className="w-1.5 h-1.5 rounded-full bg-[#2383E2] animate-bounce [animation-delay:0.4s]"></span>
+              <span className="text-[11px] text-[#787774] ml-1">AI Mentor is thinking…</span>
             </div>
           </div>
         )}
@@ -427,7 +426,7 @@ export default function MentorChatCard() {
 
       {/* Wide Question Prompt Chips */}
       <div className="space-y-1.5">
-        <span className="text-[10px] uppercase font-mono tracking-wider text-slate-400">
+        <span className="text-[10px] uppercase font-mono tracking-wider text-[#787774]">
           Try asking wide questions:
         </span>
         <div className="flex flex-wrap gap-1.5">
@@ -437,7 +436,7 @@ export default function MentorChatCard() {
               key={prompt}
               onClick={() => handleSendMessage(prompt)}
               disabled={loading}
-              className="px-2.5 py-1.5 rounded-xl text-[11px] bg-[#0d1117] hover:bg-white/5 text-slate-300 hover:text-emerald-300 border border-[#30363d] transition-colors cursor-pointer disabled:opacity-50"
+              className="px-2 py-1 rounded-md text-[11px] bg-[#F7F7F5] hover:bg-[rgba(55,53,47,0.06)] text-[#37352F] border border-[#E9E9E7] transition-colors cursor-pointer disabled:opacity-50"
             >
               + {prompt}
             </button>
@@ -459,12 +458,12 @@ export default function MentorChatCard() {
           onChange={(e) => setInput(e.target.value)}
           placeholder="Ask any technical question, code explanation, or career advice…"
           disabled={loading}
-          className="flex-1 px-4 py-3 bg-[#0d1117] border border-[#30363d] rounded-xl text-xs text-slate-100 placeholder-slate-500 focus:outline-hidden focus:border-emerald-500 transition-colors disabled:opacity-50"
+          className="flex-1 px-3.5 py-2.5 bg-[#F7F7F5] border border-[#E9E9E7] rounded-md text-xs text-[#37352F] placeholder-[#787774] focus:border-[#2383E2] transition-colors disabled:opacity-50"
         />
         <button
           type="submit"
           disabled={loading || !input.trim()}
-          className="px-5 py-3 bg-emerald-500 hover:bg-emerald-400 text-gray-950 font-bold rounded-xl text-xs transition-colors cursor-pointer disabled:opacity-50 shadow-md shadow-emerald-500/20"
+          className="px-4 py-2.5 bg-[#2383E2] hover:bg-[#1b6ec2] text-white font-medium rounded-md text-xs transition-colors cursor-pointer disabled:opacity-50"
         >
           Send
         </button>

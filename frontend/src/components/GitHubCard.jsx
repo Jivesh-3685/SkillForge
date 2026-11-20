@@ -1,8 +1,8 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect } from 'react'
 import { useAuth } from '../context/AuthContext'
 
 export default function GitHubCard() {
-  const { idToken, currentUser } = useAuth()
+  const { currentUser, apiFetch } = useAuth()
   const [status, setStatus] = useState(null)
   const [loading, setLoading] = useState(true)
   const [connecting, setConnecting] = useState(false)
@@ -10,100 +10,106 @@ export default function GitHubCard() {
   const [error, setError] = useState('')
   const [notice, setNotice] = useState('')
 
-  const fetchStatus = useCallback(async () => {
-    if (!idToken) return
+  const fetchStatus = async () => {
     try {
       setLoading(true)
-      const res = await fetch('/api/github/status', {
-        headers: { Authorization: `Bearer ${idToken}` },
-      })
+      setError('')
+      const res = await apiFetch('/api/github/status')
       if (res.ok) {
         const data = await res.json()
         setStatus(data)
+      } else {
+        setError('Failed to load GitHub status.')
       }
-    } catch (err) {
-      setError('Failed to load GitHub connection status.')
+    } catch {
+      setError('Network error while checking GitHub status.')
     } finally {
       setLoading(false)
-    }
-  }, [idToken])
-
-  useEffect(() => {
-    // Check for query parameters from OAuth callback
-    const params = new URLSearchParams(window.location.search)
-    if (params.get('github') === 'connected') {
-      setNotice('GitHub connected successfully! Your repositories have been analyzed.')
-      window.history.replaceState({}, document.title, window.location.pathname)
-    } else if (params.get('github_error')) {
-      setError(`GitHub connection failed: ${params.get('github_error')}`)
-      window.history.replaceState({}, document.title, window.location.pathname)
-    }
-
-    if (idToken) {
-      fetchStatus()
-    }
-  }, [idToken, fetchStatus])
-
-  const handleConnect = async () => {
-    try {
-      setError('')
-      setConnecting(true)
-      const res = await fetch('/api/github/connect', {
-        headers: { Authorization: `Bearer ${idToken}` },
-      })
-      if (!res.ok) {
-        const errData = await res.json()
-        throw new Error(errData.detail || 'Failed to start GitHub authorization')
-      }
-      const data = await res.json()
-      window.location.href = data.url
-    } catch (err) {
-      setError(err.message)
-      setConnecting(false)
     }
   }
 
-  const handleDisconnect = async () => {
-    if (!confirm('Are you sure you want to disconnect GitHub?')) return
+  useEffect(() => {
+    if (currentUser) {
+      fetchStatus()
+    }
+  }, [currentUser])
+
+  // Check URL params for OAuth callback status
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search)
+    const githubStatus = params.get('github')
+    const username = params.get('username')
+
+    if (githubStatus === 'connected') {
+      setNotice(`✓ Successfully connected GitHub account @${username || ''}!`)
+      // Clean up URL without reload
+      window.history.replaceState({}, document.title, window.location.pathname)
+      fetchStatus()
+    } else if (githubStatus === 'error') {
+      const reason = params.get('reason') || 'Authentication failed'
+      setError(`GitHub connection failed: ${reason}`)
+      window.history.replaceState({}, document.title, window.location.pathname)
+    }
+  }, [])
+
+  const handleConnect = async () => {
     try {
-      setLoading(true)
-      const res = await fetch('/api/github/disconnect', {
-        method: 'DELETE',
-        headers: { Authorization: `Bearer ${idToken}` },
-      })
+      setConnecting(true)
+      setError('')
+      const res = await apiFetch('/api/github/auth-url')
       if (res.ok) {
-        setStatus({ connected: false, username: null, analysis: null })
-        setNotice('GitHub account disconnected.')
+        const data = await res.json()
+        if (data.url) {
+          window.location.href = data.url
+        } else {
+          setError('Could not generate GitHub authorization URL.')
+        }
+      } else {
+        setError('Failed to initiate GitHub OAuth.')
       }
-    } catch (err) {
-      setError('Failed to disconnect GitHub.')
+    } catch {
+      setError('Network error while initiating GitHub connection.')
     } finally {
-      setLoading(false)
+      setConnecting(false)
     }
   }
 
   const handleRescan = async () => {
     try {
-      setError('')
       setRescanning(true)
-      const res = await fetch('/api/github/rescan', {
-        method: 'POST',
-        headers: { Authorization: `Bearer ${idToken}` },
-      })
-      if (!res.ok) {
-        const errData = await res.json()
-        throw new Error(errData.detail || 'Re-scan failed')
+      setError('')
+      setNotice('')
+      const res = await apiFetch('/api/github/rescan', { method: 'POST' })
+      if (res.ok) {
+        const data = await res.json()
+        setNotice(`✓ Re-scanned ${data.repository_count} repositories and ${data.commit_count} commits.`)
+        await fetchStatus()
+      } else {
+        const data = await res.json()
+        setError(data.detail || 'Re-scan failed.')
       }
-      const data = await res.json()
-      setStatus((prev) => ({
-        ...prev,
-        analysis: data.analysis,
-      }))
-      setNotice('GitHub activity re-scanned and refreshed!')
-    } catch (err) {
-      setError(err.message)
+    } catch {
+      setError('Network error while re-scanning GitHub.')
     } finally {
       setRescanning(false)
+    }
+  }
+
+  const handleDisconnect = async () => {
+    if (!confirm('Are you sure you want to disconnect your GitHub account?')) return
+    try {
+      setLoading(true)
+      const res = await apiFetch('/api/github/disconnect', { method: 'POST' })
+      if (res.ok) {
+        setNotice('GitHub account disconnected.')
+        setStatus({ connected: false })
+      } else {
+        setError('Failed to disconnect GitHub.')
+      }
+    } catch {
+      setError('Network error while disconnecting GitHub.')
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -112,15 +118,12 @@ export default function GitHubCard() {
   const analysis = status?.analysis
 
   return (
-    <div className="bg-gray-900/60 border border-gray-800/80 rounded-2xl p-6 backdrop-blur-xs space-y-6">
+    <div className="bg-white border border-[#E9E9E7] rounded-md p-6 space-y-5">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <div className="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono mb-2">
-            Phase 2: GitHub Integration (FR-02)
-          </div>
-          <h2 className="text-xl font-bold text-white flex items-center gap-2.5">
-            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+          <h2 className="text-xl font-semibold text-[#37352F] flex items-center gap-2.5">
+            <svg className="w-5 h-5 text-[#37352F]" fill="currentColor" viewBox="0 0 24 24">
               <path
                 fillRule="evenodd"
                 clipRule="evenodd"
@@ -136,11 +139,11 @@ export default function GitHubCard() {
             <button
               onClick={handleRescan}
               disabled={rescanning}
-              className="px-3.5 py-1.5 text-xs font-semibold bg-gray-800 hover:bg-gray-750 text-gray-200 border border-gray-700 rounded-lg transition-colors cursor-pointer disabled:opacity-50 flex items-center gap-1.5"
+              className="px-3 py-1.5 text-xs font-medium bg-[#F7F7F5] hover:bg-[rgba(55,53,47,0.06)] text-[#37352F] border border-[#E9E9E7] rounded-md transition-colors cursor-pointer disabled:opacity-50 flex items-center gap-1.5"
             >
               {rescanning ? (
                 <>
-                  <span className="w-3 h-3 border-2 border-emerald-400 border-t-transparent rounded-full animate-spin"></span>
+                  <span className="w-3 h-3 border-2 border-[#2383E2] border-t-transparent rounded-full animate-spin"></span>
                   Re-scanning…
                 </>
               ) : (
@@ -149,7 +152,7 @@ export default function GitHubCard() {
             </button>
             <button
               onClick={handleDisconnect}
-              className="px-3 py-1.5 text-xs font-semibold text-red-400 hover:text-red-300 hover:bg-red-950/30 border border-red-900/50 rounded-lg transition-colors cursor-pointer"
+              className="px-3 py-1.5 text-xs font-medium text-[#5d1715] hover:bg-[#FFE2DD] border border-[#E9E9E7] rounded-md transition-colors cursor-pointer"
             >
               Disconnect
             </button>
@@ -159,26 +162,26 @@ export default function GitHubCard() {
 
       {/* Notifications */}
       {notice && (
-        <div className="p-3 bg-emerald-950/40 border border-emerald-800/60 rounded-xl text-xs text-emerald-300 flex items-center justify-between">
+        <div className="p-3 bg-[#DBEDDB] border border-[#E9E9E7] rounded-md text-xs text-[#1c3829] flex items-center justify-between">
           <span>{notice}</span>
-          <button onClick={() => setNotice('')} className="text-emerald-400 hover:text-white ml-2">✕</button>
+          <button onClick={() => setNotice('')} className="text-[#1c3829] hover:opacity-80 ml-2">✕</button>
         </div>
       )}
       {error && (
-        <div className="p-3 bg-red-950/40 border border-red-800/60 rounded-xl text-xs text-red-300 flex items-center justify-between">
+        <div className="p-3 bg-[#FFE2DD] border border-[#E9E9E7] rounded-md text-xs text-[#5d1715] flex items-center justify-between">
           <span>{error}</span>
-          <button onClick={() => setError('')} className="text-red-400 hover:text-white ml-2">✕</button>
+          <button onClick={() => setError('')} className="text-[#5d1715] hover:opacity-80 ml-2">✕</button>
         </div>
       )}
 
       {loading ? (
-        <div className="py-8 text-center text-sm text-gray-500 animate-pulse">
+        <div className="py-8 text-center text-sm text-[#787774] animate-pulse">
           Checking GitHub status…
         </div>
       ) : !status?.connected ? (
         /* Not Connected State */
-        <div className="p-6 rounded-xl bg-gray-950 border border-gray-800 text-center space-y-4">
-          <div className="w-12 h-12 mx-auto rounded-xl bg-gray-800/80 flex items-center justify-center text-gray-300">
+        <div className="p-6 rounded-md bg-[#F7F7F5] border border-[#E9E9E7] text-center space-y-4">
+          <div className="w-12 h-12 mx-auto rounded-md bg-white border border-[#E9E9E7] flex items-center justify-center text-[#37352F]">
             <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
               <path
                 fillRule="evenodd"
@@ -188,19 +191,19 @@ export default function GitHubCard() {
             </svg>
           </div>
           <div>
-            <h3 className="text-base font-bold text-white">Connect your GitHub profile</h3>
-            <p className="text-xs text-gray-400 max-w-md mx-auto mt-1">
+            <h3 className="text-base font-semibold text-[#37352F]">Connect your GitHub profile</h3>
+            <p className="text-xs text-[#787774] max-w-md mx-auto mt-1">
               SkillForge reads your public repositories, languages, and commit counts to measure verified skills. We request only read-only public access — never write permissions.
             </p>
           </div>
           <button
             onClick={handleConnect}
             disabled={connecting}
-            className="inline-flex items-center gap-2 px-5 py-2.5 bg-gray-100 hover:bg-white text-gray-950 font-bold rounded-xl text-sm transition-all shadow-md cursor-pointer disabled:opacity-50"
+            className="inline-flex items-center gap-2 px-4 py-2 bg-[#2383E2] hover:bg-[#1b6ec2] text-white font-medium rounded-md text-xs transition-all cursor-pointer disabled:opacity-50"
           >
             {connecting ? (
               <>
-                <span className="w-4 h-4 border-2 border-gray-900 border-t-transparent rounded-full animate-spin"></span>
+                <span className="w-3.5 h-3.5 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
                 Redirecting to GitHub…
               </>
             ) : (
@@ -215,11 +218,11 @@ export default function GitHubCard() {
         </div>
       ) : (
         /* Connected & Analyzed State */
-        <div className="space-y-6">
+        <div className="space-y-5">
           {/* Summary Banner */}
-          <div className="p-4 rounded-xl bg-gray-950 border border-gray-800 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div className="p-4 rounded-md bg-[#F7F7F5] border border-[#E9E9E7] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 font-bold text-sm">
+              <div className="w-9 h-9 rounded-md bg-[#D3E5EF] text-[#183347] font-semibold text-xs flex items-center justify-center">
                 GH
               </div>
               <div>
@@ -227,40 +230,40 @@ export default function GitHubCard() {
                   href={`https://github.com/${status.username}`}
                   target="_blank"
                   rel="noreferrer"
-                  className="text-base font-bold text-white hover:text-emerald-400 transition-colors flex items-center gap-1.5"
+                  className="text-sm font-semibold text-[#37352F] hover:text-[#2383E2] transition-colors flex items-center gap-1.5"
                 >
                   @{status.username}
-                  <span className="text-xs text-gray-500 font-normal">↗</span>
+                  <span className="text-xs text-[#787774] font-normal">↗</span>
                 </a>
-                <p className="text-xs text-gray-400">
+                <p className="text-[11px] text-[#787774]">
                   Connected account • Scanned {analysis?.scanned_at ? new Date(analysis.scanned_at).toLocaleTimeString() : 'recently'}
                 </p>
               </div>
             </div>
 
-            <div className="flex items-center gap-4 text-xs font-mono">
-              <div className="px-3 py-1.5 rounded-lg bg-gray-900 border border-gray-800">
-                <span className="text-gray-400 block text-[10px] uppercase">Repos</span>
-                <span className="text-emerald-400 font-bold text-sm">{analysis?.repo_count ?? 0}</span>
+            <div className="flex items-center gap-3 text-xs font-mono">
+              <div className="px-3 py-1 rounded-md bg-white border border-[#E9E9E7]">
+                <span className="text-[#787774] block text-[10px] uppercase">Repos</span>
+                <span className="text-[#37352F] font-semibold text-sm">{analysis?.repo_count ?? 0}</span>
               </div>
-              <div className="px-3 py-1.5 rounded-lg bg-gray-900 border border-gray-800">
-                <span className="text-gray-400 block text-[10px] uppercase">Commits</span>
-                <span className="text-emerald-400 font-bold text-sm">{analysis?.total_commits ?? 0}</span>
+              <div className="px-3 py-1 rounded-md bg-white border border-[#E9E9E7]">
+                <span className="text-[#787774] block text-[10px] uppercase">Commits</span>
+                <span className="text-[#37352F] font-semibold text-sm">{analysis?.total_commits ?? 0}</span>
               </div>
             </div>
           </div>
 
           {/* Languages Breakdown */}
           {analysis?.languages && analysis.languages.length > 0 && (
-            <div className="space-y-3">
-              <h3 className="text-xs font-bold uppercase tracking-wider text-gray-400">
+            <div className="space-y-2.5">
+              <h3 className="text-[11px] font-semibold uppercase tracking-wider text-[#787774]">
                 Detected Languages & Code Volume
               </h3>
               
               {/* Stacked Bar */}
-              <div className="h-3 w-full bg-gray-800 rounded-full overflow-hidden flex">
+              <div className="h-2.5 w-full bg-[#E9E9E7] rounded-full overflow-hidden flex">
                 {analysis.languages.slice(0, 5).map((l, i) => {
-                  const colors = ['bg-emerald-500', 'bg-blue-500', 'bg-amber-500', 'bg-purple-500', 'bg-pink-500']
+                  const colors = ['bg-[#2383E2]', 'bg-[#10b981]', 'bg-[#f59e0b]', 'bg-[#8b5cf6]', 'bg-[#ec4899]']
                   return (
                     <div
                       key={l.language}
@@ -273,17 +276,17 @@ export default function GitHubCard() {
               </div>
 
               {/* Badges */}
-              <div className="flex flex-wrap gap-2 pt-1">
+              <div className="flex flex-wrap gap-1.5 pt-0.5">
                 {analysis.languages.slice(0, 8).map((l, i) => {
-                  const dotColors = ['bg-emerald-400', 'bg-blue-400', 'bg-amber-400', 'bg-purple-400', 'bg-pink-400', 'bg-gray-400']
+                  const dotColors = ['bg-[#2383E2]', 'bg-[#10b981]', 'bg-[#f59e0b]', 'bg-[#8b5cf6]', 'bg-[#ec4899]', 'bg-[#787774]']
                   return (
                     <span
                       key={l.language}
-                      className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-gray-950 border border-gray-800 text-xs text-gray-300"
+                      className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-[#F7F7F5] border border-[#E9E9E7] text-xs text-[#37352F]"
                     >
-                      <span className={`w-2 h-2 rounded-full ${dotColors[i % dotColors.length]}`}></span>
-                      <span className="font-medium">{l.language}</span>
-                      <span className="text-gray-500 font-mono text-[10px]">{l.percentage}%</span>
+                      <span className={`w-1.5 h-1.5 rounded-full ${dotColors[i % dotColors.length]}`}></span>
+                      <span className="font-medium text-xs">{l.language}</span>
+                      <span className="text-[#787774] font-mono text-[10px]">{l.percentage}%</span>
                     </span>
                   )
                 })}
@@ -293,35 +296,35 @@ export default function GitHubCard() {
 
           {/* Recent Repositories */}
           {analysis?.repositories && analysis.repositories.length > 0 && (
-            <div className="space-y-3">
-              <h3 className="text-xs font-bold uppercase tracking-wider text-gray-400">
+            <div className="space-y-2.5">
+              <h3 className="text-[11px] font-semibold uppercase tracking-wider text-[#787774]">
                 Sample Scanned Repositories ({analysis.repositories.length})
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 {analysis.repositories.slice(0, 6).map((repo) => (
                   <div
                     key={repo.id}
-                    className="p-3.5 rounded-xl bg-gray-950/80 border border-gray-800/80 hover:border-gray-700 transition-colors"
+                    className="p-3.5 rounded-md bg-white border border-[#E9E9E7] hover:bg-[rgba(55,53,47,0.02)] transition-colors"
                   >
                     <div className="flex items-center justify-between">
                       <a
                         href={repo.html_url}
                         target="_blank"
                         rel="noreferrer"
-                        className="text-sm font-semibold text-white hover:text-emerald-400 truncate max-w-[200px]"
+                        className="text-xs font-semibold text-[#37352F] hover:text-[#2383E2] truncate max-w-[200px]"
                       >
                         {repo.name}
                       </a>
-                      <span className="text-xs font-mono text-gray-500">
+                      <span className="text-[11px] font-mono text-[#787774]">
                         {repo.commits} commits
                       </span>
                     </div>
                     {repo.description && (
-                      <p className="text-xs text-gray-400 mt-1 line-clamp-1">{repo.description}</p>
+                      <p className="text-xs text-[#787774] mt-1 line-clamp-1">{repo.description}</p>
                     )}
-                    <div className="flex items-center gap-3 mt-2 text-[11px] text-gray-500 font-mono">
+                    <div className="flex items-center gap-3 mt-2 text-[11px] text-[#787774] font-mono">
                       {repo.primary_language && (
-                        <span className="text-emerald-400">{repo.primary_language}</span>
+                        <span className="text-[#2383E2]">{repo.primary_language}</span>
                       )}
                       {repo.stars > 0 && <span>★ {repo.stars}</span>}
                     </div>

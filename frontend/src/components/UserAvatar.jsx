@@ -8,7 +8,7 @@ export default function UserAvatar({ user, size = 'md', className = '' }) {
     sm: 'w-7 h-7 text-xs',
     md: 'w-8 h-8 text-xs',
     lg: 'w-10 h-10 text-sm',
-    xl: 'w-12 h-12 text-base font-bold',
+    xl: 'w-12 h-12 text-base font-semibold',
   }
 
   const selectedSize = sizeClasses[size] || sizeClasses.md
@@ -27,14 +27,14 @@ export default function UserAvatar({ user, size = 'md', className = '' }) {
         referrerPolicy="no-referrer"
         crossOrigin="anonymous"
         onError={() => setImgFailed(true)}
-        className={`${selectedSize} rounded-full object-cover border border-emerald-500/40 shadow-xs flex-shrink-0 ${className}`}
+        className={`${selectedSize} rounded-md object-cover border border-[#E9E9E7] flex-shrink-0 ${className}`}
       />
     )
   }
 
   return (
     <div
-      className={`${selectedSize} rounded-full bg-gradient-to-tr from-emerald-600 to-teal-400 text-gray-950 font-bold flex items-center justify-center border border-emerald-400/50 shadow-xs flex-shrink-0 select-none ${className}`}
+      className={`${selectedSize} rounded-md bg-[#D3E5EF] text-[#183347] font-semibold flex items-center justify-center border border-[#E9E9E7] flex-shrink-0 select-none ${className}`}
       title={user?.displayName || user?.email || 'User'}
     >
       {initial}

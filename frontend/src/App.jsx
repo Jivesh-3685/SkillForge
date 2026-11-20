@@ -22,16 +22,15 @@ import ResumeAnalyzerCard from './components/ResumeAnalyzerCard'
 
 // ─── Responsive Page Wrapper Shell ─────────────────────
 function PageShell({ title, subtitle, children }) {
-  const { theme } = useTheme()
   return (
     <div className="space-y-6 w-full animate-fadeIn">
       {title && (
-        <div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
+        <div className="pb-1 border-b border-[#E9E9E7]">
+          <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-[#37352F]">
             {title}
           </h1>
           {subtitle && (
-            <p className="text-sm mt-1 opacity-70">
+            <p className="text-xs sm:text-sm mt-1 text-[#787774]">
               {subtitle}
             </p>
           )}
@@ -170,54 +169,58 @@ function AppLayout() {
       {/* Main Content Area */}
       <main
         className="flex-1 min-h-screen flex flex-col transition-all duration-200 w-full"
-        style={{ marginLeft: effectiveMarginLeft }}
+        style={{
+          marginLeft: effectiveMarginLeft,
+          backgroundColor: 'var(--bg-main, #FFFFFF)',
+          color: 'var(--text-main, #37352F)',
+        }}
       >
         {/* Top Header Bar */}
         <header
-          className="sticky top-0 z-30 h-14 flex items-center justify-between px-4 sm:px-6 md:px-8 border-b backdrop-blur-md"
+          className="sticky top-0 z-30 h-14 flex items-center justify-between px-4 sm:px-6 md:px-8 border-b"
           style={{
-            backgroundColor: 'var(--bg-sidebar)',
-            borderColor: 'var(--border-color)',
+            backgroundColor: 'var(--bg-card, #FFFFFF)',
+            borderColor: 'var(--border-color, #E9E9E7)',
           }}
         >
           <div className="flex items-center gap-3">
             {/* Mobile Hamburger Menu Toggle */}
             <button
               onClick={() => setMobileOpen(true)}
-              className="p-1.5 rounded-lg border border-[#30363d] hover:bg-white/5 md:hidden text-slate-300"
+              className="p-1.5 rounded-md border border-[#E9E9E7] hover:bg-[rgba(55,53,47,0.06)] md:hidden text-[#787774]"
               title="Open Navigation"
             >
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 6h16M4 12h16M4 18h16" />
               </svg>
             </button>
 
             {/* Breadcrumbs */}
             <div className="flex items-center gap-2">
-              <span className="text-xs font-mono opacity-60 hidden sm:inline">
+              <span className="text-xs text-[#787774] hidden sm:inline">
                 SkillForge AI
               </span>
-              <span className="opacity-40 hidden sm:inline">/</span>
-              <span className="text-xs font-semibold capitalize tracking-wide">
+              <span className="text-xs text-[#E9E9E7] hidden sm:inline">/</span>
+              <span className="text-xs font-medium text-[#37352F] capitalize tracking-wide">
                 {t(activePage, activePage === 'home' ? 'Dashboard' : activePage.replace(/_/g, ' '))}
               </span>
             </div>
           </div>
 
           {/* Quick Actions in Header */}
-          <div className="flex items-center gap-2.5">
+          <div className="flex items-center gap-2">
             {/* Command Palette Trigger */}
             <button
               onClick={() => setIsPaletteOpen(true)}
-              className="flex items-center gap-2 px-3 py-1.5 rounded-xl border border-[#30363d] bg-white/[0.02] hover:border-white/30 hover:bg-white/[0.05] transition-all cursor-pointer shadow-xs"
+              className="flex items-center gap-2 px-2.5 py-1.5 rounded-md border border-[#E9E9E7] bg-[#F7F7F5] hover:bg-[rgba(55,53,47,0.06)] transition-all cursor-pointer"
             >
-              <svg className="w-3.5 h-3.5 opacity-60" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              <svg className="w-3.5 h-3.5 text-[#787774]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
               </svg>
-              <span className="text-xs opacity-75 hidden sm:inline">
+              <span className="text-xs text-[#787774] hidden sm:inline">
                 {t('searchOrAsk', 'Search or ask…')}
               </span>
-              <kbd className="text-[10px] px-1.5 py-0.5 rounded border border-[#30363d] opacity-75 font-mono">
+              <kbd className="text-[10px] px-1 py-0.5 rounded border border-[#E9E9E7] text-[#787774] bg-white font-mono">
                 Ctrl+K
               </kbd>
             </button>
@@ -225,7 +228,7 @@ function AppLayout() {
             {/* Quick Settings Icon */}
             <button
               onClick={() => setActivePage('settings')}
-              className="w-8 h-8 rounded-xl border border-[#30363d] hover:bg-white/5 flex items-center justify-center text-xs opacity-80 hover:opacity-100 transition-all cursor-pointer"
+              className="w-8 h-8 rounded-md border border-[#E9E9E7] bg-white hover:bg-[rgba(55,53,47,0.06)] flex items-center justify-center text-xs text-[#787774] transition-all cursor-pointer"
               title="Settings"
             >
               ⚙️

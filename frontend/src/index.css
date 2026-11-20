@@ -1,28 +1,41 @@
 @import "tailwindcss";
 
-/* ─── CSS Variables & Base Theme Hooks ─────────────────────── */
+/* ─── Notion Minimalist Design Tokens ─────────────────────── */
 :root {
-  --bg-main: #0e0e10;
-  --bg-card: #161b22;
-  --bg-card-hover: #1c2128;
-  --bg-sidebar: #14181f;
-  --bg-input: #0d1117;
-  --border-color: #30363d;
-  --text-main: #f0f6fc;
-  --text-muted: #8b949e;
+  --bg-main: #FFFFFF;
+  --bg-card: #FFFFFF;
+  --bg-card-hover: rgba(55, 53, 47, 0.04);
+  --bg-sidebar: #F7F7F5;
+  --bg-input: #F7F7F5;
+  --border-color: #E9E9E7;
+  --text-main: #37352F;
+  --text-muted: #787774;
 
-  --accent-primary: #10b981;
-  --accent-hover: #059669;
-  --accent-soft: rgba(16, 185, 129, 0.16);
-  --accent-text: #34d399;
+  --accent-primary: #2383E2;
+  --accent-hover: #1b6ec2;
+  --accent-soft: rgba(35, 131, 226, 0.1);
+  --accent-text: #2383E2;
+
+  /* Notion Desaturated Pastel Badges */
+  --badge-blue: #D3E5EF;
+  --badge-blue-text: #183347;
+  --badge-green: #DBEDDB;
+  --badge-green-text: #1c3829;
+  --badge-yellow: #FDECC8;
+  --badge-yellow-text: #402f1d;
+  --badge-pink: #FFE2DD;
+  --badge-pink-text: #5d1715;
+  --badge-gray: #F7F7F5;
+  --badge-gray-text: #787774;
 }
 
 html,
 body {
-  background-color: var(--bg-main);
-  color: var(--text-main);
-  transition: background-color 0.25s ease, color 0.25s ease;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background-color: var(--bg-main, #FFFFFF);
+  color: var(--text-main, #37352F);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   margin: 0;
   padding: 0;
   overflow-x: hidden;
@@ -37,20 +50,19 @@ body {
 }
 
 .no-scrollbar {
-  -ms-overflow-style: none !important; /* IE and Edge */
-  scrollbar-width: none !important; /* Firefox */
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
 }
 
-/* Completely suppress horizontal scrollbars / rollers across the UI */
 ::-webkit-scrollbar:horizontal {
   display: none !important;
   height: 0 !important;
 }
 
-/* Global sleek minimal scrollbar (fallback when not using .no-scrollbar) */
+/* Global sleek minimal scrollbar */
 * {
   scrollbar-width: thin;
-  scrollbar-color: rgba(255, 255, 255, 0.12) transparent;
+  scrollbar-color: rgba(55, 53, 47, 0.15) transparent;
 }
 
 ::-webkit-scrollbar {
@@ -63,81 +75,92 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(55, 53, 47, 0.15);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.25);
+  background: rgba(55, 53, 47, 0.3);
 }
 
-/* ─── Universal Surface Responders ────────────────────────── */
-/* Cards and main panels */
-.bg-\[\#161b22\],
-.bg-gray-900\/60,
-.bg-gray-950,
-.theme-card {
+/* ─── Notion 2D Flat Surface Rules ────────────────────────── */
+/* Suppress heavy shadows for a clean paper-like aesthetic */
+.shadow-xl,
+.shadow-2xl,
+.shadow-lg,
+.shadow-md {
+  box-shadow: none !important;
+}
+
+/* Universal Surface Mapping */
+.theme-card,
+.bg-white {
   background-color: var(--bg-card) !important;
+}
+
+.bg-\[\#F7F7F5\] {
+  background-color: var(--bg-sidebar) !important;
+}
+
+.border-\[\#E9E9E7\] {
   border-color: var(--border-color) !important;
+}
+
+/* Text color enforcement */
+.text-\[\#37352F\],
+.text-white,
+.text-slate-100,
+.text-gray-100,
+.text-slate-200,
+.text-gray-200 {
   color: var(--text-main) !important;
 }
 
-/* Secondary nested surfaces & inputs */
-.bg-\[\#0d1117\],
-.bg-gray-900,
-.bg-gray-900\/80,
-.bg-\[\#21262d\] {
+.text-\[\#787774\],
+.text-gray-400,
+.text-slate-400,
+.text-gray-500,
+.text-slate-500 {
+  color: var(--text-muted) !important;
+}
+
+/* Form Inputs & Controls */
+input:not(.bg-transparent),
+textarea:not(.bg-transparent),
+select:not(.bg-transparent) {
   background-color: var(--bg-input) !important;
   border-color: var(--border-color) !important;
+  color: var(--text-main) !important;
+  border-radius: 6px !important;
 }
 
-/* Borders */
-.border-\[\#30363d\],
-.border-gray-800,
-.border-gray-800\/80,
-.border-gray-900 {
-  border-color: var(--border-color) !important;
+.bg-transparent {
+  background-color: transparent !important;
 }
 
-/* ─── Light Mode Readability Overrides ─────────────────────── */
-[data-theme="light"] {
-  color-scheme: light;
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: #2383E2 !important;
+  outline: none !important;
+  box-shadow: 0 0 0 1px #2383E2 !important;
 }
 
-[data-theme="light"] .text-white,
-[data-theme="light"] .text-slate-100,
-[data-theme="light"] .text-slate-200,
-[data-theme="light"] .text-gray-100,
-[data-theme="light"] .text-gray-200 {
-  color: #0f172a !important;
+/* ─── Notion Hover & Selection Overlays ────────────────────── */
+.hover\:bg-white\/5:hover,
+.hover\:bg-white\/10:hover,
+.hover\:bg-gray-800:hover,
+.hover\:bg-gray-750:hover,
+.hover\:bg-gray-700:hover {
+  background-color: rgba(55, 53, 47, 0.08) !important;
 }
 
-[data-theme="light"] .text-slate-400,
-[data-theme="light"] .text-slate-300,
-[data-theme="light"] .text-gray-400,
-[data-theme="light"] .text-gray-500 {
-  color: #64748b !important;
-}
-
-[data-theme="light"] input,
-[data-theme="light"] textarea,
-[data-theme="light"] select {
-  color: #0f172a !important;
-  background-color: #f8fafc !important;
-  border-color: #cbd5e1 !important;
-}
-
-[data-theme="light"] .shadow-xl,
-[data-theme="light"] .shadow-2xl {
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.03) !important;
-}
-
-/* ─── Accent Color Dynamic Overrides ───────────────────────── */
-/* Primary buttons & badges */
+/* ─── Primary Interactive Accent ──────────────────────────── */
 .bg-emerald-500,
 .btn-accent {
   background-color: var(--accent-primary) !important;
-  color: #ffffff !important;
+  color: #FFFFFF !important;
+  border-radius: 6px !important;
 }
 
 .hover\:bg-emerald-400:hover,
@@ -146,27 +169,55 @@ body {
   background-color: var(--accent-hover) !important;
 }
 
-/* Accent texts */
 .text-emerald-400,
 .text-emerald-300 {
-  color: var(--accent-text) !important;
+  color: var(--accent-primary) !important;
 }
 
-/* Accent borders */
 .border-emerald-500,
 .border-emerald-400 {
   border-color: var(--accent-primary) !important;
 }
 
-/* Accent soft backgrounds (pills, badges, active tabs) */
-.bg-emerald-500\/10,
-.bg-emerald-500\/12,
-.bg-emerald-500\/15,
-.bg-emerald-500\/20,
-.bg-emerald-950,
-.bg-emerald-950\/80,
-.bg-emerald-950\/60 {
-  background-color: var(--accent-soft) !important;
+/* ─── Notion Desaturated Pastel Pill Badges ─────────────────── */
+.badge-blue,
+.pill-blue {
+  background-color: #D3E5EF !important;
+  color: #183347 !important;
+  border: 1px solid rgba(24, 51, 71, 0.15) !important;
+  border-radius: 4px !important;
+}
+
+.badge-green,
+.pill-green {
+  background-color: #DBEDDB !important;
+  color: #1c3829 !important;
+  border: 1px solid rgba(28, 56, 41, 0.15) !important;
+  border-radius: 4px !important;
+}
+
+.badge-yellow,
+.pill-yellow {
+  background-color: #FDECC8 !important;
+  color: #402f1d !important;
+  border: 1px solid rgba(64, 47, 29, 0.15) !important;
+  border-radius: 4px !important;
+}
+
+.badge-pink,
+.pill-pink {
+  background-color: #FFE2DD !important;
+  color: #5d1715 !important;
+  border: 1px solid rgba(93, 23, 21, 0.15) !important;
+  border-radius: 4px !important;
+}
+
+.badge-gray,
+.pill-gray {
+  background-color: #F7F7F5 !important;
+  color: #787774 !important;
+  border: 1px solid #E9E9E7 !important;
+  border-radius: 4px !important;
 }
 
 /* ─── Preferences: Compact Mode ────────────────────────────── */
@@ -195,27 +246,12 @@ body {
   transition-duration: 0s !important;
 }
 
-/* ─── Custom Scrollbar & Animations ────────────────────────── */
-.scrollbar-thin::-webkit-scrollbar {
-  width: 5px;
-  height: 5px;
-}
-.scrollbar-thin::-webkit-scrollbar-track {
-  background: transparent;
-}
-.scrollbar-thin::-webkit-scrollbar-thumb {
-  background: rgba(150, 150, 150, 0.2);
-  border-radius: 4px;
-}
-.scrollbar-thin::-webkit-scrollbar-thumb:hover {
-  background: rgba(150, 150, 150, 0.35);
-}
-
+/* ─── Keyframe Animations ─────────────────────────────────── */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(4px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
 .animate-fadeIn {
-  animation: fadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  animation: fadeIn 0.15s cubic-bezier(0.16, 1, 0.3, 1);
 }

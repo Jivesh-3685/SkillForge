@@ -45,11 +45,13 @@ async def get_current_user(
         )
 
     try:
-        # Verify the Firebase ID token using Google's public certs
+        # Verify the Firebase ID token using Google's public certs with clock skew tolerance (60s)
+        # Prevents "Token used too early" errors caused by minor clock drift between local machine and Google servers
         decoded = id_token.verify_firebase_token(
             token,
             _request_adapter,
             audience=settings.firebase_project_id,
+            clock_skew_in_seconds=60,
         )
 
         # Standardize 'uid' key (Firebase uses 'user_id' or 'sub' in standard JWT claims)

@@ -20,7 +20,7 @@ export default function ProjectsCard() {
         const data = await res.json()
         setProjectsData(data)
       }
-    } catch (err) {
+    } catch {
       setError('Failed to fetch matched projects.')
     } finally {
       setLoading(false)
@@ -46,7 +46,6 @@ export default function ProjectsCard() {
         body: JSON.stringify({ status: newStatus }),
       })
       if (res.ok) {
-        // Update local state
         setProjectsData((prev) => {
           if (!prev) return prev
           const updatedProjects = prev.projects.map((p) =>
@@ -81,19 +80,19 @@ export default function ProjectsCard() {
     switch (difficulty) {
       case 'Beginner':
         return (
-          <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-emerald-500/15 text-emerald-400 border border-emerald-500/30">
+          <span className="px-2 py-0.5 rounded text-[10px] font-medium bg-[#DBEDDB] text-[#1c3829]">
             Beginner
           </span>
         )
       case 'Advanced':
         return (
-          <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-red-500/15 text-red-400 border border-red-500/30">
+          <span className="px-2 py-0.5 rounded text-[10px] font-medium bg-[#FFE2DD] text-[#5d1715]">
             Advanced
           </span>
         )
       default:
         return (
-          <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-amber-500/15 text-amber-400 border border-amber-500/30">
+          <span className="px-2 py-0.5 rounded text-[10px] font-medium bg-[#FDECC8] text-[#402f1d]">
             Intermediate
           </span>
         )
@@ -101,27 +100,24 @@ export default function ProjectsCard() {
   }
 
   return (
-    <div className="bg-gray-900/60 border border-gray-800/80 rounded-2xl p-6 backdrop-blur-xs space-y-6">
+    <div className="bg-white border border-[#E9E9E7] rounded-md p-6 space-y-5">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div>
-          <div className="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono mb-2">
-            Phase 7: Project Recommendation (FR-07)
-          </div>
-          <h2 className="text-xl font-bold text-white flex items-center gap-2.5">
-            <svg className="w-5 h-5 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+          <h2 className="text-xl font-semibold text-[#37352F] flex items-center gap-2.5">
+            <svg className="w-5 h-5 text-[#37352F]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
             </svg>
             Matched Portfolio Projects
           </h2>
         </div>
 
         {projectsData && (
-          <div className="flex items-center gap-3 text-xs font-mono">
-            <span className="px-2.5 py-1 rounded-lg bg-blue-950/40 border border-blue-800/40 text-blue-300">
+          <div className="flex items-center gap-2 text-xs font-mono">
+            <span className="px-2.5 py-0.5 rounded bg-[#D3E5EF] text-[#183347] font-medium">
               {projectsData.in_progress_count} In Progress
             </span>
-            <span className="px-2.5 py-1 rounded-lg bg-emerald-950/40 border border-emerald-800/40 text-emerald-300">
+            <span className="px-2.5 py-0.5 rounded bg-[#DBEDDB] text-[#1c3829] font-medium">
               {projectsData.completed_count} Completed
             </span>
           </div>
@@ -129,13 +125,13 @@ export default function ProjectsCard() {
       </div>
 
       {error && (
-        <div className="p-3 bg-red-950/40 border border-red-800/60 rounded-xl text-xs text-red-300">
+        <div className="p-3 bg-[#FFE2DD] border border-[#E9E9E7] rounded-md text-xs text-[#5d1715]">
           {error}
         </div>
       )}
 
       {/* Filter Tabs */}
-      <div className="flex flex-wrap items-center gap-2">
+      <div className="flex flex-wrap items-center gap-1.5">
         {[
           { key: 'all', label: `All (${allProjects.length})` },
           { key: 'in_progress', label: `In Progress (${projectsData?.in_progress_count ?? 0})` },
@@ -146,10 +142,10 @@ export default function ProjectsCard() {
             type="button"
             key={tab.key}
             onClick={() => setFilter(tab.key)}
-            className={`px-3 py-1 rounded-lg text-xs font-mono transition-colors cursor-pointer ${
+            className={`px-2.5 py-1 rounded-md text-xs font-mono transition-colors cursor-pointer ${
               filter === tab.key
-                ? 'bg-emerald-500 text-gray-950 font-bold'
-                : 'bg-gray-950 text-gray-400 hover:text-white border border-gray-800'
+                ? 'bg-[#2383E2] text-white font-medium'
+                : 'bg-[#F7F7F5] text-[#787774] hover:text-[#37352F] border border-[#E9E9E7]'
             }`}
           >
             {tab.label}
@@ -158,11 +154,11 @@ export default function ProjectsCard() {
       </div>
 
       {loading ? (
-        <div className="py-8 text-center text-sm text-gray-500 animate-pulse">
+        <div className="py-8 text-center text-sm text-[#787774] animate-pulse">
           Matching projects to your skill profile…
         </div>
       ) : filteredProjects.length === 0 ? (
-        <div className="p-6 rounded-xl bg-gray-950 border border-gray-800 text-center text-sm text-gray-400">
+        <div className="p-6 rounded-md bg-[#F7F7F5] border border-[#E9E9E7] text-center text-xs text-[#787774]">
           No projects found in this view.
         </div>
       ) : (
@@ -175,36 +171,36 @@ export default function ProjectsCard() {
             return (
               <div
                 key={proj.id}
-                className={`p-5 rounded-xl border flex flex-col justify-between space-y-4 transition-all ${
+                className={`p-4 rounded-md border flex flex-col justify-between space-y-3.5 transition-all ${
                   isCompleted
-                    ? 'bg-emerald-950/15 border-emerald-800/40'
+                    ? 'bg-[#DBEDDB]/20 border-[#DBEDDB]'
                     : isInProgress
-                    ? 'bg-blue-950/15 border-blue-800/50'
-                    : 'bg-gray-950/80 border-gray-800/80 hover:border-gray-700'
+                    ? 'bg-[#D3E5EF]/20 border-[#D3E5EF]'
+                    : 'bg-white border-[#E9E9E7] hover:bg-[rgba(55,53,47,0.02)]'
                 }`}
               >
-                <div className="space-y-2.5">
+                <div className="space-y-2">
                   <div className="flex items-center justify-between gap-2">
                     <div className="flex items-center gap-2">
                       {getDifficultyBadge(proj.difficulty)}
-                      <span className="text-[10px] font-mono text-emerald-400/90 px-1.5 py-0.5 rounded bg-gray-900 border border-gray-800">
+                      <span className="text-[10px] font-mono text-[#787774] px-1.5 py-0.2 rounded bg-[#F7F7F5] border border-[#E9E9E7]">
                         {proj.readiness_label}
                       </span>
                     </div>
-                    <span className="text-[11px] font-mono text-gray-500">
+                    <span className="text-[11px] font-mono text-[#787774]">
                       ⏱️ ~{proj.estimated_hours}h
                     </span>
                   </div>
 
-                  <h3 className="text-base font-bold text-white">{proj.title}</h3>
-                  <p className="text-xs text-gray-400 leading-relaxed">{proj.description}</p>
+                  <h3 className="text-sm font-semibold text-[#37352F]">{proj.title}</h3>
+                  <p className="text-xs text-[#787774] leading-relaxed">{proj.description}</p>
 
                   {/* Skills tags */}
-                  <div className="flex flex-wrap gap-1.5 pt-1">
+                  <div className="flex flex-wrap gap-1 pt-1">
                     {proj.primary_skills.map((s) => (
                       <span
                         key={s}
-                        className="px-2 py-0.5 rounded text-[10px] font-mono uppercase bg-gray-900 text-gray-300 border border-gray-800"
+                        className="px-1.5 py-0.2 rounded text-[10px] font-mono uppercase bg-[#F7F7F5] text-[#37352F] border border-[#E9E9E7]"
                       >
                         {s}
                       </span>
@@ -212,7 +208,7 @@ export default function ProjectsCard() {
                     {proj.stretch_skills.map((s) => (
                       <span
                         key={s}
-                        className="px-2 py-0.5 rounded text-[10px] font-mono uppercase bg-amber-500/10 text-amber-300 border border-amber-500/30 flex items-center gap-1"
+                        className="px-1.5 py-0.2 rounded text-[10px] font-mono uppercase bg-[#FDECC8] text-[#402f1d] flex items-center gap-1"
                       >
                         <span>⚡</span> {s} (Stretch)
                       </span>
@@ -221,11 +217,11 @@ export default function ProjectsCard() {
 
                   {/* Deliverables */}
                   {proj.deliverables && (
-                    <div className="pt-2 border-t border-gray-900 space-y-1">
-                      <span className="text-[10px] font-bold uppercase tracking-wider text-gray-500 block">
+                    <div className="pt-2 border-t border-[#E9E9E7] space-y-1">
+                      <span className="text-[10px] font-semibold uppercase tracking-wider text-[#787774] block">
                         Target GitHub Deliverables:
                       </span>
-                      <ul className="text-[11px] text-gray-400 space-y-0.5 list-disc list-inside">
+                      <ul className="text-xs text-[#787774] space-y-0.5 list-disc list-inside">
                         {proj.deliverables.map((d, i) => (
                           <li key={i}>{d}</li>
                         ))}
@@ -235,10 +231,10 @@ export default function ProjectsCard() {
                 </div>
 
                 {/* Status action buttons */}
-                <div className="pt-3 border-t border-gray-900 flex items-center justify-between">
-                  <span className="text-xs font-mono text-gray-500">
+                <div className="pt-2.5 border-t border-[#E9E9E7] flex items-center justify-between">
+                  <span className="text-xs font-mono text-[#787774]">
                     Status:{' '}
-                    <strong className={isCompleted ? 'text-emerald-400' : isInProgress ? 'text-blue-400' : 'text-gray-400'}>
+                    <strong className={isCompleted ? 'text-[#1c3829]' : isInProgress ? 'text-[#183347]' : 'text-[#787774]'}>
                       {isCompleted ? 'Completed ✓' : isInProgress ? 'In Progress' : 'Suggested'}
                     </strong>
                   </span>
@@ -249,7 +245,7 @@ export default function ProjectsCard() {
                         type="button"
                         onClick={() => handleStatusChange(proj.id, 'in_progress')}
                         disabled={isUpdating}
-                        className="px-3 py-1.5 bg-blue-600 hover:bg-blue-500 text-white rounded-lg text-xs font-semibold transition-colors cursor-pointer disabled:opacity-50"
+                        className="px-3 py-1.5 bg-[#2383E2] hover:bg-[#1b6ec2] text-white rounded-md text-xs font-medium transition-colors cursor-pointer disabled:opacity-50"
                       >
                         {isUpdating ? 'Saving…' : 'Start Project'}
                       </button>
@@ -260,7 +256,7 @@ export default function ProjectsCard() {
                         type="button"
                         onClick={() => handleStatusChange(proj.id, 'completed')}
                         disabled={isUpdating}
-                        className="px-3 py-1.5 bg-emerald-500 hover:bg-emerald-400 text-gray-950 rounded-lg text-xs font-bold transition-colors cursor-pointer disabled:opacity-50"
+                        className="px-3 py-1.5 bg-[#10b981] hover:bg-[#059669] text-white rounded-md text-xs font-medium transition-colors cursor-pointer disabled:opacity-50"
                       >
                         {isUpdating ? 'Saving…' : '✓ Mark Complete'}
                       </button>
@@ -271,7 +267,7 @@ export default function ProjectsCard() {
                         type="button"
                         onClick={() => handleStatusChange(proj.id, 'suggested')}
                         disabled={isUpdating}
-                        className="px-2.5 py-1 text-gray-500 hover:text-gray-400 text-[11px] font-mono cursor-pointer"
+                        className="px-2.5 py-1 text-[#787774] hover:text-[#37352F] text-[11px] font-mono cursor-pointer"
                       >
                         Reset
                       </button>

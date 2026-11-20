@@ -19,7 +19,7 @@ Full-Stack Developer | CloudTech Solutions
 `
 
 export default function ResumeAnalyzerCard() {
-  const { idToken, currentUser } = useAuth()
+  const { idToken } = useAuth()
   const [mode, setMode] = useState('text') // 'text' | 'file'
   const [resumeText, setResumeText] = useState('')
   const [selectedFile, setSelectedFile] = useState(null)
@@ -110,51 +110,51 @@ export default function ResumeAnalyzerCard() {
   }
 
   return (
-    <div className="bg-[#161b22] border border-[#30363d] rounded-2xl p-6 text-slate-100 shadow-xl">
+    <div className="bg-white border border-[#E9E9E7] rounded-md p-6 text-[#37352F] shadow-none space-y-6">
       {/* Header */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between pb-4 border-b border-[#30363d] gap-3">
+      <div className="flex flex-col md:flex-row md:items-center justify-between pb-4 border-b border-[#E9E9E7] gap-3">
         <div>
           <div className="flex items-center gap-2">
             <span className="text-xl">📄</span>
-            <h3 className="text-lg font-bold text-white tracking-tight">
+            <h3 className="text-base font-semibold text-[#37352F] tracking-tight">
               Resume vs GitHub Matcher
             </h3>
-            <span className="text-xs px-2.5 py-0.5 rounded-full font-medium bg-emerald-950/80 text-emerald-400 border border-emerald-800/60">
-              FR-10 • Interview Defense
+            <span className="text-[11px] px-2.5 py-0.5 rounded-full font-medium bg-[#D3E5EF] text-[#183347] border border-[#b8d7eb]">
+              Interview Defense
             </span>
           </div>
-          <p className="text-xs text-slate-400 mt-1">
+          <p className="text-xs text-[#787774] mt-1">
             Compare claimed skills on your resume against real GitHub code activity to detect unverified claims and uncover omitted strengths.
           </p>
         </div>
 
         <button
           onClick={handleLoadSample}
-          className="text-xs px-3 py-1.5 rounded-lg border border-[#30363d] hover:border-slate-500 bg-[#21262d] text-slate-300 hover:text-white transition-colors self-start md:self-auto flex items-center gap-1.5"
+          className="text-xs px-3 py-1.5 rounded-md border border-[#E9E9E7] hover:bg-[#F7F7F5] bg-white text-[#37352F] transition-colors self-start md:self-auto flex items-center gap-1.5 cursor-pointer font-medium"
         >
           <span>💡</span> Try Sample Resume
         </button>
       </div>
 
       {/* Input Options */}
-      <div className="mt-5 space-y-4">
-        <div className="flex gap-2 p-1 bg-[#0d1117] rounded-xl border border-[#30363d] max-w-xs">
+      <div className="space-y-4">
+        <div className="flex gap-1.5 p-1 bg-[#F7F7F5] rounded-md border border-[#E9E9E7] max-w-xs">
           <button
             onClick={() => setMode('text')}
-            className={`flex-1 text-xs py-1.5 rounded-lg font-medium transition-all ${
+            className={`flex-1 text-xs py-1.5 rounded-sm font-medium transition-all cursor-pointer ${
               mode === 'text'
-                ? 'bg-[#238636] text-white shadow'
-                : 'text-slate-400 hover:text-white'
+                ? 'bg-white text-[#37352F] border border-[#E9E9E7] shadow-none'
+                : 'text-[#787774] hover:text-[#37352F]'
             }`}
           >
             Paste Text
           </button>
           <button
             onClick={() => setMode('file')}
-            className={`flex-1 text-xs py-1.5 rounded-lg font-medium transition-all ${
+            className={`flex-1 text-xs py-1.5 rounded-sm font-medium transition-all cursor-pointer ${
               mode === 'file'
-                ? 'bg-[#238636] text-white shadow'
-                : 'text-slate-400 hover:text-white'
+                ? 'bg-white text-[#37352F] border border-[#E9E9E7] shadow-none'
+                : 'text-[#787774] hover:text-[#37352F]'
             }`}
           >
             Upload PDF / TXT
@@ -168,11 +168,11 @@ export default function ResumeAnalyzerCard() {
               value={resumeText}
               onChange={(e) => setResumeText(e.target.value)}
               placeholder="Paste your resume, skills section, or job application bio here..."
-              className="w-full bg-[#0d1117] border border-[#30363d] rounded-xl p-3 text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:border-emerald-500 font-mono transition-colors"
+              className="w-full bg-[#F7F7F5] border border-[#E9E9E7] focus:bg-white focus:border-[#2383E2] rounded-md p-3 text-xs text-[#37352F] placeholder-[#787774] focus:outline-none font-mono transition-colors"
             />
           </div>
         ) : (
-          <div className="border-2 border-dashed border-[#30363d] hover:border-slate-500 rounded-xl p-6 text-center bg-[#0d1117] transition-colors">
+          <div className="border-2 border-dashed border-[#E9E9E7] hover:border-[#787774] rounded-md p-6 text-center bg-[#F7F7F5] transition-colors">
             <input
               type="file"
               accept=".pdf,.txt,.md"
@@ -185,10 +185,10 @@ export default function ResumeAnalyzerCard() {
               className="cursor-pointer flex flex-col items-center justify-center gap-2"
             >
               <span className="text-3xl">📁</span>
-              <span className="text-sm font-medium text-slate-200">
+              <span className="text-xs font-medium text-[#37352F]">
                 {selectedFile ? selectedFile.name : 'Click to choose resume PDF or TXT'}
               </span>
-              <span className="text-xs text-slate-500">
+              <span className="text-[11px] text-[#787774]">
                 {selectedFile
                   ? `${(selectedFile.size / 1024).toFixed(1)} KB selected`
                   : 'Supported formats: .pdf, .txt, .md (Max 5MB)'}
@@ -198,7 +198,7 @@ export default function ResumeAnalyzerCard() {
         )}
 
         {error && (
-          <div className="p-3 bg-red-950/40 border border-red-800/60 rounded-xl text-xs text-red-300">
+          <div className="p-3 bg-[#FFE2DD] border border-[#f5c6cb] rounded-md text-xs text-[#5d1715]">
             {error}
           </div>
         )}
@@ -206,11 +206,11 @@ export default function ResumeAnalyzerCard() {
         <button
           onClick={handleAnalyze}
           disabled={analyzing}
-          className="w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-medium text-sm transition-all shadow-lg shadow-emerald-950/40 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+          className="w-full py-2.5 px-4 rounded-md bg-[#2383E2] hover:bg-[#1d6fc2] text-white font-medium text-xs transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
         >
           {analyzing ? (
             <>
-              <div className="w-4 h-4 border-2 border-white/20 border-t-white rounded-full animate-spin" />
+              <div className="w-3.5 h-3.5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
               <span>Analyzing against GitHub data...</span>
             </>
           ) : (
@@ -224,49 +224,49 @@ export default function ResumeAnalyzerCard() {
 
       {/* Analysis Results Display */}
       {analysis && (
-        <div className="mt-8 pt-6 border-t border-[#30363d] space-y-6 animate-fadeIn">
+        <div className="pt-6 border-t border-[#E9E9E7] space-y-6">
           {/* Credibility Score Banner */}
-          <div className="bg-[#0d1117] border border-[#30363d] rounded-xl p-5">
+          <div className="bg-[#F7F7F5] border border-[#E9E9E7] rounded-md p-5 space-y-4">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div>
-                <span className="text-xs font-mono uppercase tracking-wider text-slate-400">
+                <span className="text-[10px] font-mono uppercase tracking-wider text-[#787774]">
                   Resume Code Credibility
                 </span>
                 <div className="flex items-baseline gap-2 mt-1">
-                  <span className="text-3xl font-extrabold text-white">
+                  <span className="text-3xl font-bold text-[#37352F] font-mono">
                     {analysis.summary.credibility_pct}%
                   </span>
-                  <span className="text-xs text-slate-400">
+                  <span className="text-xs text-[#787774]">
                     of claimed skills verified by public GitHub activity
                   </span>
                 </div>
               </div>
 
               <div className="flex flex-wrap gap-2">
-                <span className="px-3 py-1 rounded-lg text-xs font-medium bg-[#161b22] border border-[#30363d] text-slate-300">
-                  Claimed: <strong className="text-white">{analysis.summary.total_claimed}</strong>
+                <span className="px-2.5 py-1 rounded-md text-xs font-medium bg-white border border-[#E9E9E7] text-[#37352F]">
+                  Claimed: <strong>{analysis.summary.total_claimed}</strong>
                 </span>
-                <span className="px-3 py-1 rounded-lg text-xs font-medium bg-emerald-950/60 border border-emerald-800/50 text-emerald-300">
-                  Verified: <strong className="text-emerald-200">{analysis.summary.verified_count}</strong>
+                <span className="px-2.5 py-1 rounded-md text-xs font-medium bg-[#DBEDDB] border border-[#c2e2c2] text-[#1c3829]">
+                  Verified: <strong>{analysis.summary.verified_count}</strong>
                 </span>
-                <span className="px-3 py-1 rounded-lg text-xs font-medium bg-amber-950/60 border border-amber-800/50 text-amber-300">
-                  Unverified: <strong className="text-amber-200">{analysis.summary.unverified_count}</strong>
+                <span className="px-2.5 py-1 rounded-md text-xs font-medium bg-[#FDECC8] border border-[#fae0a6] text-[#402f1d]">
+                  Unverified: <strong>{analysis.summary.unverified_count}</strong>
                 </span>
-                <span className="px-3 py-1 rounded-lg text-xs font-medium bg-indigo-950/60 border border-indigo-800/50 text-indigo-300">
-                  Hidden Gems: <strong className="text-indigo-200">{analysis.summary.hidden_strengths_count}</strong>
+                <span className="px-2.5 py-1 rounded-md text-xs font-medium bg-[#D3E5EF] border border-[#b8d7eb] text-[#183347]">
+                  Hidden Gems: <strong>{analysis.summary.hidden_strengths_count}</strong>
                 </span>
               </div>
             </div>
 
             {/* Credibility Progress Bar */}
-            <div className="w-full bg-[#161b22] h-2.5 rounded-full overflow-hidden mt-4 border border-[#30363d]/60">
+            <div className="w-full bg-[#E9E9E7] h-2 rounded-full overflow-hidden">
               <div
                 className={`h-full transition-all duration-700 ${
                   analysis.summary.credibility_pct >= 70
-                    ? 'bg-gradient-to-r from-emerald-500 to-teal-400'
+                    ? 'bg-[#0F7B6C]'
                     : analysis.summary.credibility_pct >= 40
-                    ? 'bg-gradient-to-r from-amber-500 to-yellow-400'
-                    : 'bg-gradient-to-r from-rose-500 to-red-400'
+                    ? 'bg-[#D9730D]'
+                    : 'bg-[#DF5452]'
                 }`}
                 style={{ width: `${analysis.summary.credibility_pct}%` }}
               />
@@ -276,16 +276,16 @@ export default function ResumeAnalyzerCard() {
           {/* Actionable Recommendations */}
           {analysis.recommendations && analysis.recommendations.length > 0 && (
             <div className="space-y-2">
-              <h4 className="text-xs font-mono uppercase tracking-wider text-slate-400">
+              <h4 className="text-[11px] font-mono uppercase tracking-wider text-[#787774]">
                 Actionable Recruiter Insights
               </h4>
               <div className="space-y-2">
                 {analysis.recommendations.map((rec, i) => (
                   <div
                     key={i}
-                    className="p-3 bg-[#0d1117] border border-[#30363d] rounded-xl text-xs text-slate-300 flex items-start gap-2.5"
+                    className="p-3 bg-[#F7F7F5] border border-[#E9E9E7] rounded-md text-xs text-[#37352F] flex items-start gap-2.5"
                   >
-                    <span className="text-emerald-400 text-sm mt-0.5">💡</span>
+                    <span className="text-sm mt-0.5">💡</span>
                     <span>{rec}</span>
                   </div>
                 ))}
@@ -295,13 +295,13 @@ export default function ResumeAnalyzerCard() {
 
           {/* Breakdown Tabs */}
           <div>
-            <div className="flex border-b border-[#30363d] gap-4 mb-4">
+            <div className="flex border-b border-[#E9E9E7] gap-4 mb-4">
               <button
                 onClick={() => setActiveTab('verified')}
-                className={`pb-2.5 text-xs font-semibold tracking-wide border-b-2 transition-all flex items-center gap-1.5 ${
+                className={`pb-2 text-xs font-medium tracking-wide border-b-2 transition-all flex items-center gap-1.5 cursor-pointer ${
                   activeTab === 'verified'
-                    ? 'border-emerald-400 text-emerald-400'
-                    : 'border-transparent text-slate-400 hover:text-slate-200'
+                    ? 'border-[#37352F] text-[#37352F]'
+                    : 'border-transparent text-[#787774] hover:text-[#37352F]'
                 }`}
               >
                 <span>✅</span> Verified by GitHub ({analysis.verified_skills?.length || 0})
@@ -309,66 +309,66 @@ export default function ResumeAnalyzerCard() {
 
               <button
                 onClick={() => setActiveTab('unverified')}
-                className={`pb-2.5 text-xs font-semibold tracking-wide border-b-2 transition-all flex items-center gap-1.5 ${
+                className={`pb-2 text-xs font-medium tracking-wide border-b-2 transition-all flex items-center gap-1.5 cursor-pointer ${
                   activeTab === 'unverified'
-                    ? 'border-amber-400 text-amber-400'
-                    : 'border-transparent text-slate-400 hover:text-slate-200'
+                    ? 'border-[#37352F] text-[#37352F]'
+                    : 'border-transparent text-[#787774] hover:text-[#37352F]'
                 }`}
               >
-                <span>⚠️</span> Interview Risks / Unverified ({analysis.unverified_skills?.length || 0})
+                <span>⚠️</span> Interview Risks ({analysis.unverified_skills?.length || 0})
               </button>
 
               <button
                 onClick={() => setActiveTab('hidden')}
-                className={`pb-2.5 text-xs font-semibold tracking-wide border-b-2 transition-all flex items-center gap-1.5 ${
+                className={`pb-2 text-xs font-medium tracking-wide border-b-2 transition-all flex items-center gap-1.5 cursor-pointer ${
                   activeTab === 'hidden'
-                    ? 'border-indigo-400 text-indigo-400'
-                    : 'border-transparent text-slate-400 hover:text-slate-200'
+                    ? 'border-[#37352F] text-[#37352F]'
+                    : 'border-transparent text-[#787774] hover:text-[#37352F]'
                 }`}
               >
-                <span>💎</span> Hidden Strengths Omitted ({analysis.hidden_strengths?.length || 0})
+                <span>💎</span> Hidden Strengths ({analysis.hidden_strengths?.length || 0})
               </button>
             </div>
 
             {/* Tab: Verified */}
             {activeTab === 'verified' && (
-              <div className="space-y-2.5">
+              <div className="space-y-2">
                 {(!analysis.verified_skills || analysis.verified_skills.length === 0) ? (
-                  <p className="text-xs text-slate-500 py-4 text-center">
+                  <p className="text-xs text-[#787774] py-4 text-center">
                     No claimed skills have verified GitHub code proof yet.
                   </p>
                 ) : (
                   analysis.verified_skills.map((skill) => (
                     <div
                       key={skill.skill_id}
-                      className="p-3 bg-[#0d1117] border border-emerald-900/40 rounded-xl flex items-center justify-between gap-3"
+                      className="p-3 bg-[#F7F7F5] border border-[#E9E9E7] rounded-md flex items-center justify-between gap-3"
                     >
                       <div>
                         <div className="flex items-center gap-2">
-                          <span className="font-semibold text-sm text-white">
+                          <span className="font-medium text-xs text-[#37352F]">
                             {skill.name}
                           </span>
-                          <span className="text-[10px] px-2 py-0.5 rounded font-mono bg-emerald-950 text-emerald-400 border border-emerald-800/60">
+                          <span className="text-[10px] px-2 py-0.5 rounded font-mono bg-[#DBEDDB] text-[#1c3829] border border-[#c2e2c2]">
                             {skill.status}
                           </span>
                         </div>
-                        <span className="text-xs text-slate-400">{skill.category}</span>
+                        <span className="text-[11px] text-[#787774]">{skill.category}</span>
                       </div>
 
-                      <div className="text-right flex items-center gap-4">
+                      <div className="text-right flex items-center gap-3">
                         {skill.repos_count > 0 && (
-                          <div className="text-xs text-slate-400 hidden sm:block">
+                          <div className="text-[11px] text-[#787774] hidden sm:block">
                             <span>{skill.repos_count} repos</span> •{' '}
                             <span>{skill.commits_count} commits</span>
                           </div>
                         )}
-                        <div className="w-16 bg-[#161b22] h-2 rounded-full overflow-hidden border border-[#30363d]">
+                        <div className="w-16 bg-[#E9E9E7] h-1.5 rounded-full overflow-hidden">
                           <div
-                            className="bg-emerald-400 h-full"
+                            className="bg-[#0F7B6C] h-full"
                             style={{ width: `${skill.score}%` }}
                           />
                         </div>
-                        <span className="text-xs font-mono font-bold text-emerald-300 w-8">
+                        <span className="text-xs font-mono font-semibold text-[#0F7B6C] w-8">
                           {skill.score}%
                         </span>
                       </div>
@@ -380,36 +380,36 @@ export default function ResumeAnalyzerCard() {
 
             {/* Tab: Unverified / Interview Risks */}
             {activeTab === 'unverified' && (
-              <div className="space-y-2.5">
+              <div className="space-y-2">
                 {(!analysis.unverified_skills || analysis.unverified_skills.length === 0) ? (
-                  <p className="text-xs text-slate-500 py-4 text-center">
+                  <p className="text-xs text-[#787774] py-4 text-center">
                     Great news! None of your claimed skills are unverified.
                   </p>
                 ) : (
                   analysis.unverified_skills.map((skill) => (
                     <div
                       key={skill.skill_id}
-                      className="p-3 bg-[#0d1117] border border-amber-900/40 rounded-xl space-y-1.5"
+                      className="p-3 bg-[#F7F7F5] border border-[#E9E9E7] rounded-md space-y-1.5"
                     >
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2">
-                          <span className="font-semibold text-sm text-white">
+                          <span className="font-medium text-xs text-[#37352F]">
                             {skill.name}
                           </span>
-                          <span className="text-[10px] px-2 py-0.5 rounded font-mono bg-amber-950 text-amber-400 border border-amber-800/60">
+                          <span className="text-[10px] px-2 py-0.5 rounded font-mono bg-[#FDECC8] text-[#402f1d] border border-[#fae0a6]">
                             {skill.status}
                           </span>
                         </div>
-                        <span className="text-xs font-mono text-amber-300">
+                        <span className="text-xs font-mono text-[#D9730D] font-medium">
                           GitHub Score: {skill.score}%
                         </span>
                       </div>
 
-                      <p className="text-xs text-amber-200/80">
-                        ⚠️ <strong>Risk:</strong> {skill.risk}
+                      <p className="text-xs text-[#787774]">
+                        ⚠️ <strong className="text-[#37352F]">Risk:</strong> {skill.risk}
                       </p>
-                      <p className="text-xs text-slate-400">
-                        💡 <strong>Suggestion:</strong> {skill.suggestion}
+                      <p className="text-xs text-[#787774]">
+                        💡 <strong className="text-[#37352F]">Suggestion:</strong> {skill.suggestion}
                       </p>
                     </div>
                   ))
@@ -419,31 +419,31 @@ export default function ResumeAnalyzerCard() {
 
             {/* Tab: Hidden Strengths Omitted */}
             {activeTab === 'hidden' && (
-              <div className="space-y-2.5">
+              <div className="space-y-2">
                 {(!analysis.hidden_strengths || analysis.hidden_strengths.length === 0) ? (
-                  <p className="text-xs text-slate-500 py-4 text-center">
+                  <p className="text-xs text-[#787774] py-4 text-center">
                     No omitted strengths detected. All your top GitHub skills are on your resume!
                   </p>
                 ) : (
                   analysis.hidden_strengths.map((skill) => (
                     <div
                       key={skill.skill_id}
-                      className="p-3 bg-[#0d1117] border border-indigo-900/40 rounded-xl flex items-center justify-between gap-3"
+                      className="p-3 bg-[#F7F7F5] border border-[#E9E9E7] rounded-md flex items-center justify-between gap-3"
                     >
                       <div>
                         <div className="flex items-center gap-2">
-                          <span className="font-semibold text-sm text-white">
+                          <span className="font-medium text-xs text-[#37352F]">
                             {skill.name}
                           </span>
-                          <span className="text-[10px] px-2 py-0.5 rounded font-mono bg-indigo-950 text-indigo-400 border border-indigo-800/60">
+                          <span className="text-[10px] px-2 py-0.5 rounded font-mono bg-[#D3E5EF] text-[#183347] border border-[#b8d7eb]">
                             Verified on GitHub
                           </span>
                         </div>
-                        <p className="text-xs text-slate-400 mt-0.5">{skill.suggestion}</p>
+                        <p className="text-xs text-[#787774] mt-0.5">{skill.suggestion}</p>
                       </div>
 
-                      <div className="text-right flex items-center gap-2 flex-shrink-0">
-                        <span className="text-xs font-mono font-bold text-indigo-300">
+                      <div className="text-right flex items-center gap-2 shrink-0">
+                        <span className="text-xs font-mono font-medium text-[#2383E2]">
                           {skill.score}% score
                         </span>
                       </div>

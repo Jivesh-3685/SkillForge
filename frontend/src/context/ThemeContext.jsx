@@ -4,92 +4,74 @@ import { TRANSLATIONS } from '../i18n/translations'
 const ThemeContext = createContext(null)
 
 export const THEMES = {
-  dark: {
-    id: 'dark',
-    name: 'Dark (Default)',
-    description: 'Clean obsidian and slate dark theme',
+  notion: {
+    id: 'notion',
+    name: 'Notion Minimal (Default)',
+    description: 'Crisp white canvas with warm off-white surfaces & paper-like 2D feel',
     colors: {
-      bgMain: '#0e0e10',
-      bgCard: '#161b22',
-      bgCardHover: '#1c2128',
-      bgSidebar: '#14181f',
-      bgInput: '#0d1117',
-      borderColor: '#30363d',
-      textMain: '#f0f6fc',
-      textMuted: '#8b949e',
+      bgMain: '#FFFFFF',
+      bgCard: '#FFFFFF',
+      bgCardHover: 'rgba(55, 53, 47, 0.04)',
+      bgSidebar: '#F7F7F5',
+      bgInput: '#F7F7F5',
+      borderColor: '#E9E9E7',
+      textMain: '#37352F',
+      textMuted: '#787774',
     },
   },
-  midnight: {
-    id: 'midnight',
-    name: 'Midnight Blue',
-    description: 'Deep navy, indigo & cobalt tones',
+  warm: {
+    id: 'warm',
+    name: 'Notion Warm Paper',
+    description: 'Subtle warm-tinted canvas with off-white callouts',
     colors: {
-      bgMain: '#070b14',
-      bgCard: '#0f172a',
-      bgCardHover: '#1e293b',
-      bgSidebar: '#0b1120',
-      bgInput: '#050811',
-      borderColor: '#1e3a5f',
-      textMain: '#e2e8f0',
-      textMuted: '#94a3b8',
-    },
-  },
-  forest: {
-    id: 'forest',
-    name: 'Forest',
-    description: 'Earthy emerald, sage & pine dark tones',
-    colors: {
-      bgMain: '#08100c',
-      bgCard: '#0f1f17',
-      bgCardHover: '#162d22',
-      bgSidebar: '#0b1711',
-      bgInput: '#050a08',
-      borderColor: '#1d432e',
-      textMain: '#e6f4ea',
-      textMuted: '#8fa899',
-    },
-  },
-  sunset: {
-    id: 'sunset',
-    name: 'Sunset',
-    description: 'Warm mahogany, amber & charcoal',
-    colors: {
-      bgMain: '#120a0d',
-      bgCard: '#1e1216',
-      bgCardHover: '#2d1b22',
-      bgSidebar: '#170d11',
-      bgInput: '#0a0507',
-      borderColor: '#3f1f28',
-      textMain: '#faebd7',
-      textMuted: '#bda6ad',
+      bgMain: '#FBFBFA',
+      bgCard: '#FFFFFF',
+      bgCardHover: 'rgba(55, 53, 47, 0.04)',
+      bgSidebar: '#F7F7F5',
+      bgInput: '#F7F7F5',
+      borderColor: '#E9E9E7',
+      textMain: '#37352F',
+      textMuted: '#787774',
     },
   },
   light: {
     id: 'light',
-    name: 'Clean Light',
-    description: 'Minimalist crisp high-contrast light theme',
+    name: 'Notion Pure White',
+    description: 'Minimalist high-contrast pure white palette',
     colors: {
-      bgMain: '#f4f6f8',
-      bgCard: '#ffffff',
-      bgCardHover: '#f8fafc',
-      bgSidebar: '#ffffff',
-      bgInput: '#f1f5f9',
-      borderColor: '#e2e8f0',
-      textMain: '#0f172a',
-      textMuted: '#64748b',
+      bgMain: '#FFFFFF',
+      bgCard: '#F7F7F5',
+      bgCardHover: 'rgba(55, 53, 47, 0.06)',
+      bgSidebar: '#FFFFFF',
+      bgInput: '#FFFFFF',
+      borderColor: '#E9E9E7',
+      textMain: '#37352F',
+      textMuted: '#787774',
+    },
+  },
+  dark: {
+    id: 'dark',
+    name: 'Notion Dark',
+    description: 'Authentic Notion dark mode with deep warm charcoal surfaces',
+    colors: {
+      bgMain: '#191919',
+      bgCard: '#202020',
+      bgCardHover: 'rgba(255, 255, 255, 0.04)',
+      bgSidebar: '#202020',
+      bgInput: '#262626',
+      borderColor: '#2F2F2F',
+      textMain: '#E3E2DE',
+      textMuted: '#9B9A97',
     },
   },
 }
 
 export const ACCENT_MAP = {
-  emerald: { id: 'emerald', name: 'Emerald', primary: '#10b981', hover: '#059669', soft: 'rgba(16, 185, 129, 0.16)', text: '#34d399', bgClass: 'bg-emerald-500' },
-  blue: { id: 'blue', name: 'Blue', primary: '#3b82f6', hover: '#2563eb', soft: 'rgba(59, 130, 246, 0.16)', text: '#60a5fa', bgClass: 'bg-blue-500' },
-  violet: { id: 'violet', name: 'Violet', primary: '#8b5cf6', hover: '#7c3aed', soft: 'rgba(139, 92, 246, 0.16)', text: '#a78bfa', bgClass: 'bg-violet-500' },
-  rose: { id: 'rose', name: 'Rose', primary: '#f43f5e', hover: '#e11d48', soft: 'rgba(244, 63, 94, 0.16)', text: '#fb7185', bgClass: 'bg-rose-500' },
-  amber: { id: 'amber', name: 'Amber', primary: '#f59e0b', hover: '#d97706', soft: 'rgba(245, 158, 11, 0.16)', text: '#fbbf24', bgClass: 'bg-amber-500' },
-  cyan: { id: 'cyan', name: 'Cyan', primary: '#06b6d4', hover: '#0891b2', soft: 'rgba(6, 182, 212, 0.16)', text: '#22d3ee', bgClass: 'bg-cyan-500' },
-  green: { id: 'green', name: 'Green', primary: '#22c55e', hover: '#16a34a', soft: 'rgba(34, 197, 94, 0.16)', text: '#4ade80', bgClass: 'bg-green-500' },
-  orange: { id: 'orange', name: 'Orange', primary: '#f97316', hover: '#ea580c', soft: 'rgba(249, 115, 22, 0.16)', text: '#fb923c', bgClass: 'bg-orange-500' },
+  blue: { id: 'blue', name: 'Notion Blue', primary: '#2383E2', hover: '#1b6ec2', soft: 'rgba(35, 131, 226, 0.1)', text: '#2383E2', bgClass: 'bg-[#2383E2]' },
+  emerald: { id: 'emerald', name: 'Sage Green', primary: '#0F7B6C', hover: '#0b5f54', soft: 'rgba(15, 123, 108, 0.1)', text: '#0F7B6C', bgClass: 'bg-[#0F7B6C]' },
+  violet: { id: 'violet', name: 'Purple', primary: '#6940A5', hover: '#533185', soft: 'rgba(105, 64, 165, 0.1)', text: '#6940A5', bgClass: 'bg-[#6940A5]' },
+  rose: { id: 'rose', name: 'Dusty Pink', primary: '#DF5452', hover: '#c24240', soft: 'rgba(223, 84, 82, 0.1)', text: '#DF5452', bgClass: 'bg-[#DF5452]' },
+  amber: { id: 'amber', name: 'Warm Amber', primary: '#D9730D', hover: '#ba6007', soft: 'rgba(217, 115, 13, 0.1)', text: '#D9730D', bgClass: 'bg-[#D9730D]' },
 }
 
 export const LANGUAGES = [
@@ -108,25 +90,38 @@ export const FONT_SIZES = [
 ]
 
 const DEFAULT_SETTINGS = {
-  theme: 'dark',
+  theme: 'notion',
   language: 'en',
-  accentColor: 'emerald',
+  accentColor: 'blue',
   fontSize: 'normal',
   sidebarCollapsed: false,
   sidebarWidth: 260,
   compactMode: false,
-  showPhaseLabels: true,
+  showPhaseLabels: false,
   animationsEnabled: true,
   notificationsEnabled: true,
 }
 
-const STORAGE_KEY = 'skillforge-settings-v2'
+const STORAGE_KEY = 'skillforge-settings-v3'
 
 export function ThemeProvider({ children }) {
   const [settings, setSettings] = useState(() => {
     try {
+      // Purge stale dark theme keys from earlier versions
+      localStorage.removeItem('skillforge-settings')
+      localStorage.removeItem('skillforge-settings-v1')
+      localStorage.removeItem('skillforge-settings-v2')
+
       const saved = localStorage.getItem(STORAGE_KEY)
-      return saved ? { ...DEFAULT_SETTINGS, ...JSON.parse(saved) } : DEFAULT_SETTINGS
+      if (saved) {
+        const parsed = JSON.parse(saved)
+        // Ensure theme is a valid modern Notion theme
+        if (!parsed.theme || !THEMES[parsed.theme]) {
+          parsed.theme = 'notion'
+        }
+        return { ...DEFAULT_SETTINGS, ...parsed, showPhaseLabels: false }
+      }
+      return DEFAULT_SETTINGS
     } catch {
       return DEFAULT_SETTINGS
     }
@@ -151,8 +146,8 @@ export function ThemeProvider({ children }) {
     } catch {}
 
     const root = document.documentElement
-    const currentTheme = THEMES[settings.theme] || THEMES.dark
-    const currentAccent = ACCENT_MAP[settings.accentColor] || ACCENT_MAP.emerald
+    const currentTheme = THEMES[settings.theme] || THEMES.notion
+    const currentAccent = ACCENT_MAP[settings.accentColor] || ACCENT_MAP.blue
     const currentFontSize = FONT_SIZES.find((f) => f.id === settings.fontSize) || FONT_SIZES[1]
 
     // Set attributes for CSS hooks
@@ -161,7 +156,7 @@ export function ThemeProvider({ children }) {
     root.setAttribute('data-compact', settings.compactMode ? 'true' : 'false')
     root.setAttribute('data-animations', settings.animationsEnabled ? 'true' : 'false')
 
-    // Theme colors
+    // Theme surface & text colors
     root.style.setProperty('--bg-main', currentTheme.colors.bgMain)
     root.style.setProperty('--bg-card', currentTheme.colors.bgCard)
     root.style.setProperty('--bg-card-hover', currentTheme.colors.bgCardHover)
@@ -202,11 +197,11 @@ export function ThemeProvider({ children }) {
 
   const resetSettings = useCallback(() => {
     setSettings(DEFAULT_SETTINGS)
-    showToast('✓ Settings reset to default values')
+    showToast('✓ Settings reset to Notion default values')
   }, [showToast])
 
-  const theme = THEMES[settings.theme] || THEMES.dark
-  const accent = ACCENT_MAP[settings.accentColor] || ACCENT_MAP.emerald
+  const theme = THEMES[settings.theme] || THEMES.notion
+  const accent = ACCENT_MAP[settings.accentColor] || ACCENT_MAP.blue
 
   return (
     <ThemeContext.Provider
@@ -227,7 +222,7 @@ export function ThemeProvider({ children }) {
 
       {/* Floating feedback toast */}
       {toastMessage && (
-        <div className="fixed bottom-6 right-6 z-50 flex items-center gap-2 px-4 py-2.5 rounded-xl shadow-2xl border border-white/20 bg-slate-900/90 text-white text-xs font-medium backdrop-blur-md animate-fadeIn">
+        <div className="fixed bottom-6 right-6 z-50 flex items-center gap-2 px-3.5 py-2 rounded-md shadow-md border border-[#222] bg-[#37352F] text-white text-xs font-medium animate-fadeIn">
           <span>{toastMessage}</span>
         </div>
       )}

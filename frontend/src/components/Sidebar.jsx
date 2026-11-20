@@ -12,7 +12,7 @@ export default function Sidebar({
   onMobileClose,
 }) {
   const { currentUser, userProfile, logout } = useAuth()
-  const { settings, updateSetting, theme, t } = useTheme()
+  const { settings, updateSetting, t } = useTheme()
   const [authModalOpen, setAuthModalOpen] = useState(false)
   const [isHoveringBorder, setIsHoveringBorder] = useState(false)
   const [isResizing, setIsResizing] = useState(false)
@@ -113,7 +113,7 @@ export default function Sidebar({
       {mobileOpen && (
         <div
           onClick={onMobileClose}
-          className="fixed inset-0 z-40 bg-black/60 backdrop-blur-xs md:hidden animate-fadeIn"
+          className="fixed inset-0 z-40 bg-black/20 backdrop-blur-xs md:hidden animate-fadeIn"
         />
       )}
 
@@ -122,41 +122,41 @@ export default function Sidebar({
           width: computedWidth,
           transition: isResizing ? 'none' : 'width 0.22s cubic-bezier(0.16, 1, 0.3, 1), transform 0.22s ease',
         }}
-        className={`fixed top-0 left-0 h-screen z-50 flex flex-col border-r bg-[#14181f] border-[#30363d] select-none overflow-x-hidden ${
+        className={`fixed top-0 left-0 h-screen z-50 flex flex-col border-r bg-[#F7F7F5] border-[#E9E9E7] select-none overflow-x-hidden ${
           mobileOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'
         }`}
       >
         {/* Workspace Brand Header */}
-        <div className="flex items-center justify-between h-14 px-3.5 border-b border-[#30363d] flex-shrink-0">
+        <div className="flex items-center justify-between h-14 px-3.5 border-b border-[#E9E9E7] flex-shrink-0">
           {!collapsed ? (
             <div className="flex items-center gap-2.5 min-w-0">
-              <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-purple-500 to-emerald-500 p-[1.5px] flex items-center justify-center shadow-sm flex-shrink-0">
+              <div className="w-7 h-7 rounded-md p-0.5 flex items-center justify-center flex-shrink-0 bg-white border border-[#E9E9E7]">
                 <img
                   src="/logo.png"
-                  alt="SkillForge AI Logo"
-                  className="w-full h-full rounded-[10px] object-cover"
+                  alt="SkillForge Logo"
+                  className="w-full h-full rounded object-contain"
                 />
               </div>
               <div className="min-w-0">
                 <div className="flex items-center gap-1.5">
-                  <span className="font-bold text-xs tracking-tight truncate text-slate-100">
+                  <span className="font-semibold text-xs tracking-tight truncate text-[#37352F]">
                     SkillForge AI
                   </span>
-                  <span className="text-[9px] px-1.5 py-0.2 rounded font-mono bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                  <span className="text-[9px] px-1.5 py-0.2 rounded font-medium bg-[#DBEDDB] text-[#1c3829]">
                     v1.0
                   </span>
                 </div>
-                <p className="text-[10px] truncate text-slate-400">
+                <p className="text-[10px] truncate text-[#787774]">
                   GitHub Learning Mentor
                 </p>
               </div>
             </div>
           ) : (
-            <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-purple-500 to-emerald-500 p-[1.5px] flex items-center justify-center mx-auto shadow-sm">
+            <div className="w-7 h-7 rounded-md p-0.5 flex items-center justify-center mx-auto bg-white border border-[#E9E9E7]">
               <img
                 src="/logo.png"
-                alt="SkillForge AI Logo"
-                className="w-full h-full rounded-[10px] object-cover"
+                alt="SkillForge Logo"
+                className="w-full h-full rounded object-contain"
               />
             </div>
           )}
@@ -165,7 +165,7 @@ export default function Sidebar({
           <div className="flex items-center gap-1">
             <button
               onClick={toggleCollapse}
-              className="w-7 h-7 rounded-lg hidden md:flex items-center justify-center hover:bg-white/5 transition-colors text-slate-400 cursor-pointer"
+              className="w-6 h-6 rounded hover:bg-[rgba(55,53,47,0.08)] hidden md:flex items-center justify-center transition-colors text-[#787774] cursor-pointer"
               title={collapsed ? 'Expand sidebar (Ctrl+\\)' : 'Collapse sidebar (Ctrl+\\)'}
             >
               <svg
@@ -174,14 +174,14 @@ export default function Sidebar({
                 viewBox="0 0 24 24"
                 stroke="currentColor"
               >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 19l-7-7 7-7m8 14l-7-7 7-7" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M11 19l-7-7 7-7m8 14l-7-7 7-7" />
               </svg>
             </button>
 
             {/* Mobile close button */}
             <button
               onClick={onMobileClose}
-              className="w-7 h-7 rounded-lg flex md:hidden items-center justify-center hover:bg-white/10 text-slate-400"
+              className="w-6 h-6 rounded flex md:hidden items-center justify-center hover:bg-[rgba(55,53,47,0.08)] text-[#787774]"
             >
               ✕
             </button>
@@ -189,21 +189,21 @@ export default function Sidebar({
         </div>
 
         {/* Search / Command Palette Trigger */}
-        <div className="p-2 border-b border-white/[0.04] flex-shrink-0">
+        <div className="p-2 border-b border-[#E9E9E7] flex-shrink-0">
           <button
             onClick={onOpenCommandPalette}
-            className={`w-full flex items-center gap-2 px-2.5 py-1.5 rounded-lg border border-[#30363d] bg-white/[0.02] hover:bg-white/[0.06] hover:border-white/20 transition-all cursor-pointer ${
+            className={`w-full flex items-center gap-2 px-2.5 py-1.5 rounded-md border border-[#E9E9E7] bg-white hover:bg-[rgba(55,53,47,0.04)] transition-all cursor-pointer ${
               collapsed ? 'justify-center px-1' : ''
             }`}
             title="Search or ask (Ctrl+K)"
           >
-            <span className="text-xs">🔍</span>
+            <span className="text-xs text-[#787774]">🔍</span>
             {!collapsed && (
               <>
-                <span className="text-xs text-slate-400 flex-1 text-left truncate">
+                <span className="text-xs text-[#787774] flex-1 text-left truncate">
                   {t('searchOrAsk', 'Search or ask…')}
                 </span>
-                <kbd className="text-[9px] px-1 py-0.5 rounded border border-[#30363d] text-slate-400 font-mono">
+                <kbd className="text-[9px] px-1 py-0.5 rounded border border-[#E9E9E7] text-[#787774] bg-[#F7F7F5] font-mono">
                   Ctrl+K
                 </kbd>
               </>
@@ -213,16 +213,16 @@ export default function Sidebar({
 
         {/* Quick Icon Row (Notion Top Row) */}
         {!collapsed && (
-          <div className="px-2 pt-1 pb-2 flex gap-1 border-b border-white/[0.04]">
+          <div className="px-2 pt-1 pb-2 flex gap-1 border-b border-[#E9E9E7]">
             <button
               onClick={() => {
                 onNavigate('home')
                 onMobileClose?.()
               }}
-              className={`flex-1 py-1.5 rounded-md text-xs flex items-center justify-center gap-1.5 transition-colors cursor-pointer ${
+              className={`flex-1 py-1 rounded text-xs flex items-center justify-center gap-1.5 transition-colors cursor-pointer ${
                 activePage === 'home'
-                  ? 'bg-emerald-500/15 text-emerald-300 font-semibold'
-                  : 'text-slate-400 hover:bg-white/5 hover:text-white'
+                  ? 'bg-[rgba(55,53,47,0.08)] text-[#37352F] font-semibold'
+                  : 'text-[#787774] hover:bg-[rgba(55,53,47,0.04)] hover:text-[#37352F]'
               }`}
             >
               <span>🏠</span> {t('home', 'Home')}
@@ -232,10 +232,10 @@ export default function Sidebar({
                 onNavigate('mentor')
                 onMobileClose?.()
               }}
-              className={`flex-1 py-1.5 rounded-md text-xs flex items-center justify-center gap-1.5 transition-colors cursor-pointer ${
+              className={`flex-1 py-1 rounded text-xs flex items-center justify-center gap-1.5 transition-colors cursor-pointer ${
                 activePage === 'mentor'
-                  ? 'bg-emerald-500/15 text-emerald-300 font-semibold'
-                  : 'text-slate-400 hover:bg-white/5 hover:text-white'
+                  ? 'bg-[rgba(55,53,47,0.08)] text-[#37352F] font-semibold'
+                  : 'text-[#787774] hover:bg-[rgba(55,53,47,0.04)] hover:text-[#37352F]'
               }`}
             >
               <span>💬</span> {t('mentor', 'Mentor')}
@@ -245,10 +245,10 @@ export default function Sidebar({
                 onNavigate('roadmap')
                 onMobileClose?.()
               }}
-              className={`flex-1 py-1.5 rounded-md text-xs flex items-center justify-center gap-1.5 transition-colors cursor-pointer ${
+              className={`flex-1 py-1 rounded text-xs flex items-center justify-center gap-1.5 transition-colors cursor-pointer ${
                 activePage === 'roadmap'
-                  ? 'bg-emerald-500/15 text-emerald-300 font-semibold'
-                  : 'text-slate-400 hover:bg-white/5 hover:text-white'
+                  ? 'bg-[rgba(55,53,47,0.08)] text-[#37352F] font-semibold'
+                  : 'text-[#787774] hover:bg-[rgba(55,53,47,0.04)] hover:text-[#37352F]'
               }`}
             >
               <span>📅</span> {t('roadmap', 'Plan')}
@@ -257,16 +257,16 @@ export default function Sidebar({
         )}
 
         {/* User Card */}
-        <div className="px-3 py-2.5 border-b border-[#30363d] flex-shrink-0">
+        <div className="px-3 py-2 border-b border-[#E9E9E7] flex-shrink-0">
           {currentUser ? (
             <div className={`flex items-center gap-2.5 ${collapsed ? 'justify-center' : ''}`}>
               <UserAvatar user={currentUser} size="sm" />
               {!collapsed && (
                 <div className="flex-1 min-w-0">
-                  <p className="text-xs font-semibold truncate text-slate-100">
+                  <p className="text-xs font-medium truncate text-[#37352F]">
                     {userProfile?.display_name || currentUser.displayName || 'Learner'}
                   </p>
-                  <p className="text-[10px] truncate text-slate-400">
+                  <p className="text-[10px] truncate text-[#787774]">
                     {currentUser.email}
                   </p>
                 </div>
@@ -275,7 +275,7 @@ export default function Sidebar({
           ) : (
             <button
               onClick={() => setAuthModalOpen(true)}
-              className={`w-full py-1.5 rounded-lg text-xs font-semibold bg-emerald-500/15 text-emerald-400 hover:bg-emerald-500/25 transition-colors cursor-pointer ${
+              className={`w-full py-1.5 rounded-md text-xs font-medium bg-[#2383E2] text-white hover:bg-[#1b6ec2] transition-colors cursor-pointer ${
                 collapsed ? 'px-1' : 'px-3'
               }`}
             >
@@ -285,11 +285,11 @@ export default function Sidebar({
         </div>
 
         {/* Section Navigation Items */}
-        <nav className="flex-1 overflow-y-auto overflow-x-hidden py-2 px-2 no-scrollbar space-y-2">
+        <nav className="flex-1 overflow-y-auto overflow-x-hidden py-2 px-1.5 no-scrollbar space-y-2">
           {sections.map((section) => (
             <div key={section.label} className="space-y-0.5">
               {!collapsed && (
-                <p className="px-3 pt-2 pb-1 text-[10px] font-bold uppercase tracking-wider text-slate-400 opacity-70">
+                <p className="px-2.5 pt-2 pb-1 text-[10px] font-semibold uppercase tracking-wider text-[#787774]">
                   {section.label}
                 </p>
               )}
@@ -303,12 +303,12 @@ export default function Sidebar({
                       onMobileClose?.()
                     }}
                     title={collapsed ? item.name : undefined}
-                    className={`w-full flex items-center gap-2.5 px-3 py-2 rounded-xl text-left transition-all group cursor-pointer ${
+                    className={`w-full flex items-center gap-2.5 px-2.5 py-1.5 rounded-md text-left transition-all group cursor-pointer ${
                       collapsed ? 'justify-center px-0' : ''
                     } ${
                       isActive
-                        ? 'bg-emerald-500/12 text-emerald-400 font-semibold'
-                        : 'text-slate-400 hover:bg-white/5 hover:text-white'
+                        ? 'bg-[rgba(55,53,47,0.08)] text-[#37352F] font-semibold'
+                        : 'text-[#787774] hover:bg-[rgba(55,53,47,0.04)] hover:text-[#37352F]'
                     }`}
                   >
                     <span className="text-sm flex-shrink-0">{item.icon}</span>
@@ -316,7 +316,7 @@ export default function Sidebar({
                       <span className="text-xs truncate">{item.name}</span>
                     )}
                     {!collapsed && isActive && (
-                      <div className="ml-auto w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-sm shadow-emerald-400/50" />
+                      <div className="ml-auto w-1 h-3 rounded-full bg-[#2383E2]" />
                     )}
                   </button>
                 )
@@ -326,32 +326,32 @@ export default function Sidebar({
         </nav>
 
         {/* Footer Area with Settings and Sign out */}
-        <div className="border-t border-[#30363d] p-2 space-y-1 flex-shrink-0">
+        <div className="border-t border-[#E9E9E7] p-2 space-y-0.5 flex-shrink-0">
           <button
             onClick={() => {
               onNavigate('settings')
               onMobileClose?.()
             }}
             title={collapsed ? t('settings', 'Settings') : undefined}
-            className={`w-full flex items-center gap-2.5 px-3 py-1.5 rounded-lg text-left transition-all cursor-pointer ${
+            className={`w-full flex items-center gap-2.5 px-2.5 py-1.5 rounded-md text-left transition-all cursor-pointer ${
               collapsed ? 'justify-center' : ''
             } ${
               activePage === 'settings'
-                ? 'bg-emerald-500/12 text-emerald-400 font-semibold'
-                : 'text-slate-400 hover:bg-white/5 hover:text-white'
+                ? 'bg-[rgba(55,53,47,0.08)] text-[#37352F] font-semibold'
+                : 'text-[#787774] hover:bg-[rgba(55,53,47,0.04)] hover:text-[#37352F]'
             }`}
           >
             <span className="text-sm flex-shrink-0">⚙️</span>
-            {!collapsed && <span className="text-xs">{t('settings', 'Settings & Appearance')}</span>}
+            {!collapsed && <span className="text-xs">{t('settings', 'Settings & Preferences')}</span>}
           </button>
 
           {currentUser && (
             <button
               onClick={logout}
               title={collapsed ? t('signOut', 'Sign Out') : undefined}
-              className={`w-full flex items-center gap-2.5 px-3 py-1.5 rounded-lg text-left transition-all cursor-pointer ${
+              className={`w-full flex items-center gap-2.5 px-2.5 py-1.5 rounded-md text-left transition-all cursor-pointer ${
                 collapsed ? 'justify-center' : ''
-              } text-red-400/70 hover:bg-red-500/10 hover:text-red-400`}
+              } text-[#5d1715] hover:bg-[#FFE2DD]`}
             >
               <span className="text-sm flex-shrink-0">🚪</span>
               {!collapsed && <span className="text-xs">{t('signOut', 'Sign Out')}</span>}
@@ -359,7 +359,7 @@ export default function Sidebar({
           )}
         </div>
 
-        {/* ─── Notion-Style Draggable Edge & Hover Tooltip ─── */}
+        {/* ─── Notion-Style Draggable Edge ─── */}
         <div
           onMouseEnter={() => setIsHoveringBorder(true)}
           onMouseLeave={() => !isResizing && setIsHoveringBorder(false)}
@@ -369,28 +369,28 @@ export default function Sidebar({
               toggleCollapse()
             }
           }}
-          className={`absolute top-0 right-0 w-3 h-full cursor-col-resize z-40 transition-colors hidden md:block ${
-            isHoveringBorder || isResizing ? 'bg-emerald-500/30' : 'hover:bg-emerald-500/20'
+          className={`absolute top-0 right-0 w-2.5 h-full cursor-col-resize z-40 transition-colors hidden md:block ${
+            isHoveringBorder || isResizing ? 'bg-[#2383E2]/20' : 'hover:bg-[#E9E9E7]'
           }`}
           title="Drag to resize, click to collapse"
         >
           <div
-            className={`w-[2px] h-full ml-auto transition-colors ${
-              isHoveringBorder || isResizing ? 'bg-emerald-400' : 'bg-transparent'
+            className={`w-[1px] h-full ml-auto transition-colors ${
+              isHoveringBorder || isResizing ? 'bg-[#2383E2]' : 'bg-transparent'
             }`}
           />
         </div>
 
         {/* Notion Tooltip on Hover */}
         {(isHoveringBorder || isResizing) && !collapsed && (
-          <div className="absolute top-1/2 -right-36 -translate-y-1/2 z-50 pointer-events-none bg-[#1c2128] text-white text-[11px] px-3 py-2 rounded-xl border border-[#30363d] shadow-2xl backdrop-blur-md animate-fadeIn flex flex-col gap-1">
+          <div className="absolute top-1/2 -right-36 -translate-y-1/2 z-50 pointer-events-none bg-white text-[#37352F] text-[11px] px-3 py-2 rounded-md border border-[#E9E9E7] shadow-sm animate-fadeIn flex flex-col gap-1">
             <div className="flex items-center gap-1.5 whitespace-nowrap">
-              <span className="font-bold text-slate-100">Close</span>
-              <span className="text-slate-400 text-[10px]">Click or Ctrl+\</span>
+              <span className="font-semibold text-[#37352F]">Close</span>
+              <span className="text-[#787774] text-[10px]">Click or Ctrl+\</span>
             </div>
             <div className="flex items-center gap-1.5 whitespace-nowrap">
-              <span className="font-bold text-slate-100">Resize</span>
-              <span className="text-slate-400 text-[10px]">Drag</span>
+              <span className="font-semibold text-[#37352F]">Resize</span>
+              <span className="text-[#787774] text-[10px]">Drag</span>
             </div>
           </div>
         )}

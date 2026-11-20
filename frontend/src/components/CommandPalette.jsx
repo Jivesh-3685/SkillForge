@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import { useTheme } from '../context/ThemeContext'
 
 const COMMANDS = [
   { id: 'home', icon: '🏠', label: 'Home Dashboard', category: 'Navigation', desc: 'Overview and status' },
@@ -17,7 +16,6 @@ const COMMANDS = [
 ]
 
 export default function CommandPalette({ isOpen, onClose, onSelect }) {
-  const { theme } = useTheme()
   const [query, setQuery] = useState('')
   const [selectedIndex, setSelectedIndex] = useState(0)
 
@@ -64,14 +62,14 @@ export default function CommandPalette({ isOpen, onClose, onSelect }) {
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 z-50 flex items-start justify-center pt-20 px-4 bg-black/60 backdrop-blur-sm animate-fadeIn">
+    <div className="fixed inset-0 z-50 flex items-start justify-center pt-20 px-4 bg-black/20 backdrop-blur-xs animate-fadeIn">
       <div
-        className={`w-full max-w-xl ${theme.card} border ${theme.border} rounded-2xl shadow-2xl overflow-hidden`}
+        className="w-full max-w-xl bg-white border border-[#E9E9E7] rounded-lg shadow-sm overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Search Input Bar */}
-        <div className={`flex items-center gap-3 px-4 py-3.5 border-b ${theme.border}`}>
-          <span className="text-slate-400 text-lg">🔍</span>
+        <div className="flex items-center gap-3 px-4 py-3 border-b border-[#E9E9E7]">
+          <span className="text-[#787774] text-base">🔍</span>
           <input
             autoFocus
             type="text"
@@ -81,17 +79,17 @@ export default function CommandPalette({ isOpen, onClose, onSelect }) {
               setSelectedIndex(0)
             }}
             placeholder="Type a command, tool or search..."
-            className="flex-1 bg-transparent text-sm text-slate-100 placeholder-slate-500 focus:outline-none"
+            className="flex-1 bg-transparent text-sm text-[#37352F] placeholder-[#787774] focus:outline-none"
           />
-          <kbd className={`text-[10px] px-2 py-0.5 rounded border ${theme.border} text-slate-400 font-mono`}>
+          <kbd className="text-[10px] px-1.5 py-0.5 rounded border border-[#E9E9E7] text-[#787774] bg-[#F7F7F5] font-mono">
             ESC
           </kbd>
         </div>
 
         {/* Results List */}
-        <div className="max-h-80 overflow-y-auto p-2 space-y-1 no-scrollbar">
+        <div className="max-h-80 overflow-y-auto p-1.5 space-y-0.5 no-scrollbar">
           {filtered.length === 0 ? (
-            <div className="p-6 text-center text-xs text-slate-400">
+            <div className="p-6 text-center text-xs text-[#787774]">
               No matching pages or tools found for "{query}".
             </div>
           ) : (
@@ -102,20 +100,20 @@ export default function CommandPalette({ isOpen, onClose, onSelect }) {
                   key={item.id}
                   onClick={() => handleSelect(item.id)}
                   onMouseEnter={() => setSelectedIndex(idx)}
-                  className={`w-full flex items-center justify-between p-2.5 rounded-xl text-left transition-colors ${
+                  className={`w-full flex items-center justify-between px-3 py-2 rounded-md text-left transition-colors cursor-pointer ${
                     isSelected
-                      ? 'bg-emerald-500/15 text-emerald-300'
-                      : 'text-slate-200 hover:bg-white/5'
+                      ? 'bg-[rgba(55,53,47,0.08)] text-[#37352F]'
+                      : 'text-[#37352F] hover:bg-[rgba(55,53,47,0.04)]'
                   }`}
                 >
-                  <div className="flex items-center gap-3">
-                    <span className="text-lg">{item.icon}</span>
+                  <div className="flex items-center gap-2.5">
+                    <span className="text-base">{item.icon}</span>
                     <div>
-                      <p className="text-xs font-semibold">{item.label}</p>
-                      <p className="text-[11px] text-slate-400">{item.desc}</p>
+                      <p className="text-xs font-medium text-[#37352F]">{item.label}</p>
+                      <p className="text-[11px] text-[#787774]">{item.desc}</p>
                     </div>
                   </div>
-                  <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-white/5 text-slate-400 border border-white/10">
+                  <span className="text-[10px] px-1.5 py-0.5 rounded bg-[#F7F7F5] text-[#787774] border border-[#E9E9E7]">
                     {item.category}
                   </span>
                 </button>
@@ -125,9 +123,9 @@ export default function CommandPalette({ isOpen, onClose, onSelect }) {
         </div>
 
         {/* Footer shortcuts */}
-        <div className={`px-4 py-2 border-t ${theme.border} bg-white/[0.02] flex items-center justify-between text-[11px] text-slate-400 font-mono`}>
+        <div className="px-4 py-2 border-t border-[#E9E9E7] bg-[#F7F7F5] flex items-center justify-between text-[11px] text-[#787774]">
           <span>Navigate with arrows, Enter to choose</span>
-          <span>SkillForge v1.0</span>
+          <span className="font-mono">SkillForge v1.0</span>
         </div>
       </div>
     </div>

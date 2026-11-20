@@ -9,33 +9,33 @@ export default function Navbar() {
 
   return (
     <>
-      <header className="border-b border-gray-800/80 bg-gray-950/80 backdrop-blur-md sticky top-0 z-40">
-        <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+      <header className="border-b border-[#E9E9E7] bg-white sticky top-0 z-40">
+        <div className="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between">
           {/* Logo */}
-          <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-purple-500 to-emerald-500 p-[1.5px] flex items-center justify-center shadow-sm">
+          <div className="flex items-center gap-2.5">
+            <div className="w-7 h-7 rounded-md p-0.5 flex items-center justify-center bg-white border border-[#E9E9E7]">
               <img
                 src="/logo.png"
                 alt="SkillForge Logo"
-                className="w-full h-full rounded-[10px] object-cover"
+                className="w-full h-full object-contain"
               />
             </div>
-            <span className="font-bold text-lg text-white tracking-tight">
-              SkillForge <span className="text-emerald-400 font-mono text-sm font-normal">AI</span>
+            <span className="font-semibold text-sm text-[#37352F] tracking-tight">
+              SkillForge <span className="text-[#2383E2] font-mono text-xs font-normal">AI</span>
             </span>
           </div>
 
           {/* User Controls */}
           <div>
             {currentUser ? (
-              <div className="flex items-center gap-4">
-                <div className="flex items-center gap-2.5">
-                  <UserAvatar user={currentUser} size="md" />
+              <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2">
+                  <UserAvatar user={currentUser} size="sm" />
                   <div className="hidden sm:block text-left">
-                    <p className="text-sm font-medium text-gray-200 leading-tight">
+                    <p className="text-xs font-medium text-[#37352F] leading-tight">
                       {userProfile?.display_name || currentUser.displayName || 'Learner'}
                     </p>
-                    <p className="text-xs text-gray-500 font-mono">
+                    <p className="text-[10px] text-[#787774]">
                       {currentUser.email}
                     </p>
                   </div>
@@ -43,7 +43,7 @@ export default function Navbar() {
 
                 <button
                   onClick={logout}
-                  className="px-3 py-1.5 text-xs font-medium text-gray-400 hover:text-white bg-gray-900 hover:bg-gray-800 border border-gray-800 rounded-lg transition-colors cursor-pointer"
+                  className="px-2.5 py-1 text-xs font-medium text-[#787774] hover:text-[#37352F] hover:bg-[rgba(55,53,47,0.06)] rounded-md border border-[#E9E9E7] transition-colors cursor-pointer"
                 >
                   Sign out
                 </button>
@@ -51,7 +51,7 @@ export default function Navbar() {
             ) : (
               <button
                 onClick={() => setModalOpen(true)}
-                className="px-4 py-2 text-sm font-semibold text-gray-950 bg-emerald-400 hover:bg-emerald-300 rounded-xl transition-all shadow-xs hover:shadow-emerald-500/20 cursor-pointer"
+                className="px-3 py-1.5 text-xs font-medium text-white bg-[#2383E2] hover:bg-[#1b6ec2] rounded-md transition-colors cursor-pointer"
               >
                 Sign In
               </button>

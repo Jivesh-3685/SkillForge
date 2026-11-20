@@ -55,29 +55,29 @@ export default function AuthModal({ isOpen, onClose }) {
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-xs">
-      <div className="relative w-full max-w-md bg-gray-900 border border-gray-800 rounded-2xl p-6 shadow-2xl text-gray-100">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/25 backdrop-blur-xs animate-fadeIn">
+      <div className="relative w-full max-w-md bg-white border border-[#E9E9E7] rounded-lg p-6 shadow-sm text-[#37352F]">
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 text-gray-400 hover:text-white p-1"
+          className="absolute top-4 right-4 text-[#787774] hover:text-[#37352F] hover:bg-[rgba(55,53,47,0.06)] rounded p-1 transition-colors"
         >
           ✕
         </button>
 
         {/* Modal Header */}
         <div className="text-center mb-6">
-          <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-tr from-purple-500 to-emerald-500 p-[2px] mb-3 shadow-lg shadow-emerald-500/10">
+          <div className="inline-flex items-center justify-center w-12 h-12 rounded-md bg-[#F7F7F5] border border-[#E9E9E7] p-1.5 mb-2.5">
             <img
               src="/logo.png"
               alt="SkillForge"
-              className="w-full h-full rounded-[14px] object-cover"
+              className="w-full h-full object-contain"
             />
           </div>
-          <h2 className="text-xl font-bold tracking-tight">
+          <h2 className="text-lg font-semibold tracking-tight text-[#37352F]">
             {isSignUp ? 'Create your SkillForge account' : 'Welcome back to SkillForge'}
           </h2>
-          <p className="text-sm text-gray-400 mt-1">
+          <p className="text-xs text-[#787774] mt-1">
             {isSignUp
               ? 'Start turning your code into verified skill roadmaps'
               : 'Sign in to access your skills and roadmaps'}
@@ -86,7 +86,7 @@ export default function AuthModal({ isOpen, onClose }) {
 
         {/* Error Alert */}
         {error && (
-          <div className="mb-4 p-3 bg-red-950/60 border border-red-800/80 rounded-lg text-sm text-red-200">
+          <div className="mb-4 p-2.5 bg-[#FFE2DD] border border-[#E9E9E7] rounded-md text-xs text-[#5d1715]">
             {error}
           </div>
         )}
@@ -96,7 +96,7 @@ export default function AuthModal({ isOpen, onClose }) {
           onClick={handleGoogleSignIn}
           disabled={loading}
           type="button"
-          className="w-full flex items-center justify-center gap-3 py-2.5 px-4 bg-gray-800 hover:bg-gray-750 border border-gray-700 rounded-xl font-medium text-sm transition-colors cursor-pointer disabled:opacity-50"
+          className="w-full flex items-center justify-center gap-2.5 py-2 px-3.5 bg-[#F7F7F5] hover:bg-[rgba(55,53,47,0.06)] border border-[#E9E9E7] rounded-md font-medium text-xs text-[#37352F] transition-colors cursor-pointer disabled:opacity-50"
         >
           <svg className="w-4 h-4" viewBox="0 0 24 24">
             <path
@@ -120,49 +120,49 @@ export default function AuthModal({ isOpen, onClose }) {
         </button>
 
         {/* Divider */}
-        <div className="flex items-center my-5">
-          <div className="flex-1 border-t border-gray-800"></div>
-          <span className="px-3 text-xs text-gray-500 uppercase tracking-wider">or email</span>
-          <div className="flex-1 border-t border-gray-800"></div>
+        <div className="flex items-center my-4">
+          <div className="flex-1 border-t border-[#E9E9E7]"></div>
+          <span className="px-3 text-[10px] text-[#787774] uppercase tracking-wider">or email</span>
+          <div className="flex-1 border-t border-[#E9E9E7]"></div>
         </div>
 
         {/* Email Form */}
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-3.5">
           <div>
-            <label className="block text-xs font-medium text-gray-300 mb-1.5">Email address</label>
+            <label className="block text-xs font-medium text-[#37352F] mb-1">Email address</label>
             <input
               type="email"
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="you@example.com"
-              className="w-full px-3.5 py-2.5 bg-gray-950 border border-gray-800 rounded-xl text-sm focus:outline-hidden focus:border-emerald-500 transition-colors"
+              className="w-full px-3 py-2 bg-[#F7F7F5] border border-[#E9E9E7] rounded-md text-xs text-[#37352F] focus:border-[#2383E2] transition-colors"
             />
           </div>
 
           <div>
-            <label className="block text-xs font-medium text-gray-300 mb-1.5">Password</label>
+            <label className="block text-xs font-medium text-[#37352F] mb-1">Password</label>
             <input
               type="password"
               required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="••••••••"
-              className="w-full px-3.5 py-2.5 bg-gray-950 border border-gray-800 rounded-xl text-sm focus:outline-hidden focus:border-emerald-500 transition-colors"
+              className="w-full px-3 py-2 bg-[#F7F7F5] border border-[#E9E9E7] rounded-md text-xs text-[#37352F] focus:border-[#2383E2] transition-colors"
             />
           </div>
 
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-2.5 bg-emerald-500 hover:bg-emerald-400 text-gray-950 font-semibold rounded-xl text-sm transition-colors cursor-pointer disabled:opacity-50 mt-2"
+            className="w-full py-2 bg-[#2383E2] hover:bg-[#1b6ec2] text-white font-medium rounded-md text-xs transition-colors cursor-pointer disabled:opacity-50 mt-1"
           >
             {loading ? 'Please wait…' : isSignUp ? 'Create account' : 'Sign in'}
           </button>
         </form>
 
         {/* Switch Sign In / Sign Up */}
-        <div className="text-center mt-5 text-sm text-gray-400">
+        <div className="text-center mt-4 text-xs text-[#787774]">
           {isSignUp ? (
             <span>
               Already have an account?{' '}
@@ -172,7 +172,7 @@ export default function AuthModal({ isOpen, onClose }) {
                   setIsSignUp(false)
                   setError('')
                 }}
-                className="text-emerald-400 hover:underline font-medium ml-1 cursor-pointer"
+                className="text-[#2383E2] hover:underline font-medium ml-0.5 cursor-pointer"
               >
                 Sign in
               </button>
@@ -186,7 +186,7 @@ export default function AuthModal({ isOpen, onClose }) {
                   setIsSignUp(true)
                   setError('')
                 }}
-                className="text-emerald-400 hover:underline font-medium ml-1 cursor-pointer"
+                className="text-[#2383E2] hover:underline font-medium ml-0.5 cursor-pointer"
               >
                 Create one
               </button>
