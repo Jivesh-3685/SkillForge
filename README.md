@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # SkillForge AI
 
 > **A GitHub-verified AI learning mentor that turns real coding activity into an evidence-based, personalized skill roadmap.**
@@ -112,3 +113,7 @@ cd backend
 ## 📄 License
 
 MIT © 2026 SkillForge AI
+=======
+# SkillForge
+SkillForge AI is an AI-powered learning platform designed to help students identify skill gaps, create personalized learning roadmaps, access curated resources, and track their progress. It bridges the gap between academic knowledge and industry requirements, empowering learners to develop relevant skills and become career-ready.
+>>>>>>> 8f4fde16a36002bebee7c71d3830ea92ed07915d
